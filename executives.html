@@ -1,16 +1,40 @@
-<!doctype html><html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Official website and FOH audio engineering portal of the AGCM - KNUST Technical Department — live mixing, multitrack recording, editing, mastering, and venue setup.">
-<meta property="og:title" content="Executives | AGCM - KNUST Technical">
-<meta property="og:description" content="Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — Live FOH Mixing, 32SX Channel Vault, Service Planner &amp; Audio Engineering.">
-<meta property="og:image" content="assets/logo-lg.png">
-<meta property="og:type" content="website">
-<link rel="icon" href="assets/favicon.png">
-<script>try{document.documentElement.dataset.theme=localStorage.getItem("sdu_theme_v35")==="dark"?"dark":"light"}catch(e){}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css"><title>Executives | AGCM - KNUST Technical</title></head><body><main>
-<div class="dept-card"><div class="kicker">Department Leadership</div><h3 class="title">Executives of the AGCM - KNUST Technical Department</h3>
-<p class="sm text-sec">The executive officers who lead our audio engineering, recording, organizing, and welfare operations. To join the department, speak to the Technical Heads or review the constitutional role duties.</p>
-<div class="tabs"><a class="btn" href="leads.html">📝 View Constitutional Duties &amp; Role Handover Notes</a></div></div>
-<div class="exgrid" id="ex-grid"></div>
-</main><script src="data/roles.js"></script><script src="data/executives.js"></script><script src="js/app.js"></script></body></html>
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Executives | AGCM - KNUST Technical</title>
+  <meta name="description" content="Executive officers of the AGCM - KNUST Technical Department.">
+  <meta property="og:title" content="Executives | AGCM - KNUST Technical">
+  <meta property="og:description" content="Meet the 15 executive officers of the AGCM - KNUST Technical Department.">
+  <meta property="og:image" content="assets/logo-lg.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.png">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("sdu_theme_v35")==="dark"?"dark":"light"}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<main>
+  <div class="dept-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px">
+      <div>
+        <div class="kicker">Department Leadership • 15 Officers</div>
+        <h3 class="title">AGCM - KNUST Technical Department Executives</h3>
+        <p class="sm text-sec">Meet the 15 executive officers leading the AGCM - KNUST Technical Department across live sound mixing, multitrack recording, equipment conveyance, and fellowship welfare.</p>
+      </div>
+      <div class="tabs">
+        <button type="button" id="btn-toggle-port-edit" class="btn-subtle">✏️ Assign Portfolios</button>
+        <button type="button" id="btn-copy-exec-js" class="btn" hidden>📋 Copy data/executives.js</button>
+      </div>
+    </div>
+  </div>
+  <div class="exgrid" id="ex-grid"></div>
+</main>
+<script src="data/executives.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

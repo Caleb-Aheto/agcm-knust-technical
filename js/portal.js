@@ -944,6 +944,7 @@ public class PatchAllocationService {
 
     function switchView(viewName) {
       currentView = viewName;
+      try { if (location.hash !== '#' + viewName) history.replaceState(null, '', '#' + viewName); } catch (e) {}
       const views = ['overview', 'mastering', 'planner', 'forensics', 'channels', 'checklist', 'matrix', 'patch', 'calculators', 'sop', 'repo'];
       views.forEach(v => {
         const sec = document.getElementById('view-' + v);

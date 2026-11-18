@@ -1,57 +1,50 @@
-# AGCM - KNUST Technical Department Portal
+# AGCM - KNUST Technical Department Website & Audio Portal
 
-Official Audio Engineering, FOH Mixing, 32-Channel Stage Patch & Service Planning Portal for the **AGCM - KNUST Technical Department**.
+> **Sound Excellence in His Service**  
+> Official multi-page website and Front-of-House (FOH) audio engineering portal for the **Assemblies of God Campus Ministry (AGCM KNUST) Technical Department** (*"Our Mission is Missions"*).
 
-**Live Demo:** [https://caleb-aheto.github.io/foh-mixing-blueprint/](https://caleb-aheto.github.io/foh-mixing-blueprint/)
+## 🌐 Live Deployments
+- **GitHub Pages**: [https://caleb-aheto.github.io/foh-mixing-blueprint/](https://caleb-aheto.github.io/foh-mixing-blueprint/)
+- **Vercel Production**: [https://foh-mixing-blueprint.vercel.app/](https://foh-mixing-blueprint.vercel.app/)
 
----
+## 🎧 Official Ministry & Audio Channels
+- **Telegram Channel**: [THE CHURCH AGCM-KNUST (`t.me/agcmknust_tg`)](https://t.me/agcmknust_tg)
+- **Spotify Podcast**: [Dunamis Pod AGCM KNUST](https://open.spotify.com/show/7yP4q9iGgVjvg5EUyvI6Ou?si=8f37a0052dcd4a3e)
+- **Instagram**: [@agcmknust](https://instagram.com/agcmknust)
+- **X (Twitter)**: [@agcmKNUST](https://x.com/agcmKNUST)
+- **Email**: [agcmtechnicaldepartment2021@gmail.com](mailto:agcmtechnicaldepartment2021@gmail.com)
 
-## 4 Audio Engineering Pillars
+## 🏛️ Site Architecture
+- **`index.html` (Home)**: Department welcome hero with interactive 32-band VU level meter, core audio responsibilities (Live FOH Mixing, 24-bit Multitrack Recording, Surgical Editing & Mastering, and 7-Venue Conveyance), weekly service schedule, SVG social links, and color-accented Audio Portal module cards.
+- **`executives.html` (Executives)**: Official 15-member executive roster with avatar badges, full names, and portfolios, plus an interactive **Assign Portfolios** & `data/executives.js` exporter.
+- **`gallery.html` (Gallery)**: Filterable visual archive across *FOH & Console*, *Campus Venues*, *Ministry & Events*, and *Crew & Setup* with local photo preview testing.
+- **`tools/foh-portal.html` (Unified Audio Portal)**:
+  - **Event & Service Planner (`#planner`)**: 7 KNUST campus venues (*Great Hall*, *Great Hall Foyer*, *Independence Hall Dining Hall*, *Queens Hall Dining Hall*, *Africa Hall Dining Hall*, *Katanga Hall Dining Hall*, *CCB Auditorium*), crew assignments, and live Order of Service cue sheets.
+  - **32SX Channel Strip & EQ Vault (`#channels`)**: All 32 console inputs on the PreSonus StudioLive Series III 32SX with interactive 4-band parametric EQ curves, gate key filters, and compression parameters.
+  - **Soundcheck Checklist (`#checklist`)**: 7-phase pre-service FOH verification from Vatasa IDOL 13 / DX2496 power-up to PreSonus Capture arming.
+  - **32×8 Snake & Patch Builder (`#patch`)**: Hardware workaround map for the Studiomaster AudioLink 32×8 stagebox (dead ports 4, 8, 9–16, 20, 29–32 and Fader 18 bypass) + custom service patch exporter.
+  - **Mixing & Mastering Studio (`#mastering`)**: Universal audio engineering pillars and interactive `-14 LUFS` loudness simulator.
+  - **Frequency Conflict Matrix (`#matrix`)**: Sub, low-mid, and vocal unmasking guide.
+  - **Great Hall Audio Reference (`#forensics`)**: 12-channel multitrack benchmark metrics and before/after restoration curves.
+  - **Great Hall Calculators (`#calculators`)**: DX2496 delay fill timing, 90 Hz crossover wavelength, and Tap Tempo FX calculator.
+  - **Mic Swap SOP & Gear Log (`#sop`)**: Stage mic color-tape standard, 5-second console swap SOP, downloadable department handbooks, and hardware health registry.
 
-1. **Live FOH Mixing** — Precision front-of-house balance, gain staging, EQ, dynamics, and feedback suppression across campus venues.
-2. **24-Bit Multitrack Recording** — Clean, isolated multitrack capture via PreSonus StudioLive 32SX for archival, training, and post-production.
-3. **Surgical Audio Editing** — Detailed cleanup, noise reduction, phase alignment, and arrangement editing of recorded services and ministrations.
-4. **Broadcast Mastering for Audiomack & YouTube** — Loudness-normalized (-14 LUFS), broadcast-ready stereo masters optimized for Audiomack sermons and YouTube livestreams and uploads.
+## 👥 Department Executive Officers (15)
 
----
-
-## AGCM KNUST Weekly Sound Schedule
-
-| Day / Program | Time | Venue |
-| :--- | :--- | :--- |
-| **Sunday 1st Service** | 6:00 AM | Great Hall Foyer / Great Hall |
-| **Sunday 2nd Service** | 8:30 AM | Great Hall Foyer / Great Hall |
-| **Thursday Service** | 6:30 PM | Indece Dining Hall |
-| **Special Ministries** | Scheduled | Feast of Talents & Anointed Theatre Ministry |
-
----
-
-## Key Technical Features
-
-- **Full 32-Channel PreSonus StudioLive 32SX Vault** — Complete channel-by-channel console blueprint, routing reference, and scene management for live services.
-- **Smart Stagebox Auto-Patch Allocator** — Automatically routes inputs around known hardware faults, bypassing dead AudioLink ports (**2, 5, 19, 20, 21, 30, 32**) and broken **Fader 18**.
-- **7 Campus Venues** — Venue-specific acoustic profiles, setup checklists, and stage patch presets tailored for 7 AGCM KNUST campus locations.
-- **KNUST Great Hall (48.1m x 28.0m) DX2496 Acoustic Calculators** — Room-dimension-aware delay, speaker alignment, and DSP crossover/EQ calculation tools for the Great Hall.
-
----
-
-## Tech Stack & Architecture
-
-- **Frontend:** HTML5, Tailwind CSS, ES6 JavaScript Canvas
-- **Client Persistence:** Offline `LocalStorage` for zero-latency field reliability without internet access
-- **Backend Blueprint:** Java Spring Boot + PostgreSQL ([`backend/schema.sql`](backend/schema.sql))
-- **System Design:** See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full architecture and data-flow specification.
-
----
-
-## Repository Structure
-
-```text
-foh-mixing-blueprint/
-├── index.html              # Single-page portal application
-├── README.md               # Project documentation
-├── backend/
-│   └── schema.sql          # PostgreSQL relational database blueprint
-└── docs/
-    └── ARCHITECTURE.md     # System architecture & hardware fault-routing spec
-```
+| # | Name | Portfolio |
+|---|---|---|
+| 01 | **Hosea A. Awinsaki** | Technical Head |
+| 02 | **Kwarteng Kelvin Owusu Kwame** | Vice Technical Head |
+| 03 | **Priscilla Princess Senam Kalevor** | General Secretary |
+| 04 | **Caleb Aheto** | Console Head |
+| 05 | **Asumadu Ntiamoah Nana Yaw** | Vice Console Head |
+| 06 | **Asiamah Darlington** | Recording Head |
+| 07 | **Blessing Antoh** | 1st Vice Recording Head |
+| 08 | **Owusu Ansah Kwadwo** | 2nd Vice Recording Head |
+| 09 | **Casmir Sraha** | Organizing Head |
+| 10 | **Tennyson Joojo Kakra** | 1st Assistant Organizing Head |
+| 11 | **David Adu-Opare** | 2nd Assistant Organizing Head |
+| 12 | **Senam Gbedema** | Treasurer |
+| 13 | **Agyeman Ama Boatemaa** | Welfare Head |
+| 14 | **Nhyira Sarah Duncan** | Vice Welfare Head |
+| 15 | **Francis Arthur Yankholmes** | Prayer Secretary |

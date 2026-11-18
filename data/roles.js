@@ -1,5 +1,7 @@
 /* Source: AGCM-KNUST Technical Department Constitution. Edit here, both pages update. */
 window.ROLES=[
+{id:"techhead",group:"Technical Heads",name:"Technical Heads",duties:["Overall heads of the AGCM-KNUST Technical Department","Oversee all live sound reinforcement, recording, and crew deployment","Represent the department at Student Chaplaincy Council (SCC) and leadership meetings"]},
+{id:"vicetech",group:"Vice Technical Head's group",name:"Vice Technical Head",duties:["Assists the Technical Heads in all departmental duties","Supervises and coordinates the Console Heads and Recording Heads"]},
 {id:"gensec",group:"General Secretary's group",name:"General Secretary",duties:["Represents the Technical Heads in their absence","Writes all official letters and handles department announcements","Follows up on invited ministers and sees to their reception","Keeps the department database and details of new members","Coordinates all department meetings"]},
 {id:"treasurer",group:"General Secretary's group",name:"Treasurer",duties:["Keeps all department money and records every transaction","Works with the Technical Head and Welfare Head on genuine member financial needs","Custodian of valuable items: tracks them and updates the Technical Heads"]},
 {id:"welfare",group:"General Secretary's group",name:"Welfare Heads",duties:["Visit and counsel members","Identify members needing financial, health or special support","Work with the Treasurer on refreshments for special meetings","Keep member birthdays"]},
