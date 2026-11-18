@@ -1,4 +1,5 @@
-﻿<!doctype html>
+<!doctype html>
+<!-- AGCM-KNUST v1.5.0 • 2026-11-18 -->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
@@ -7,18 +8,19 @@
   <meta name="description" content="Visual archive of Front-of-House mixing desks, sanctuary PA deployments, midweek setups, and AGCM - KNUST Technical Department crew operations.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#3730a3">
-  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app/gallery.html">
+  <link rel="canonical" href="https://agcm-knust-technical.vercel.app/gallery.html">
 
   <!-- Open Graph / WhatsApp / Telegram Preview -->
   <meta property="og:title" content="Gallery | AGCM - KNUST Technical Department">
   <meta property="og:description" content="Visual archive of Front-of-House mixing desks, sanctuary PA deployments, midweek setups, and AGCM - KNUST Technical Department crew operations.">
-  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app/gallery.html">
-  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta property="og:url" content="https://agcm-knust-technical.vercel.app/gallery.html">
+  <meta property="og:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AGCM - KNUST Technical Department">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Gallery | AGCM - KNUST Technical Department">
   <meta name="twitter:description" content="Visual archive of Front-of-House mixing desks, sanctuary PA deployments, midweek setups, and AGCM - KNUST Technical Department crew operations.">
-  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta name="twitter:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
 
   <link rel="icon" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -27,14 +29,19 @@
   <script>
     document.documentElement.classList.add('js');
     try {
-      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      var t = localStorage.getItem('agcm_theme');
       document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
     } catch (e) {}
+    addEventListener('DOMContentLoaded', function () {
+      var gf = document.getElementById('gfont-css');
+      if (gf) gf.media = 'all';
+    });
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link id="gfont-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <link rel="stylesheet" href="css/styles.css">
@@ -44,7 +51,7 @@
 <header class="topnav">
   <div class="tn-brand">
     <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
-      <img src="assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+      <img src="assets/logo.png" width="44" height="38" alt="AGCM-KNUST Technical Department logo">
     </button>
     <a href="index.html" style="text-decoration:none">
       <span class="brand-title">AGCM - KNUST</span>
@@ -57,7 +64,7 @@
       <a class="nav-pill active" href="gallery.html" aria-current="page"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
       <a class="nav-pill" href="tools/foh-portal.html"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
   </nav>
-  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+  <div class="tn-r"><button type="button" class="theme-switch theme-btn" role="switch" aria-checked="false" aria-label="Toggle Light or Dark mode"><span class="theme-seg theme-seg-light" data-theme-target="light"><svg class="theme-ico-sun" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Light</span></span><span class="theme-seg theme-seg-dark" data-theme-target="dark"><svg class="theme-ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span>Dark</span></span></button></div>
 </header>
 
 <main id="main">
@@ -81,7 +88,7 @@
   <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
 </footer>
 <div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
-  <img id="lm-img" src="assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <img id="lm-img" src="assets/logo.png" width="476" height="408" alt="AGCM-KNUST Technical Department crest">
   <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>

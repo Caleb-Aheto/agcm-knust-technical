@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /tools/
-Disallow: /data/roles.js
 
-Sitemap: https://foh-mixing-blueprint.vercel.app/sitemap.xml
+Sitemap: https://agcm-knust-technical.vercel.app/sitemap.xml

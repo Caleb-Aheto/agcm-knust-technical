@@ -1,4 +1,5 @@
-﻿<!doctype html>
+<!doctype html>
+<!-- AGCM-KNUST v1.5.0 • 2026-11-18 -->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
@@ -7,18 +8,19 @@
   <meta name="description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#3730a3">
-  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app">
+  <link rel="canonical" href="https://agcm-knust-technical.vercel.app/">
 
   <!-- Open Graph / WhatsApp / Telegram Preview -->
   <meta property="og:title" content="AGCM - KNUST Technical Department | Sound Excellence in His Service">
   <meta property="og:description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
-  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app">
-  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta property="og:url" content="https://agcm-knust-technical.vercel.app/">
+  <meta property="og:site_name" content="AGCM - KNUST Technical Department">
+  <meta property="og:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="AGCM - KNUST Technical Department | Sound Excellence in His Service">
   <meta name="twitter:description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
-  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta name="twitter:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
 
   <link rel="icon" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -27,14 +29,19 @@
   <script>
     document.documentElement.classList.add('js');
     try {
-      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      var t = localStorage.getItem('agcm_theme');
       document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
     } catch (e) {}
+    addEventListener('DOMContentLoaded', function () {
+      var gf = document.getElementById('gfont-css');
+      if (gf) gf.media = 'all';
+    });
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link id="gfont-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <link rel="stylesheet" href="css/styles.css">
@@ -44,7 +51,7 @@
 <header class="topnav">
   <div class="tn-brand">
     <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
-      <img src="assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+      <img src="assets/logo.png" width="44" height="38" alt="AGCM-KNUST Technical Department logo">
     </button>
     <a href="index.html" style="text-decoration:none">
       <span class="brand-title">AGCM - KNUST</span>
@@ -57,7 +64,7 @@
       <a class="nav-pill" href="gallery.html"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
       <a class="nav-pill" href="tools/foh-portal.html"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
   </nav>
-  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+  <div class="tn-r"><button type="button" class="theme-switch theme-btn" role="switch" aria-checked="false" aria-label="Toggle Light or Dark mode"><span class="theme-seg theme-seg-light" data-theme-target="light"><svg class="theme-ico-sun" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Light</span></span><span class="theme-seg theme-seg-dark" data-theme-target="dark"><svg class="theme-ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span>Dark</span></span></button></div>
 </header>
 
 <main id="main">
@@ -65,7 +72,7 @@
   <!-- ===================== HERO ===================== -->
   <section class="dept-hero">
     <div class="hero-row">
-      <img src="assets/logo.png" width="88" height="88" alt="AGCM-KNUST Technical Department crest">
+      <img src="assets/logo.png" width="112" height="96" alt="AGCM-KNUST Technical Department crest">
       <div>
         <div class="pills">
           <span class="pill">AGCM - KNUST Technical Department</span>
@@ -87,25 +94,51 @@
 
   <!-- ===================== CORE AUDIO PILLARS ===================== -->
   <section class="dept-card" aria-labelledby="pillars-heading">
-    <div class="kicker">Core Audio Pillars</div>
-    <h2 id="pillars-heading" class="title">What We Do</h2>
-    <div class="four">
-      <div class="dept-subtle-box">
-        <b>1. Mixing</b>
-        Front-of-House balance, stage monitor mixes, and vocal clarity.
-      </div>
-      <div class="dept-subtle-box">
-        <b>2. Mastering</b>
-        Broadcast loudness calibration (-14 LUFS) and true-peak limiting.
-      </div>
-      <div class="dept-subtle-box">
-        <b>3. Recording</b>
-        24-bit / 48 kHz multitrack stem capture for worship and sermons.
-      </div>
-      <div class="dept-subtle-box">
-        <b>4. Editing</b>
-        Surgical stem cleanup, time alignment, and post-production prep.
-      </div>
+    <div>
+      <div class="kicker">Core Audio Pillars</div>
+      <h2 id="pillars-heading" class="page-title" style="font-size:clamp(1.35rem,2.5vw,1.7rem);margin-top:4px">What We Do</h2>
+    </div>
+    <div class="pillar-grid">
+      <article class="pillar-card p-mix">
+        <div class="pillar-top">
+          <span class="pillar-badge">01 • Live FOH</span>
+          <span class="pillar-ico" aria-hidden="true">🎛️</span>
+        </div>
+        <h3 class="pillar-title">1. Mixing</h3>
+        <p class="pillar-desc">
+          Front-of-House balance, <strong>-18 dBFS</strong> gain staging, stage monitor mixes, and surgical vocal clarity across campus venues.
+        </p>
+      </article>
+      <article class="pillar-card p-mast">
+        <div class="pillar-top">
+          <span class="pillar-badge">02 • Broadcast</span>
+          <span class="pillar-ico" aria-hidden="true">🎚️</span>
+        </div>
+        <h3 class="pillar-title">2. Mastering</h3>
+        <p class="pillar-desc">
+          Broadcast loudness calibration (<strong>-14 LUFS</strong> music / <strong>-16 LUFS</strong> sermons) and <strong>-1.0 dBTP</strong> True-Peak limiting for <em>Dunamis Pod</em>.
+        </p>
+      </article>
+      <article class="pillar-card p-rec">
+        <div class="pillar-top">
+          <span class="pillar-badge">03 • Multitrack</span>
+          <span class="pillar-ico" aria-hidden="true">🎙️</span>
+        </div>
+        <h3 class="pillar-title">3. Recording</h3>
+        <p class="pillar-desc">
+          <strong>24-bit / 48 kHz</strong> discrete multitrack USB stem capture in <strong>PreSonus Capture</strong> for worship ministrations and sermons.
+        </p>
+      </article>
+      <article class="pillar-card p-edit">
+        <div class="pillar-top">
+          <span class="pillar-badge">04 • Post-Prod</span>
+          <span class="pillar-ico" aria-hidden="true">✂️</span>
+        </div>
+        <h3 class="pillar-title">4. Editing</h3>
+        <p class="pillar-desc">
+          Surgical stem de-bleed, spectral noise cleanup, drum phase alignment, and sermon prep in <strong>Adobe Audition</strong>.
+        </p>
+      </article>
     </div>
   </section>
 
@@ -171,8 +204,8 @@
 
   <!-- ===================== MODULE GRID ===================== -->
   <div class="mod-head">
-    <h2>Crew Engineering Workspace</h2>
-    <p class="text-mut sm">Internal technical modules inside the Audio Portal</p>
+    <h2>Department Modules</h2>
+    <p class="text-mut sm">All 10 internal engineering modules inside the Audio Portal</p>
   </div>
 
   <div class="modules">
@@ -180,43 +213,57 @@
     <a class="module m-blue rv" href="tools/foh-portal.html#planner">
       <div class="module-icon" aria-hidden="true">📅</div>
       <div class="kicker">PLAN &amp; RUN</div>
-      <h3>Event &amp; Service Planner</h3>
+      <h3>Service Planner</h3>
       <p>Coordinate service setups, assign crew leads, run Order of Service cues, and share duty rosters to WhatsApp.</p>
     </a>
 
     <a class="module m-purp rv" href="tools/foh-portal.html#channels">
       <div class="module-icon" aria-hidden="true">🎛️</div>
       <div class="kicker purp">CONSOLE VAULT</div>
-      <h3>Channel Strip &amp; EQ Reference</h3>
+      <h3>Channels</h3>
       <p>Interactive 4-band parametric EQ, high-pass filters, gate key filters, and dynamics presets across 32 inputs.</p>
     </a>
 
     <a class="module m-em rv" href="tools/foh-portal.html#checklist">
       <div class="module-icon" aria-hidden="true">✅</div>
       <div class="kicker em">PRE-SERVICE</div>
-      <h3>Soundcheck Checklist</h3>
+      <h3>Soundcheck</h3>
       <p>Step-by-step pre-service verification from power-up sequencing and line check to multitrack arming.</p>
     </a>
 
     <a class="module m-cyan rv" href="tools/foh-portal.html#patch">
       <div class="module-icon" aria-hidden="true">🔌</div>
-      <div class="kicker cyan">STAGE &amp; SNAKE</div>
-      <h3>Stagebox &amp; Patch Builder</h3>
-      <p>Select active service inputs, map stage snake channels, and export printable service patch sheets.</p>
+      <div class="kicker cyan">SNAKE &amp; PATCH</div>
+      <h3>AudioLink &amp; Console Patch</h3>
+      <p>Select active service inputs, map healthy AudioLink 32×8 snake channels, and export printable patch sheets.</p>
     </a>
 
-    <a class="module m-ind rv" href="tools/foh-portal.html#mastering">
+        <a class="module m-ind rv" href="tools/foh-portal.html#mastering">
       <div class="module-icon" aria-hidden="true">🎚️</div>
       <div class="kicker ind">PRO AUDIO LAB</div>
-      <h3>Mixing &amp; Mastering Studio</h3>
-      <p>Core live and post-production engineering pillars with an interactive broadcast loudness simulator.</p>
+      <h3>Mixing &amp; Mastering</h3>
+      <p>Core live Front-of-House mixing layers with an interactive broadcast loudness simulator.</p>
+    </a>
+
+    <a class="module m-em rv" href="tools/foh-portal.html#recording">
+      <div class="module-icon" aria-hidden="true">🎙️</div>
+      <div class="kicker em">CAPTURE &amp; DAW</div>
+      <h3>Recording &amp; Editing</h3>
+      <p>PreSonus Capture 32-track USB stem recording, Adobe Audition surgical cleanup, and Dunamis Pod export.</p>
     </a>
 
     <a class="module m-rose rv" href="tools/foh-portal.html#matrix">
       <div class="module-icon" aria-hidden="true">🌊</div>
       <div class="kicker rose">UNMASKING</div>
-      <h3>Frequency Conflict Matrix</h3>
-      <p>Surgical EQ pairing rules to resolve Kick vs. Bass, Keys vs. Vocals, and mid-range masking.</p>
+      <h3>Frequency Masking</h3>
+      <p>20 Hz–20 kHz octave allocation and complementary EQ rules to unmask Kick vs. Bass, Keys, and Vocals.</p>
+    </a>
+
+    <a class="module m-blue rv" href="tools/foh-portal.html#forensics">
+      <div class="module-icon" aria-hidden="true">📊</div>
+      <div class="kicker">BENCHMARKS</div>
+      <h3>Audio Reference Lab</h3>
+      <p>Measured multitrack stem benchmarks showing active RMS, peak headroom, phase polarity, and spectral fixes.</p>
     </a>
 
     <a class="module m-amb rv" href="tools/foh-portal.html#calculators">
@@ -229,7 +276,7 @@
     <a class="module m-em rv" href="tools/foh-portal.html#sop">
       <div class="module-icon" aria-hidden="true">🎤</div>
       <div class="kicker em">STANDARD &amp; GEAR</div>
-      <h3>Stage SOPs &amp; Gear Log</h3>
+      <h3>Gear</h3>
       <p>Wireless mic color-tape standard, rapid console swap procedure, handbooks, and equipment log.</p>
     </a>
 
@@ -242,7 +289,7 @@
   <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
 </footer>
 <div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
-  <img id="lm-img" src="assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <img id="lm-img" src="assets/logo.png" width="476" height="408" alt="AGCM-KNUST Technical Department crest">
   <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
