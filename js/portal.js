@@ -1,4 +1,4 @@
-const MULTI_PAGE_MODE = false;
+﻿const MULTI_PAGE_MODE = false;
     const _memStore = {};
     function safeGetItem(k) {
       try { const v = window.localStorage.getItem(k); return v !== null ? v : (_memStore[k] || null); } catch (e) { return _memStore[k] || null; }
@@ -16,7 +16,7 @@ const MULTI_PAGE_MODE = false;
         time: 'Call: 06:30 AM • Start: 08:30 AM',
         notes: 'Run 15-sec vocal mic scratch check (Red=LV, Blue/Green/Yellow/Purple=BVs) before doors open.',
         crew: [
-          { role: 'FOH Console Engineer', person: 'Caleb Aheto' },
+          { role: 'FOH Console Engineer', person: 'Assigned FOH Console Lead' },
           { role: 'Monitor / Stage Engineer', person: 'Assign Tech' },
           { role: 'Stage / Mic Runner', person: 'Assign Runner' },
           { role: 'Recording & Mastering Lead', person: 'Assign Tech' },
@@ -39,7 +39,7 @@ const MULTI_PAGE_MODE = false;
         time: 'Call: 05:00 PM • Start: 06:30 PM',
         notes: 'Compact band setup (Keys 1, Acoustic/Electric Guitar, Bass, Cajon/Kit, LV + 2 BVs).',
         crew: [
-          { role: 'FOH Console Engineer', person: 'Caleb Aheto' },
+          { role: 'FOH Console Engineer', person: 'Assigned FOH Console Lead' },
           { role: 'Stage / Mic Runner', person: 'Assign Runner' },
           { role: 'Recording & Mastering Lead', person: 'Assign Tech' },
           { role: 'Setup & Conveyance Lead', person: 'Assign Crew' }
@@ -908,45 +908,29 @@ public class PatchAllocationService {
     let tapTimes = [];
 
     function showToast(msg) {
-      const el = document.getElementById('toast-container');
-      const txt = document.getElementById('toast-message');
-      if (!el || !txt) return;
-      txt.textContent = msg;
-      el.classList.remove('hidden'); el.classList.add('flex');
-      setTimeout(() => { el.classList.add('hidden'); el.classList.remove('flex'); }, 2600);
+      if (typeof window.toast === 'function') window.toast(msg);
     }
 
-        function openLogoModal() { const m = document.getElementById('lm'); if (m) { m.classList.remove('hidden'); m.classList.add('flex'); } }
-    function closeLogoModal() { const m = document.getElementById('lm'); if (m) { m.classList.add('hidden'); m.classList.remove('flex'); } }
-
-    function toggleMobileSidebar() {
-      
-    }
-
-    function toggleTheme() {
-      const html = document.documentElement;
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      safeSetItem('sdu_theme_v35', next);
-      document.querySelectorAll('.theme-icon-sync').forEach(el => {
-        el.textContent = next === 'light' ? '☀️' : '🌙';
-      });
-      drawEQCurve();
-    }
-
-    function navigateSection(viewName, htmlFile) {
-      if (MULTI_PAGE_MODE && htmlFile) {
-        window.location.href = htmlFile;
-        return;
-      }
-      switchView(viewName);
-    }
+    const PORTAL_TAB_ORDER = ['planner', 'channels', 'checklist', 'patch', 'mastering', 'matrix', 'forensics', 'calculators', 'sop', 'handover'];
+    const PORTAL_TAB_LABELS = {
+      planner: '📅 Service Planner',
+      channels: '🎛️ 32SX Channels (32)',
+      checklist: '✅ Soundcheck List',
+      patch: '🔌 32×8 Snake & Patch',
+      mastering: '🎚️ Mixing & Mastering',
+      matrix: '🌊 Conflict Matrix',
+      forensics: '📊 Audio Reference',
+      calculators: '📐 Venue Calculators',
+      sop: '🎤 Stage SOPs & Gear',
+      handover: '📝 Role Handover Notes'
+    };
 
     function switchView(viewName) {
+      if (!PORTAL_TAB_ORDER.includes(viewName)) viewName = 'planner';
       currentView = viewName;
       try { if (location.hash !== '#' + viewName) history.replaceState(null, '', '#' + viewName); } catch (e) {}
-      const views = ['overview', 'mastering', 'planner', 'forensics', 'channels', 'checklist', 'matrix', 'patch', 'calculators', 'sop', 'repo'];
-      views.forEach(v => {
+
+      PORTAL_TAB_ORDER.forEach(v => {
         const sec = document.getElementById('view-' + v);
         const btn = document.getElementById('tab-btn-' + v);
         if (sec) {
@@ -961,16 +945,46 @@ public class PatchAllocationService {
             sec.style.display = 'none';
           }
         }
-        if (btn) btn.classList.toggle('active', v === viewName);
+        if (btn) {
+          btn.classList.toggle('active', v === viewName);
+          btn.setAttribute('aria-selected', v === viewName ? 'true' : 'false');
+        }
       });
-      
+
+      document.querySelectorAll('[data-mob-tab]').forEach(mb => {
+        mb.classList.toggle('active', mb.getAttribute('data-mob-tab') === viewName);
+      });
+      const mobLbl = document.getElementById('portal-mobile-active-label');
+      if (mobLbl && PORTAL_TAB_LABELS[viewName]) mobLbl.textContent = PORTAL_TAB_LABELS[viewName];
+
       if (viewName === 'channels') setTimeout(drawEQCurve, 30);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // =========================================================================
-    // EVENT & SERVICE PLANNER LOGIC
-    // =========================================================================
+    function toggleMobilePortalGrid() {
+      const g = document.getElementById('portal-mobile-grid');
+      const b = document.getElementById('btn-portal-mob-toggle');
+      if (!g) return;
+      g.hidden = !g.hidden;
+      if (b) b.setAttribute('aria-expanded', String(!g.hidden));
+    }
+    function closeMobilePortalGrid() {
+      const g = document.getElementById('portal-mobile-grid');
+      const b = document.getElementById('btn-portal-mob-toggle');
+      if (g) g.hidden = true;
+      if (b) b.setAttribute('aria-expanded', 'false');
+    }
+
+    window.addEventListener('keydown', e => {
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '')) return;
+      if (e.altKey || e.ctrlKey || e.metaKey) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        const idx = PORTAL_TAB_ORDER.indexOf(currentView);
+        if (idx === -1) return;
+        const nextIdx = (idx + (e.key === 'ArrowRight' ? 1 : -1) + PORTAL_TAB_ORDER.length) % PORTAL_TAB_ORDER.length;
+        switchView(PORTAL_TAB_ORDER[nextIdx]);
+      }
+    });
+
     function getActiveEvent() {
       return eventsList.find(e => e.id === activeEventId) || eventsList[0];
     }
@@ -995,19 +1009,16 @@ public class PatchAllocationService {
       document.getElementById('ev-notes').value = ev.notes;
 
       // Update Hub Snapshot too
-      const hubTitle = document.getElementById('hub-active-event-title');
-      const hubMeta = document.getElementById('hub-active-event-meta');
-      const hubCueCount = document.getElementById('hub-cue-count');
-      if (hubTitle) hubTitle.textContent = `${ev.name} — ${ev.venue}`;
-      if (hubMeta) hubMeta.textContent = `${ev.time} • ${ev.cues.length} Cues Planned`;
-      if (hubCueCount) hubCueCount.textContent = `${ev.cues.length} Cues`;
+      // hubTitle removed
+      // hubMeta removed
+      // hubCueCount removed
 
       const crewGrid = document.getElementById('crew-roster-grid');
       if (crewGrid) {
         crewGrid.innerHTML = ev.crew.map((c, idx) => `
           <div class="dept-subtle-box flex flex-col gap-1">
             <label class="text-[11px] font-bold uppercase text-blue-600">${c.role}</label>
-            <input type="text" value="${c.person}" oninput="updateCrewMember(${idx}, this.value)" class="dept-input text-xs font-semibold" />
+            <input type="text" value="${escapeHTML(c.person)}" oninput="updateCrewMember(${idx}, this.value)" class="dept-input text-xs font-semibold" />
           </div>
         `).join('');
       }
@@ -1091,7 +1102,7 @@ public class PatchAllocationService {
         time: document.getElementById('new-ev-time').value.trim() || 'Call: TBD',
         notes: 'Run 15-sec vocal mic scratch check & color-tape verification.',
         crew: [
-          { role: 'FOH Console Engineer', person: 'Caleb Aheto' },
+          { role: 'FOH Console Engineer', person: 'Assigned FOH Console Lead' },
           { role: 'Monitor / Stage Engineer', person: 'Assign Tech' },
           { role: 'Stage / Mic Runner', person: 'Assign Runner' },
           { role: 'Recording & Mastering Lead', person: 'Assign Tech' },
@@ -1208,7 +1219,7 @@ public class PatchAllocationService {
             <td class="text-xs"><div class="font-bold text-blue-600">${ch.domFreq}</div><div class="text-sec">${ch.phase}</div></td>
             <td class="text-xs text-sec max-w-xs">${ch.bands7}</td>
             <td class="text-sm text-sec max-w-md leading-relaxed">${ch.forensicSummary}</td>
-            <td><button onclick="safeSetItem('sdu_active_ch', '${ch.id}'); selectChannel('${ch.id}'); navigateSection('channels', 'channels.html');" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold whitespace-nowrap shadow-sm">Load in 32SX Editor →</button></td>
+            <td><button onclick="safeSetItem('sdu_active_ch', '${ch.id}'); selectChannel('${ch.id}'); switchView('channels');" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold whitespace-nowrap shadow-sm">Load in 32SX Editor →</button></td>
           </tr>
         `;
       }).join('');
@@ -1261,51 +1272,117 @@ public class PatchAllocationService {
       drawEQCurve();
     }
 
+        let _eqHoverX = -1, _eqHoverY = -1, _eqDragBand = -1, _eqEventsBound = false;
     function drawEQCurve() {
       const canvas = document.getElementById('eq-curve-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       const W = canvas.width, H = canvas.height;
+      const padL = 42, padR = 22, padT = 26, padB = 28;
+      const plotW = W - padL - padR, plotH = H - padT - padB;
       ctx.clearRect(0, 0, W, H);
+
       const ch = CHANNELS[currentChannelId];
+      if (!ch) return;
       const hpf = parseFloat(document.getElementById('slider-hpf').value || ch.hpf);
       const gains = [1, 2, 3, 4].map(i => parseFloat(document.getElementById(`slider-b${i}`).value));
-      const fToX = f => (Math.log10(f / 20) / Math.log10(20000 / 20)) * (W - 60) + 35;
-      const dbToY = db => (H / 2) - (db / 16) * (H / 2 - 24);
 
-      ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 1;
+      const fToX = f => padL + (Math.log10(Math.max(20, Math.min(20000, f)) / 20) / 3) * plotW;
+      const xToF = x => 20 * Math.pow(1000, Math.max(0, Math.min(1, (x - padL) / plotW)));
+      const dbToY = db => padT + (plotH / 2) - (db / 16) * (plotH / 2 - 6);
+      const yToDb = y => Math.max(-15, Math.min(15, ((padT + plotH / 2 - y) / (plotH / 2 - 6)) * 16));
+
+      // Background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+      bgGrad.addColorStop(0, '#090d1a');
+      bgGrad.addColorStop(1, '#05070f');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Acoustic spectrum zone headers
+      const zones = [
+        { name: 'SUB', f1: 20, f2: 60 },
+        { name: 'BASS', f1: 60, f2: 250 },
+        { name: 'LOW-MID', f1: 250, f2: 500 },
+        { name: 'MID', f1: 500, f2: 2000 },
+        { name: 'PRESENCE', f1: 2000, f2: 6000 },
+        { name: 'AIR', f1: 6000, f2: 20000 }
+      ];
+      ctx.font = '600 9px Inter, sans-serif';
+      zones.forEach((z, idx) => {
+        const x1 = fToX(z.f1), x2 = fToX(z.f2);
+        if (idx % 2 === 1) {
+          ctx.fillStyle = 'rgba(255,255,255,0.018)';
+          ctx.fillRect(x1, padT, x2 - x1, plotH);
+        }
+        ctx.fillStyle = '#475569';
+        ctx.textAlign = 'center';
+        ctx.fillText(z.name, (x1 + x2) / 2, 16);
+      });
+
+      // Frequency & dB grid
+      ctx.lineWidth = 1;
       [31, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000].forEach(f => {
         const x = fToX(f);
-        ctx.beginPath(); ctx.moveTo(x, 15); ctx.lineTo(x, H - 25); ctx.stroke();
-        ctx.fillStyle = '#64748b'; ctx.font = '10px Inter';
-        ctx.fillText(f >= 1000 ? (f / 1000) + 'k' : f, x - 10, H - 8);
+        ctx.strokeStyle = 'rgba(148,163,184,0.10)';
+        ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, H - padB); ctx.stroke();
+        ctx.fillStyle = '#64748b'; ctx.font = '600 10px Inter, sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(f >= 1000 ? (f / 1000) + 'k' : f, x, H - 10);
       });
       [-12, -6, 0, 6, 12].forEach(db => {
         const y = dbToY(db);
-        ctx.strokeStyle = db === 0 ? '#334155' : '#1e293b';
-        ctx.beginPath(); ctx.moveTo(35, y); ctx.lineTo(W - 25, y); ctx.stroke();
-        ctx.fillStyle = '#64748b';
-        ctx.fillText((db > 0 ? '+' : '') + db + 'dB', 2, y + 3);
+        ctx.strokeStyle = db === 0 ? 'rgba(148,163,184,0.32)' : 'rgba(148,163,184,0.10)';
+        ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W - padR, y); ctx.stroke();
+        ctx.fillStyle = '#64748b'; ctx.font = '600 10px Inter, sans-serif'; ctx.textAlign = 'right';
+        ctx.fillText((db > 0 ? '+' : '') + db + 'dB', padL - 6, y + 3);
       });
 
+      const bandColors = ['#10b981', '#f59e0b', '#a855f7', '#38bdf8'];
+      const bandFillColors = ['rgba(16,185,129,0.14)', 'rgba(245,158,11,0.14)', 'rgba(168,85,247,0.14)', 'rgba(56,189,248,0.14)'];
+      const zeroY = dbToY(0);
+
+      // Individual band shaded responses
+      ch.eq.forEach((b, idx) => {
+        const g = gains[idx];
+        if (Math.abs(g) < 0.1) return;
+        ctx.beginPath();
+        ctx.moveTo(padL, zeroY);
+        for (let px = padL; px <= W - padR; px += 3) {
+          const f = xToF(px);
+          let db = 0;
+          if (idx === 3 && b.q < 0.9) db = g * (1 / (1 + Math.pow(b.freq / f, 2)));
+          else {
+            const oct = Math.log2(f / b.freq), bw = 1 / Math.max(0.5, b.q);
+            db = g * Math.exp(-(oct * oct) / (0.18 * bw * bw));
+          }
+          ctx.lineTo(px, dbToY(db));
+        }
+        ctx.lineTo(W - padR, zeroY);
+        ctx.closePath();
+        ctx.fillStyle = bandFillColors[idx];
+        ctx.fill();
+      });
+
+      // Raw problem resonance ghost curve
       if (showProblemGhost && ch.problemFreq) {
         ctx.beginPath();
-        for (let px = 35; px <= W - 25; px += 2) {
-          const f = 20 * Math.pow(1000, (px - 35) / (W - 60));
+        for (let px = padL; px <= W - padR; px += 2) {
+          const f = xToF(px);
           const octDist = Math.log2(f / ch.problemFreq);
           const db = ch.problemGain * Math.exp(-(octDist * octDist) / 0.08);
           const y = dbToY(db);
-          if (px === 35) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+          if (px === padL) ctx.moveTo(px, y); else ctx.lineTo(px, y);
         }
-        ctx.strokeStyle = 'rgba(245, 158, 11, 0.75)';
-        ctx.setLineDash([5, 4]); ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.78)';
+        ctx.setLineDash([5, 4]); ctx.lineWidth = 1.8; ctx.stroke(); ctx.setLineDash([]);
       }
 
-      ctx.beginPath();
-      for (let px = 35; px <= W - 25; px += 2) {
-        const f = 20 * Math.pow(1000, (px - 35) / (W - 60));
+      // Composite curve + under-curve glow fill
+      const pts = [];
+      for (let px = padL; px <= W - padR; px += 2) {
+        const f = xToF(px);
         let totalDb = 0;
-        if (f < hpf * 1.4) {
+        if (f < hpf * 1.45) {
           const ratio = hpf / Math.max(10, f);
           if (ratio > 1) totalDb -= 18 * Math.log2(ratio);
         }
@@ -1318,10 +1395,93 @@ public class PatchAllocationService {
           }
         });
         totalDb = Math.max(-15.5, Math.min(15.5, totalDb));
-        const y = dbToY(totalDb);
-        if (px === 35) ctx.moveTo(px, y); else ctx.lineTo(px, y);
+        pts.push({ x: px, y: dbToY(totalDb) });
       }
-      ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 3; ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(padL, zeroY);
+      pts.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.lineTo(W - padR, zeroY);
+      ctx.closePath();
+      const compFill = ctx.createLinearGradient(0, padT, 0, H - padB);
+      compFill.addColorStop(0, 'rgba(99,102,241,0.22)');
+      compFill.addColorStop(0.5, 'rgba(56,189,248,0.05)');
+      compFill.addColorStop(1, 'rgba(244,63,94,0.20)');
+      ctx.fillStyle = compFill;
+      ctx.fill();
+
+      ctx.beginPath();
+      pts.forEach((p, i) => { if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+      ctx.strokeStyle = '#e0f2fe';
+      ctx.lineWidth = 2.6;
+      ctx.shadowColor = 'rgba(56,189,248,0.55)';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // HPF marker node
+      const hpfX = fToX(hpf), hpfY = dbToY(-3);
+      ctx.fillStyle = '#6366f1';
+      ctx.beginPath(); ctx.arc(hpfX, hpfY, 5, 0, Math.PI * 2); ctx.fill();
+
+      // Interactive Band Nodes (1-4)
+      ch.eq.forEach((b, idx) => {
+        const bx = fToX(b.freq), by = dbToY(gains[idx]);
+        ctx.fillStyle = bandColors[idx];
+        ctx.beginPath(); ctx.arc(bx, by, 7, 0, Math.PI * 2); ctx.fill();
+        ctx.lineWidth = 2; ctx.strokeStyle = '#090d1a'; ctx.stroke();
+        ctx.fillStyle = '#ffffff'; ctx.font = '700 9px Inter, sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(String(idx + 1), bx, by + 3);
+      });
+
+      // Live cursor frequency + dB readout
+      if (_eqHoverX >= padL && _eqHoverX <= W - padR && _eqHoverY >= padT && _eqHoverY <= H - padB) {
+        const hf = xToF(_eqHoverX), hdb = yToDb(_eqHoverY);
+        ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(_eqHoverX, padT); ctx.lineTo(_eqHoverX, H - padB); ctx.stroke();
+        const fTxt = hf >= 1000 ? (hf / 1000).toFixed(2) + ' kHz' : Math.round(hf) + ' Hz';
+        const dTxt = (hdb >= 0 ? '+' : '') + hdb.toFixed(1) + ' dB';
+        ctx.fillStyle = 'rgba(15,23,42,0.92)';
+        ctx.fillRect(W - 148, padT + 4, 120, 22);
+        ctx.strokeStyle = 'rgba(148,163,184,0.3)';
+        ctx.strokeRect(W - 148, padT + 4, 120, 22);
+        ctx.fillStyle = '#f8fafc'; ctx.font = '700 10px Inter, sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText(`${fTxt}  •  ${dTxt}`, W - 88, padT + 18);
+      }
+
+      if (!_eqEventsBound) {
+        _eqEventsBound = true;
+        const getCanvasPos = e => {
+          const r = canvas.getBoundingClientRect();
+          return {
+            x: (e.clientX - r.left) * (canvas.width / r.width),
+            y: (e.clientY - r.top) * (canvas.height / r.height)
+          };
+        };
+        canvas.style.cursor = 'crosshair';
+        canvas.addEventListener('pointerdown', e => {
+          const pos = getCanvasPos(e);
+          const curCh = CHANNELS[currentChannelId];
+          if (!curCh) return;
+          curCh.eq.forEach((b, idx) => {
+            const bx = fToX(b.freq), by = dbToY(parseFloat(document.getElementById(`slider-b${idx+1}`).value));
+            if (Math.hypot(pos.x - bx, pos.y - by) <= 14) _eqDragBand = idx + 1;
+          });
+        });
+        canvas.addEventListener('pointermove', e => {
+          const pos = getCanvasPos(e);
+          _eqHoverX = pos.x; _eqHoverY = pos.y;
+          if (_eqDragBand > 0) {
+            const newDb = Math.round(yToDb(pos.y) * 2) / 2;
+            const sl = document.getElementById(`slider-b${_eqDragBand}`);
+            if (sl) { sl.value = newDb; onEQSliderChange(); return; }
+          }
+          drawEQCurve();
+        });
+        window.addEventListener('pointerup', () => { _eqDragBand = -1; });
+        canvas.addEventListener('pointerleave', () => { _eqHoverX = -1; _eqHoverY = -1; drawEQCurve(); });
+      }
     }
 
     function setChecklistFilter(f) { checklistFilter = f; renderChecklist(); }
@@ -1486,35 +1646,22 @@ public class PatchAllocationService {
     }
 
     let activeRepoFilename = 'README.md';
-    function selectRepoFile(fname) {
-      activeRepoFilename = fname;
-      document.getElementById('repo-active-filename').textContent = fname;
-      document.getElementById('repo-code-preview').textContent = REPO_FILES[fname] || '';
-      renderRepoFileList();
-    }
-    function renderRepoFileList() {
-      const list = document.getElementById('repo-file-list');
-      if (!list) return;
-      list.innerHTML = Object.keys(REPO_FILES).map(fname => `<button onclick="selectRepoFile('${fname}')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-semibold transition ${fname === activeRepoFilename ? 'bg-blue-600 text-white' : 'btn-subtle'}">📄 ${fname}</button>`).join('');
-    }
-    function copyActiveRepoFile() { navigator.clipboard?.writeText(REPO_FILES[activeRepoFilename] || ''); showToast('Copied ' + activeRepoFilename); }
-
     function exportStateJSON() { navigator.clipboard?.writeText(JSON.stringify({ eventsList, checkedItems, customStrategies, gearInventory }, null, 2)); showToast('Exported JSON state!'); }
     function openImportModal() { const m = document.getElementById('modal-import'); m.classList.remove('hidden'); m.classList.add('flex'); }
     function closeImportModal() { const m = document.getElementById('modal-import'); m.classList.add('hidden'); m.classList.remove('flex'); }
     function confirmImportJSON() {
       try {
         const data = JSON.parse(document.getElementById('import-json-textarea').value);
-        if (data.eventsList) eventsList = data.eventsList;
-        if (data.checkedItems) checkedItems = data.checkedItems;
-        if (data.customStrategies) customStrategies = data.customStrategies;
-        if (data.gearInventory) gearInventory = data.gearInventory;
-        saveEvents();
-        safeSetItem('sdu_checked_v35', JSON.stringify(checkedItems));
-        safeSetItem('sdu_custom_strats_v35', JSON.stringify(customStrategies));
-        safeSetItem('sdu_gear_v35', JSON.stringify(gearInventory));
-        renderPlanner(); renderChecklist(); renderStrategies(); renderGearInventory(); closeImportModal(); showToast('Restored state!');
-      } catch (e) { showToast('Invalid JSON format'); }
+        if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Invalid root');
+        if (Array.isArray(data.eventsList) && data.eventsList.length) { eventsList = data.eventsList; saveEvents(); renderPlanner(); }
+        if (data.checkedItems && typeof data.checkedItems === 'object') { checkedItems = data.checkedItems; safeSetItem('sdu_checked_v35', JSON.stringify(checkedItems)); renderChecklist(); }
+        if (Array.isArray(data.customStrategies)) { customStrategies = data.customStrategies; safeSetItem('sdu_strats_v35', JSON.stringify(customStrategies)); renderStrategies(); }
+        if (Array.isArray(data.gearInventory)) { gearInventory = data.gearInventory; safeSetItem('sdu_gear_v35', JSON.stringify(gearInventory)); renderGearInventory(); }
+        closeImportModal();
+        showToast('Validated & restored Department Vault state');
+      } catch (e) {
+        showToast('Invalid JSON backup structure');
+      }
     }
     function downloadStandaloneHTML() {
       const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
@@ -1895,7 +2042,7 @@ public class PatchAllocationService {
       updateBPMCalc(76);
       renderStrategies();
       renderGearInventory();
-      selectRepoFile('README.md');
+      
       switchView(currentView);
     });
   
@@ -1904,3 +2051,4 @@ public class PatchAllocationService {
 window.addEventListener('agcm-theme-change', () => {
   try { drawEQCurve(); } catch (e) {}
 });
+

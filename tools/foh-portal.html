@@ -1,61 +1,136 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Audio Portal | AGCM - KNUST Technical</title>
-  <meta name="description" content="Official FOH audio engineering portal of the AGCM - KNUST Technical Department — live mixing, 32SX channel vault, stagebox patch, and venue calculators.">
-  <meta property="og:title" content="Audio Portal | AGCM - KNUST Technical">
-  <meta property="og:description" content="Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — Live FOH Mixing, 32SX Channel Vault, Service Planner &amp; Audio Engineering.">
-  <meta property="og:image" content="../assets/logo-lg.png">
+  <title>Audio Portal | AGCM - KNUST Technical Department</title>
+  <meta name="description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#3730a3">
+  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app/tools/foh-portal.html">
+
+  <!-- Open Graph / WhatsApp / Telegram Preview -->
+  <meta property="og:title" content="Audio Portal | AGCM - KNUST Technical Department">
+  <meta property="og:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
+  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app/tools/foh-portal.html">
+  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Audio Portal | AGCM - KNUST Technical Department">
+  <meta name="twitter:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
+  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+
   <link rel="icon" href="../assets/favicon.png">
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem("sdu_theme_v35")==="dark"?"dark":"light"}catch(e){}</script>
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+  <!-- Prevent theme flicker & .rv scroll-reveal flash before first paint -->
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={darkMode:["selector","[data-theme=\"dark\"]"]};</script>
+
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/portal.css">
-</head><body>
-<main>
-  <!-- UNIFIED AUDIO PORTAL SUB-NAVIGATION WORKSPACE BAR -->
-  <div class="portal-subnav">
-    <div class="portal-subnav-top">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topnav">
+  <div class="tn-brand">
+    <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
+      <img src="../assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+    </button>
+    <a href="../index.html" style="text-decoration:none">
+      <span class="brand-title">AGCM - KNUST</span>
+      <span class="brand-sub">Technical Department</span>
+    </a>
+  </div>
+  <nav class="tn-tabs" aria-label="Primary Navigation">
+      <a class="nav-pill" href="../index.html"><span aria-hidden="true">🏠</span><span>Home</span></a>
+      <a class="nav-pill" href="../executives.html"><span aria-hidden="true">👥</span><span>Executives</span></a>
+      <a class="nav-pill" href="../gallery.html"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
+      <a class="nav-pill active" href="../tools/foh-portal.html" aria-current="page"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
+  </nav>
+  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+</header>
+
+<main id="main">
+  <!-- PAGE H1 BANNER -->
+  <div class="dept-card" style="padding:20px 26px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
       <div>
-        <div class="kicker">Interactive Engineering Workspace</div>
-        <h2 style="font-size:1.25rem;font-weight:800">AGCM - KNUST Audio Portal &amp; 32SX Console Blueprint</h2>
+        <div class="pills" style="margin-bottom:6px">
+          <span class="pill">Internal Crew Workspace</span>
+          <span class="pill amber">Saved on This Browser (localStorage)</span>
+        </div>
+        <h1 class="page-title" style="font-size:clamp(1.35rem,2.6vw,1.75rem)">AGCM - KNUST Audio Engineering Portal</h1>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button id="btn-export-json" onclick="exportStateJSON()" class="btn-subtle" style="padding:7px 12px;border-radius:10px;font-size:.75rem;font-weight:700">Export JSON</button>
-        <button id="btn-import-json" onclick="openImportModal()" class="btn-subtle" style="padding:7px 12px;border-radius:10px;font-size:.75rem;font-weight:700">Import JSON</button>
-        <button id="btn-download-html" onclick="downloadServicePatchHTML()" class="btn" style="padding:7px 14px;border-radius:10px;font-size:.75rem;font-weight:700">⬇ Download Service Patch</button>
+        <button type="button" onclick="copyEventRunSheetWhatsApp()" class="btn-subtle"><span aria-hidden="true">📲</span><span>Copy Roster for WhatsApp</span></button>
+        <button type="button" onclick="downloadServicePatchHTML()" class="btn"><span aria-hidden="true">⬇</span><span>Download Patch Sheet</span></button>
       </div>
     </div>
-    <nav class="portal-pills" aria-label="Audio Portal Modules">
-      <button id="tab-btn-planner" onclick="switchView('planner')" class="nav-pill active"><span>📅</span><span>Service Planner</span></button>
-      <button id="tab-btn-channels" onclick="switchView('channels')" class="nav-pill"><span>🎛️</span><span>32SX Channels (32)</span></button>
-      <button id="tab-btn-checklist" onclick="switchView('checklist')" class="nav-pill"><span>✅</span><span>Checklist</span></button>
-      <button id="tab-btn-patch" onclick="switchView('patch')" class="nav-pill"><span>🔌</span><span>32×8 Snake &amp; Patch</span></button>
-      <button id="tab-btn-mastering" onclick="switchView('mastering')" class="nav-pill"><span>🎚️</span><span>Mixing &amp; Mastering</span></button>
-      <button id="tab-btn-matrix" onclick="switchView('matrix')" class="nav-pill"><span>🌊</span><span>Conflict Matrix</span></button>
-      <button id="tab-btn-forensics" onclick="switchView('forensics')" class="nav-pill"><span>📊</span><span>Audio Reference</span></button>
-      <button id="tab-btn-calculators" onclick="switchView('calculators')" class="nav-pill"><span>📐</span><span>Calculators</span></button>
-      <button id="tab-btn-sop" onclick="switchView('sop')" class="nav-pill"><span>🎤</span><span>SOPs &amp; Gear</span></button>
-      <button id="tab-btn-repo" onclick="switchView('repo')" class="nav-pill"><span>💻</span><span>Architecture</span></button>
-    </nav>
   </div>
 
-  <!-- Hidden overview stub for JS compatibility -->
-  <section id="view-overview" class="hidden">
-    <span id="hub-active-event-title"></span>
-    <span id="hub-active-event-meta"></span>
-    <span id="hub-cue-count"></span>
-  </section>
+  <!-- MOBILE MODULE DRAWER BAR -->
+  <div class="portal-mobile-bar">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <div>
+        <span class="kicker">Active Module</span>
+        <div id="portal-mobile-active-label" style="font-weight:800;font-size:.95rem">📅 Service Planner</div>
+      </div>
+      <button type="button" id="btn-portal-mob-toggle" onclick="toggleMobilePortalGrid()" class="btn-subtle" aria-expanded="false" aria-controls="portal-mobile-grid">
+        ☰ All 10 Modules
+      </button>
+    </div>
+    <div id="portal-mobile-grid" class="portal-mobile-grid" hidden>
+        <button type="button" data-mob-tab="planner" onclick="switchView('planner');closeMobilePortalGrid()" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
+        <button type="button" data-mob-tab="channels" onclick="switchView('channels');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎛️</span><span>32SX Channels (32)</span></button>
+        <button type="button" data-mob-tab="checklist" onclick="switchView('checklist');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck List</span></button>
+        <button type="button" data-mob-tab="patch" onclick="switchView('patch');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🔌</span><span>32×8 Snake & Patch</span></button>
+        <button type="button" data-mob-tab="mastering" onclick="switchView('mastering');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing & Mastering</span></button>
+        <button type="button" data-mob-tab="matrix" onclick="switchView('matrix');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🌊</span><span>Conflict Matrix</span></button>
+        <button type="button" data-mob-tab="forensics" onclick="switchView('forensics');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
+        <button type="button" data-mob-tab="calculators" onclick="switchView('calculators');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
+        <button type="button" data-mob-tab="sop" onclick="switchView('sop');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎤</span><span>Stage SOPs & Gear</span></button>
+        <button type="button" data-mob-tab="handover" onclick="switchView('handover');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📝</span><span>Role Handover Notes</span></button>
+    </div>
+  </div>
 
-  <section id="view-mastering" class="space-y-8">
+  <!-- DESKTOP 2-COLUMN SHELL -->
+  <div class="portal-shell">
+    <aside class="portal-rail" aria-label="Audio Portal Modules">
+      <div class="portal-rail-head">
+        <div class="kicker">10 Workspace Tools</div>
+        <div class="text-mut" style="font-size:.73rem;margin-top:2px">Use ← / → keys to switch</div>
+      </div>
+      <div class="portal-rail-tabs" role="tablist" aria-orientation="vertical">
+        <button type="button" id="tab-btn-planner" role="tab" aria-selected="true" aria-controls="view-planner" onclick="switchView('planner')" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
+        <button type="button" id="tab-btn-channels" role="tab" aria-selected="false" aria-controls="view-channels" onclick="switchView('channels')" class="nav-pill"><span aria-hidden="true">🎛️</span><span>32SX Channels (32)</span></button>
+        <button type="button" id="tab-btn-checklist" role="tab" aria-selected="false" aria-controls="view-checklist" onclick="switchView('checklist')" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck List</span></button>
+        <button type="button" id="tab-btn-patch" role="tab" aria-selected="false" aria-controls="view-patch" onclick="switchView('patch')" class="nav-pill"><span aria-hidden="true">🔌</span><span>32×8 Snake & Patch</span></button>
+        <button type="button" id="tab-btn-mastering" role="tab" aria-selected="false" aria-controls="view-mastering" onclick="switchView('mastering')" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing & Mastering</span></button>
+        <button type="button" id="tab-btn-matrix" role="tab" aria-selected="false" aria-controls="view-matrix" onclick="switchView('matrix')" class="nav-pill"><span aria-hidden="true">🌊</span><span>Conflict Matrix</span></button>
+        <button type="button" id="tab-btn-forensics" role="tab" aria-selected="false" aria-controls="view-forensics" onclick="switchView('forensics')" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
+        <button type="button" id="tab-btn-calculators" role="tab" aria-selected="false" aria-controls="view-calculators" onclick="switchView('calculators')" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
+        <button type="button" id="tab-btn-sop" role="tab" aria-selected="false" aria-controls="view-sop" onclick="switchView('sop')" class="nav-pill"><span aria-hidden="true">🎤</span><span>Stage SOPs & Gear</span></button>
+        <button type="button" id="tab-btn-handover" role="tab" aria-selected="false" aria-controls="view-handover" onclick="switchView('handover')" class="nav-pill"><span aria-hidden="true">📝</span><span>Role Handover Notes</span></button>
+      </div>
+      <div class="portal-rail-foot">
+        <button type="button" onclick="exportStateJSON()" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬇ Backup JSON</button>
+        <button type="button" onclick="openImportModal()" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬆ Restore JSON</button>
+      </div>
+    </aside>
+
+    <div id="portal-workspace-col" style="min-width:0">
+      <section id="view-mastering" class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600">
@@ -206,7 +281,7 @@
       <!-- ===================================================================== -->
       <!-- EVENT & SERVICE PLANNER + LIVE CUE RUNNER (NEW CORE WORKSPACE)        -->
       <!-- ===================================================================== -->
-      <section id="view-planner" class="space-y-8">
+      <section id="view-planner" class="space-y-8 active-view">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Plan &amp; Run Services</span>
@@ -309,7 +384,7 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Great Hall Multitrack Benchmarks</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">12-Channel Audio Reference Lab</h2>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Audio Reference Lab</h2>
             <p class="text-sec text-base mt-1">
               Measured Great Hall multitrack benchmarks (10m 43s • 44.1 kHz) showing gain staging targets, phase alignment, and spectral restoration.
             </p>
@@ -360,10 +435,10 @@
         <div class="dept-card p-0 overflow-hidden">
           <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h3 class="text-lg font-bold text-main">12-Channel Reference Diagnostic Ledger</h3>
+              <h3 class="text-lg font-bold text-main">Audio Reference Diagnostic Ledger</h3>
               <p class="text-sm text-sec mt-0.5">Click “Load in 32SX Editor” on any row to jump directly to its parametric EQ and dynamics strip.</p>
             </div>
-            <span class="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 text-xs font-semibold tabular">12 Reference Stems</span>
+            <span class="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 text-xs font-semibold tabular">Reference Stems</span>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse spacious-table">
@@ -843,7 +918,7 @@
             </p>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div class="dept-subtle-box border-t-4 border-t-rose-600 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-rose-600 text-white text-xs font-bold">RED TAPE</span>
@@ -985,32 +1060,30 @@
       <!-- ===================================================================== -->
       <!-- MULTI-PAGE GITHUB REPOSITORY SOURCE CODE EXPLORER                     -->
       <!-- ===================================================================== -->
-      <section id="view-repo" class="space-y-8">
+      
+  <!-- ROLE HANDOVER NOTES & DEVICE BACKUP (Folded in from leads.html) -->
+  <section id="view-handover" class="space-y-6" role="tabpanel" aria-labelledby="tab-btn-handover">
+    <div class="dept-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">GitHub Repository Architecture</span>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Multi-Page Website Structure (Caleb-Aheto/foh-mixing-blueprint)</h2>
-          <p class="text-sec text-base mt-1">
-            True separate HTML pages with shared assets are packaged in <code class="font-semibold text-blue-600">foh_department_portal_repo.zip</code>.
+          <div class="kicker">Internal Crew Handover &amp; Constitutional Duties</div>
+          <h2 class="title" style="margin-top:4px">Department Role Duties &amp; Handover Notes</h2>
+          <p class="sm text-sec" style="margin-top:4px">
+            Select an executive office below to review its constitutional duties and record device-local handover notes (use <strong>Export Notes .txt</strong> or <strong>JSON Backup</strong> to transfer across devices).
           </p>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div class="lg:col-span-4 dept-card space-y-4">
-            <h3 class="text-base font-bold text-main">Repository File Tree</h3>
-            <p class="text-xs text-sec">Click any file below to inspect its role in the multi-page GitHub Pages site.</p>
-            <div id="repo-file-list" class="space-y-2 pt-2"></div>
-          </div>
-          <div class="lg:col-span-8 dept-card space-y-4">
-            <div class="flex items-center justify-between">
-              <span id="repo-active-filename" class="text-sm font-bold text-blue-600">README.md</span>
-              <button onclick="copyActiveRepoFile()" class="px-3.5 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800">
-                Copy File Code
-              </button>
-            </div>
-            <pre id="repo-code-preview" class="bg-slate-950 text-slate-100 p-5 rounded-xl text-xs overflow-x-auto max-h-[520px] leading-relaxed"></pre>
-          </div>
+        <div class="tabs">
+          <button type="button" onclick="exportStateJSON()" class="btn-subtle">⬇ Export Vault JSON</button>
+          <button type="button" onclick="openImportModal()" class="btn-subtle">⬆ Import Vault JSON</button>
         </div>
-      </section>
+      </div>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Department Roles"></div>
+    </div>
+    <div class="dept-card panel" id="panel" role="tabpanel"></div>
+  </section>
+
+    </div>
+  </div>
 </main>
 
 <!-- MODALS -->
@@ -1096,24 +1169,19 @@
       </div>
     </div>
   </div>
-
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900 text-white text-xs font-semibold shadow-xl border border-slate-700">
-    <span id="toast-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-    <span id="toast-message">Saved</span>
-  </div>
-
-  <div class="hidden">
-    <span id="p1_1"></span><span id="p1_2"></span><span id="p1_3"></span>
-    <span id="p2_1"></span><span id="p2_2"></span><span id="p2_3"></span>
-    <span id="p3_1"></span><span id="p3_2"></span><span id="p3_3"></span>
-    <span id="p4_1"></span><span id="p4_2"></span><span id="p4_3"></span>
-    <span id="p5_1"></span><span id="p5_2"></span><span id="p5_3"></span>
-    <span id="p6_1"></span><span id="p6_2"></span><span id="p6_3"></span>
-    <span id="p7_1"></span><span id="p7_2"></span><span id="p7_3"></span>
-    <span id="s1"></span><span id="s2"></span><span id="s3"></span>
-    <span id="s4"></span><span id="s5"></span><span id="s6"></span><span id="cust_"></span>
-  </div>
-
+<footer class="foot">
+  <span>AGCM - KNUST Technical Department • Live Sound, Multitrack Recording, Mastering &amp; Venue Operations</span>
+  <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
+</footer>
+<div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
+  <img id="lm-img" src="../assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="../data/roles.js"></script>
 <script src="../js/app.js"></script>
 <script src="../js/portal.js"></script>
-</body></html>
+</body>
+</html>
+
+

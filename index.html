@@ -1,23 +1,37 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AGCM - KNUST Technical Department</title>
+  <title>AGCM - KNUST Technical Department | Sound Excellence in His Service</title>
+  <meta name="description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#3730a3">
+  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app">
 
-  <!-- SEO & Social Sharing -->
-  <meta name="description" content="Official website and FOH audio engineering portal of the AGCM - KNUST Technical Department — live mixing, multitrack recording, editing, mastering, and venue setup.">
-  <meta property="og:title" content="AGCM - KNUST Technical Department">
-  <meta property="og:description" content="Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — Live FOH Mixing, 32SX Channel Vault, Service Planner &amp; Audio Engineering.">
-  <meta property="og:image" content="assets/logo-lg.png">
+  <!-- Open Graph / WhatsApp / Telegram Preview -->
+  <meta property="og:title" content="AGCM - KNUST Technical Department | Sound Excellence in His Service">
+  <meta property="og:description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
+  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app">
+  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AGCM - KNUST Technical Department | Sound Excellence in His Service">
+  <meta name="twitter:description" content="Official website of the Assemblies of God Campus Ministry (AGCM KNUST) Technical Department — live Front-of-House sound reinforcement, multitrack recording, mastering, and campus event production.">
+  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
 
   <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-  <!-- Flash-of-wrong-theme prevention -->
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem("sdu_theme_v35")==="dark"?"dark":"light"}catch(e){}</script>
+  <!-- Prevent theme flicker & .rv scroll-reveal flash before first paint -->
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
+    } catch (e) {}
+  </script>
 
-  <!-- Fonts — non-blocking preload -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -26,66 +40,94 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topnav">
+  <div class="tn-brand">
+    <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
+      <img src="assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+    </button>
+    <a href="index.html" style="text-decoration:none">
+      <span class="brand-title">AGCM - KNUST</span>
+      <span class="brand-sub">Technical Department</span>
+    </a>
+  </div>
+  <nav class="tn-tabs" aria-label="Primary Navigation">
+      <a class="nav-pill active" href="index.html" aria-current="page"><span aria-hidden="true">🏠</span><span>Home</span></a>
+      <a class="nav-pill" href="executives.html"><span aria-hidden="true">👥</span><span>Executives</span></a>
+      <a class="nav-pill" href="gallery.html"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
+      <a class="nav-pill" href="tools/foh-portal.html"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
+  </nav>
+  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+</header>
 
-<main>
+<main id="main">
 
   <!-- ===================== HERO ===================== -->
   <section class="dept-hero">
     <div class="hero-row">
-      <img src="assets/logo.png" alt="AGCM-KNUST Technical Department crest">
+      <img src="assets/logo.png" width="88" height="88" alt="AGCM-KNUST Technical Department crest">
       <div>
         <div class="pills">
           <span class="pill">AGCM - KNUST Technical Department</span>
           <span class="pill amber">…in His Service</span>
         </div>
-        <h2>Sound Excellence in His Service</h2>
+        <h1>Sound Excellence in His Service</h1>
         <p class="text-sec">
-          Welcome to the official hub of the <strong>Assemblies of God Campus Ministry (AGCM KNUST) Technical Department</strong>—the church’s dedicated audio engineering team powering live Front-of-House (FOH) mixing, 24-bit multitrack recording, surgical editing, mastering, and campus-wide sound setup.
+          Welcome to the official home of the <strong>Assemblies of God Campus Ministry (AGCM KNUST) Technical Department</strong>—the ministry’s audio engineering team dedicated to clear Front-of-House (FOH) mixing, multitrack service recording, sermon mastering, and event sound reinforcement across KNUST.
         </p>
+        <div class="hero-actions">
+          <a class="btn" href="executives.html"><span aria-hidden="true">👥</span><span>Meet the Team</span></a>
+          <a class="btn gold" href="https://open.spotify.com/show/7yP4q9iGgVjvg5EUyvI6Ou?si=8f37a0052dcd4a3e" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎧</span><span>Listen on Spotify</span></a>
+          <a class="btn-subtle" href="mailto:agcmtechnicaldepartment2021@gmail.com?subject=AGCM%20Technical%20Department%20-%20Event%20Setup%20Request"><span aria-hidden="true">✉️</span><span>Request Event Setup</span></a>
+        </div>
       </div>
     </div>
-    <!-- Interactive VU level-meter visualiser -->
     <div class="meter" aria-hidden="true"></div>
   </section>
 
-  <!-- ===================== OVERVIEW CARDS ===================== -->
-  <div class="two">
-
-    <div class="dept-card">
-      <div class="kicker">General Audio Overview</div>
-      <h3 class="title">Our Core Audio Responsibilities</h3>
-      <p class="sm text-sec">
-        Great church and live event sound starts from the ground up: clean stage cabling and gain staging
-        (<strong>-18 dBFS</strong>), phase-aligned low end, subtractive EQ that carves space for every
-        instrument, and clear vocal authority.
-      </p>
-      <div class="tiles">
-        <div class="dept-subtle-box"><b>1. Live FOH Mixing</b>Front-of-House &amp; stage monitors</div>
-        <div class="dept-subtle-box"><b>2. Multitrack Recording</b>24-bit PreSonus Capture stems</div>
-        <div class="dept-subtle-box"><b>3. Editing &amp; Mastering</b>Sermon &amp; worship post-production</div>
-        <div class="dept-subtle-box"><b>4. Setup &amp; Conveyance</b>Transport &amp; rigging across 7 venues</div>
+  <!-- ===================== CORE AUDIO PILLARS ===================== -->
+  <section class="dept-card" aria-labelledby="pillars-heading">
+    <div class="kicker">Core Audio Pillars</div>
+    <h2 id="pillars-heading" class="title">What We Do</h2>
+    <div class="four">
+      <div class="dept-subtle-box">
+        <b>1. Mixing</b>
+        Front-of-House balance, stage monitor mixes, and vocal clarity.
+      </div>
+      <div class="dept-subtle-box">
+        <b>2. Mastering</b>
+        Broadcast loudness calibration (-14 LUFS) and true-peak limiting.
+      </div>
+      <div class="dept-subtle-box">
+        <b>3. Recording</b>
+        24-bit / 48 kHz multitrack stem capture for worship and sermons.
+      </div>
+      <div class="dept-subtle-box">
+        <b>4. Editing</b>
+        Surgical stem cleanup, time alignment, and post-production prep.
       </div>
     </div>
+  </section>
 
-    <div class="dept-card">
-      <div class="kicker em">Fellowship &amp; Ministry Info</div>
-      <h3 class="title">About AGCM KNUST &amp; Weekly Services</h3>
+  <!-- ===================== SERVICES + PODCAST / SOCIALS ===================== -->
+  <div class="two">
+
+    <section class="dept-card" aria-labelledby="services-heading">
+      <div class="kicker em">Fellowship &amp; Ministry Schedule</div>
+      <h2 id="services-heading" class="title">Weekly Services &amp; Flagship Productions</h2>
       <p class="sm text-sec">
-        <strong>AGCM KNUST</strong> (<em>"Our Mission is Missions"</em>) gathers weekly for worship,
-        discipleship, and outreach programs including <strong>Feast of Talents</strong> and
-        <strong>Anointed Theatre Ministry</strong>.
+        <strong>AGCM KNUST</strong> (<em>"Our Mission is Missions"</em>) gathers weekly for worship, discipleship, and major campus productions including <strong>Feast of Talents</strong> and <strong>Anointed Theatre Ministry</strong>.
       </p>
       <div class="tiles">
         <div class="dept-subtle-box">
-          <b>Sunday Services</b>
-          6:00 AM (1st) &amp; 8:30 AM (2nd)<br>Great Hall Foyer / Great Hall
+          <b>Sunday Worship Services</b>
+          6:00 AM (1st) &amp; 8:30 AM (2nd)<br>Great Hall Foyer / KNUST Great Hall
         </div>
         <div class="dept-subtle-box">
-          <b>Thursday Service</b>
-          6:30 PM Midweek Service<br>Independence (Indece) Dining Hall
+          <b>Thursday Midweek Service</b>
+          6:30 PM Evening Fellowship<br>Independence (Indece) Dining Hall
         </div>
       </div>
-      <!-- Clean 4-column SVG social bar (Telegram replaces YouTube) -->
       <div class="social-links" aria-label="Official AGCM KNUST Channels">
         <a class="social-pill tg" href="https://t.me/agcmknust_tg" target="_blank" rel="noopener noreferrer" title="THE CHURCH AGCM-KNUST on Telegram">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -104,109 +146,108 @@
           <span>X / Twitter</span>
         </a>
       </div>
-    </div>
+    </section>
+
+    <section class="dept-card" aria-labelledby="podcast-heading">
+      <div class="kicker amb">Recorded &amp; Mastered by Our Team</div>
+      <h2 id="podcast-heading" class="title">Dunamis Pod AGCM KNUST</h2>
+      <p class="sm text-sec">
+        Stream recent sermons recorded live during service and mastered by the AGCM - KNUST Technical Department on Spotify, or join our Telegram channel for full audio archives.
+      </p>
+      <iframe
+        style="border-radius:14px;border:none;width:100%;height:152px"
+        src="https://open.spotify.com/embed/show/7yP4q9iGgVjvg5EUyvI6Ou?utm_source=generator"
+        title="Dunamis Pod AGCM KNUST on Spotify"
+        loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+      <div class="tabs">
+        <a class="btn-subtle" href="https://t.me/agcmknust_tg" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">✈️</span><span>Open Telegram Audio Archive</span></a>
+        <a class="btn-subtle" href="gallery.html"><span aria-hidden="true">🖼️</span><span>Browse Setup Gallery</span></a>
+      </div>
+    </section>
 
   </div>
 
   <!-- ===================== MODULE GRID ===================== -->
   <div class="mod-head">
-    <h2>Audio Portal Modules</h2>
-    <p class="text-mut sm">Select any workspace tool to open it inside the unified Audio Portal</p>
+    <h2>Crew Engineering Workspace</h2>
+    <p class="text-mut sm">Internal technical modules inside the Audio Portal</p>
   </div>
 
   <div class="modules">
 
     <a class="module m-blue rv" href="tools/foh-portal.html#planner">
-      <div class="module-icon">📅</div>
+      <div class="module-icon" aria-hidden="true">📅</div>
       <div class="kicker">PLAN &amp; RUN</div>
       <h3>Event &amp; Service Planner</h3>
-      <p>Build events across 7 campus venues, assign crew roles, and run live Order of Service cue sheets.</p>
+      <p>Coordinate service setups, assign crew leads, run Order of Service cues, and share duty rosters to WhatsApp.</p>
     </a>
 
     <a class="module m-purp rv" href="tools/foh-portal.html#channels">
-      <div class="module-icon">🎛️</div>
-      <div class="kicker purp">32-INPUT VAULT</div>
-      <h3>32SX Channel Strip &amp; EQ</h3>
-      <p>Interactive 4-band parametric EQ, gate key filters, and polarity settings for all 32 console inputs.</p>
+      <div class="module-icon" aria-hidden="true">🎛️</div>
+      <div class="kicker purp">CONSOLE VAULT</div>
+      <h3>Channel Strip &amp; EQ Reference</h3>
+      <p>Interactive 4-band parametric EQ, high-pass filters, gate key filters, and dynamics presets across 32 inputs.</p>
     </a>
 
     <a class="module m-em rv" href="tools/foh-portal.html#checklist">
-      <div class="module-icon">✅</div>
+      <div class="module-icon" aria-hidden="true">✅</div>
       <div class="kicker em">PRE-SERVICE</div>
       <h3>Soundcheck Checklist</h3>
-      <p>Step-by-step pre-service verification from amp power-up to PreSonus Capture arming.</p>
+      <p>Step-by-step pre-service verification from power-up sequencing and line check to multitrack arming.</p>
     </a>
 
     <a class="module m-cyan rv" href="tools/foh-portal.html#patch">
-      <div class="module-icon">🔌</div>
-      <div class="kicker cyan">STAGEBOX &amp; PATCH</div>
-      <h3>32×8 Snake &amp; Patch Builder</h3>
-      <p>Select service inputs, auto-bypass dead snake ports &amp; Fader 18, and download service patch sheets.</p>
+      <div class="module-icon" aria-hidden="true">🔌</div>
+      <div class="kicker cyan">STAGE &amp; SNAKE</div>
+      <h3>Stagebox &amp; Patch Builder</h3>
+      <p>Select active service inputs, map stage snake channels, and export printable service patch sheets.</p>
     </a>
 
     <a class="module m-ind rv" href="tools/foh-portal.html#mastering">
-      <div class="module-icon">🎚️</div>
+      <div class="module-icon" aria-hidden="true">🎚️</div>
       <div class="kicker ind">PRO AUDIO LAB</div>
       <h3>Mixing &amp; Mastering Studio</h3>
-      <p>Universal audio engineering pillars and interactive -14 LUFS broadcast loudness simulator.</p>
+      <p>Core live and post-production engineering pillars with an interactive broadcast loudness simulator.</p>
     </a>
 
     <a class="module m-rose rv" href="tools/foh-portal.html#matrix">
-      <div class="module-icon">🌊</div>
+      <div class="module-icon" aria-hidden="true">🌊</div>
       <div class="kicker rose">UNMASKING</div>
       <h3>Frequency Conflict Matrix</h3>
-      <p>Resolve Kick vs. Bass, Keys vs. Vocals, and Electric Guitar 2.5 kHz spectral masking.</p>
+      <p>Surgical EQ pairing rules to resolve Kick vs. Bass, Keys vs. Vocals, and mid-range masking.</p>
     </a>
 
     <a class="module m-amb rv" href="tools/foh-portal.html#calculators">
-      <div class="module-icon">📐</div>
+      <div class="module-icon" aria-hidden="true">📐</div>
       <div class="kicker amb">ACOUSTIC TOOLS</div>
-      <h3>Great Hall Calculators</h3>
-      <p>Delay fill timing, 90 Hz crossover wavelength, BPM FX sync, and team strategy vault.</p>
+      <h3>Venue Acoustic Calculators</h3>
+      <p>Delay speaker timing, subwoofer crossover wavelength alignment, and BPM reverb/delay calculators.</p>
     </a>
 
     <a class="module m-em rv" href="tools/foh-portal.html#sop">
-      <div class="module-icon">🎤</div>
+      <div class="module-icon" aria-hidden="true">🎤</div>
       <div class="kicker em">STANDARD &amp; GEAR</div>
-      <h3>Mic Swap SOP &amp; Gear Log</h3>
-      <p>Stage mic color-tape standard, 5-sec console swap SOP, handbooks, and gear health tracker.</p>
+      <h3>Stage SOPs &amp; Gear Log</h3>
+      <p>Wireless mic color-tape standard, rapid console swap procedure, handbooks, and equipment log.</p>
     </a>
-
-  </div>
-
-  <!-- ===================== JOIN + GALLERY / TELEGRAM CARDS ===================== -->
-  <div class="two">
-
-    <div class="dept-card">
-      <div class="kicker">Join the Department</div>
-      <h3 class="title">Serve With Us in the Technical Department</h3>
-      <p class="sm text-sec">
-        Passionate about live sound mixing, multitrack recording, audio editing, or stage engineering?
-        Speak to the Technical Heads after service or reach out to join our next recruit training cohort.
-      </p>
-      <div class="tabs">
-        <a class="btn" href="executives.html">👥 Meet the Executives</a>
-        <a class="btn-subtle mail" href="mailto:agcmtechnicaldepartment2021@gmail.com">✉️ Email the Department</a>
-      </div>
-    </div>
-
-    <div class="dept-card">
-      <div class="kicker em">Visual Archive &amp; Sermons</div>
-      <h3 class="title">Explore Our Setup Gallery &amp; Sermon Archive</h3>
-      <p class="sm text-sec">
-        Browse our FOH console and venue setup gallery across 7 KNUST venues, or listen to 275+ recorded sermons and worship sessions on the official AGCM-KNUST Telegram channel.
-      </p>
-      <div class="tabs">
-        <a class="btn" href="gallery.html">🖼️ Open Gallery</a>
-        <a class="btn-subtle mail" href="https://t.me/agcmknust_tg" target="_blank" rel="noopener noreferrer">✈️ Join Telegram Channel</a>
-      </div>
-    </div>
 
   </div>
 
 </main>
 
-<script src="data/executives.js"></script>
+<footer class="foot">
+  <span>AGCM - KNUST Technical Department • Live Sound, Multitrack Recording, Mastering &amp; Venue Operations</span>
+  <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
+</footer>
+<div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
+  <img id="lm-img" src="assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
 <script src="js/app.js"></script>
 </body>
 </html>
+
+

@@ -1,40 +1,96 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Executives | AGCM - KNUST Technical</title>
-  <meta name="description" content="Executive officers of the AGCM - KNUST Technical Department.">
-  <meta property="og:title" content="Executives | AGCM - KNUST Technical">
-  <meta property="og:description" content="Meet the 15 executive officers of the AGCM - KNUST Technical Department.">
-  <meta property="og:image" content="assets/logo-lg.png">
+  <title>Executives | AGCM - KNUST Technical Department</title>
+  <meta name="description" content="Meet the 15 executive officers leading the AGCM - KNUST Technical Department across Console, Recording, Organizing, and Secretariat teams.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#3730a3">
+  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app/executives.html">
+
+  <!-- Open Graph / WhatsApp / Telegram Preview -->
+  <meta property="og:title" content="Executives | AGCM - KNUST Technical Department">
+  <meta property="og:description" content="Meet the 15 executive officers leading the AGCM - KNUST Technical Department across Console, Recording, Organizing, and Secretariat teams.">
+  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app/executives.html">
+  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
   <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Executives | AGCM - KNUST Technical Department">
+  <meta name="twitter:description" content="Meet the 15 executive officers leading the AGCM - KNUST Technical Department across Console, Recording, Organizing, and Secretariat teams.">
+  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+
   <link rel="icon" href="assets/favicon.png">
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem("sdu_theme_v35")==="dark"?"dark":"light"}catch(e){}</script>
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Prevent theme flicker & .rv scroll-reveal flash before first paint -->
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<main>
-  <div class="dept-card">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px">
-      <div>
-        <div class="kicker">Department Leadership • 15 Officers</div>
-        <h3 class="title">AGCM - KNUST Technical Department Executives</h3>
-        <p class="sm text-sec">Meet the 15 executive officers leading the AGCM - KNUST Technical Department across live sound mixing, multitrack recording, equipment conveyance, and fellowship welfare.</p>
-      </div>
-      <div class="tabs">
-        <button type="button" id="btn-toggle-port-edit" class="btn-subtle">✏️ Assign Portfolios</button>
-        <button type="button" id="btn-copy-exec-js" class="btn" hidden>📋 Copy data/executives.js</button>
-      </div>
-    </div>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="topnav">
+  <div class="tn-brand">
+    <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
+      <img src="assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+    </button>
+    <a href="index.html" style="text-decoration:none">
+      <span class="brand-title">AGCM - KNUST</span>
+      <span class="brand-sub">Technical Department</span>
+    </a>
   </div>
-  <div class="exgrid" id="ex-grid"></div>
+  <nav class="tn-tabs" aria-label="Primary Navigation">
+      <a class="nav-pill" href="index.html"><span aria-hidden="true">🏠</span><span>Home</span></a>
+      <a class="nav-pill active" href="executives.html" aria-current="page"><span aria-hidden="true">👥</span><span>Executives</span></a>
+      <a class="nav-pill" href="gallery.html"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
+      <a class="nav-pill" href="tools/foh-portal.html"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
+  </nav>
+  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+</header>
+
+<main id="main">
+  <section class="dept-card">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+      <div>
+        <div class="pills" style="margin-bottom:10px">
+          <span class="pill">Department Leadership</span>
+          <span class="pill amber" id="exec-year-badge">2025 / 2026 Academic Year</span>
+        </div>
+        <h1 class="page-title">AGCM - KNUST Technical Department Executives</h1>
+        <p class="sm text-sec" style="margin-top:6px">
+          The 15 executive officers coordinating live Front-of-House sound reinforcement, multitrack recording, equipment conveyance, and member welfare.
+        </p>
+      </div>
+      <a class="btn-subtle" href="mailto:agcmtechnicaldepartment2021@gmail.com?subject=AGCM%20Technical%20Department%20-%20Event%20Setup%20Request"><span aria-hidden="true">✉️</span><span>Contact Leadership</span></a>
+    </div>
+  </section>
+
+  <div class="exgrid" id="ex-grid" aria-live="polite"></div>
 </main>
+
+<footer class="foot">
+  <span>AGCM - KNUST Technical Department • Live Sound, Multitrack Recording, Mastering &amp; Venue Operations</span>
+  <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
+</footer>
+<div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
+  <img id="lm-img" src="assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
 <script src="data/executives.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
+

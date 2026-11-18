@@ -1,14 +1,57 @@
-/* Source: AGCM-KNUST Technical Department Constitution. Edit here, both pages update. */
-window.ROLES=[
-{id:"techhead",group:"Technical Heads",name:"Technical Heads",duties:["Overall heads of the AGCM-KNUST Technical Department","Oversee all live sound reinforcement, recording, and crew deployment","Represent the department at Student Chaplaincy Council (SCC) and leadership meetings"]},
-{id:"vicetech",group:"Vice Technical Head's group",name:"Vice Technical Head",duties:["Assists the Technical Heads in all departmental duties","Supervises and coordinates the Console Heads and Recording Heads"]},
-{id:"gensec",group:"General Secretary's group",name:"General Secretary",duties:["Represents the Technical Heads in their absence","Writes all official letters and handles department announcements","Follows up on invited ministers and sees to their reception","Keeps the department database and details of new members","Coordinates all department meetings"]},
-{id:"treasurer",group:"General Secretary's group",name:"Treasurer",duties:["Keeps all department money and records every transaction","Works with the Technical Head and Welfare Head on genuine member financial needs","Custodian of valuable items: tracks them and updates the Technical Heads"]},
-{id:"welfare",group:"General Secretary's group",name:"Welfare Heads",duties:["Visit and counsel members","Identify members needing financial, health or special support","Work with the Treasurer on refreshments for special meetings","Keep member birthdays"]},
-{id:"prayer",group:"General Secretary's group",name:"Prayer Secretary",duties:["Present at all church prayer meetings","Leads all department prayer meetings","Fasts for the department"]},
-{id:"org",group:"Organizing Head's group",name:"Organizing Head",duties:["Makes sure the ASPs (the church's Automobile and Transport department) know the time for conveying gadgets","Coordinates members for setups","Present at all Student Chaplaincy Council (SCC) setups with the list of gadgets sent","Maintenance and repair of gadgets","Gets a venue and prepares it; updates members on meeting times"]},
-{id:"org1",group:"Organizing Head's group",name:"1st Assistant Organizing Head",duties:["Present at all SCC setups with the list of gadgets sent","Runs the inventory","Schedules gadget conveying times with the ASPs (church transport)","Maintenance and repair of gadgets"]},
-{id:"org2",group:"Organizing Head's group",name:"2nd Assistant Organizing Head",duties:["Calls members, notes their schedules, makes sure they attend meetings","Teaches members proper handling of the church's gadgets","Maintenance and repair of gadgets"]},
-{id:"console",group:"Vice Technical Head's group",name:"Console Heads",duties:["In charge of the console area","Present at all setups to make sure sound quality is right","Assist the Recording Heads","Present at all SCC meetings"]},
-{id:"rec",group:"Vice Technical Head's group",name:"Recording Heads",duties:["Record church services, songs, ministrations and sermons","Edit the recordings","Work with the Console Heads to capture clean audio"]}
+/* Constitutional role duties for the internal Audio Portal Handover tab (#handover). */
+window.ROLES = [
+  { id: "techhead", name: "Technical Heads", duties: [
+    "Serve as overall heads of the AGCM-KNUST Technical Department",
+    "Oversee all live sound reinforcement, multitrack recording, and crew deployment",
+    "Represent the department at Student Chaplaincy Council (SCC) and leadership meetings"
+  ]},
+  { id: "vicetech", name: "Vice Technical Head", duties: [
+    "Assist the Technical Heads across all departmental setups and meetings",
+    "Supervise and coordinate the Console Heads and Recording Heads"
+  ]},
+  { id: "gensec", name: "General Secretary", duties: [
+    "Represent the Technical Heads in their absence",
+    "Handle all correspondence (letters, announcements, and invitations)",
+    "Keep the database of department members up to date",
+    "Draw up the agenda for every meeting with the Technical Heads and keep accurate minutes"
+  ]},
+  { id: "console", name: "Console Heads", duties: [
+    "Oversee the Front-of-House (FOH) console area and mix balance",
+    "Be present at all setups and Student Chaplaincy Council (SCC) meetings",
+    "Work closely with the Recording Heads to ensure clean multitrack stems"
+  ]},
+  { id: "recording", name: "Recording Heads", duties: [
+    "Record all church services, ministrations, and sermons",
+    "Edit and master recorded audio tracks and sermons for Dunamis Pod (Spotify & Telegram)"
+  ]},
+  { id: "organizing", name: "Organizing Head", duties: [
+    "Coordinate conveyance times for department equipment with the ASPs (church transport)",
+    "Lead setups for church services and SCC programs",
+    "Oversee maintenance and repair of department equipment with the Technical Heads"
+  ]},
+  { id: "org1", name: "1st Assistant Organizing Head", duties: [
+    "Assist the Organizing Head and stand in when absent",
+    "Maintain the complete inventory of all department equipment",
+    "Track department gadgets at SCC setups and coordinate ASP transport timing"
+  ]},
+  { id: "org2", name: "2nd Assistant Organizing Head", duties: [
+    "Coordinate member attendance and setup duty rosters",
+    "Assist the Organizing Head with equipment maintenance and cable repair",
+    "Train recruits and members on proper handling of audio equipment"
+  ]},
+  { id: "treasurer", name: "Treasurer", duties: [
+    "Manage the financial welfare of the department and record every transaction",
+    "Work with the Welfare Heads on member support",
+    "Track high-value department gadgets alongside the Organizing team"
+  ]},
+  { id: "welfare", name: "Welfare Heads", duties: [
+    "Visit and check on department members regularly",
+    "Offer counsel and support to members and work with the Treasurer on welfare needs",
+    "Keep an updated birthday register for all members"
+  ]},
+  { id: "prayer", name: "Prayer Secretary", duties: [
+    "Lead all department prayer sessions and spiritual preparation",
+    "Represent the department at church prayer meetings",
+    "Lead prayers before and after department meetings and setups"
+  ]}
 ];
