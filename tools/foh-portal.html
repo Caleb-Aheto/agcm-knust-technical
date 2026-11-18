@@ -1,24 +1,25 @@
-﻿<!doctype html>
+<!doctype html>
+<!-- AGCM-KNUST v1.5.0 • 2026-11-18 -->
 <html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Audio Portal | AGCM - KNUST Technical Department</title>
-  <meta name="description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
+  <meta name="description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, channel strip vault, AudioLink & console patch builder, and acoustic calculators.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#3730a3">
-  <link rel="canonical" href="https://foh-mixing-blueprint.vercel.app/tools/foh-portal.html">
 
   <!-- Open Graph / WhatsApp / Telegram Preview -->
   <meta property="og:title" content="Audio Portal | AGCM - KNUST Technical Department">
-  <meta property="og:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
-  <meta property="og:url" content="https://foh-mixing-blueprint.vercel.app/tools/foh-portal.html">
-  <meta property="og:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta property="og:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, channel strip vault, AudioLink & console patch builder, and acoustic calculators.">
+  <meta property="og:url" content="https://agcm-knust-technical.vercel.app/tools/foh-portal.html">
+  <meta property="og:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AGCM - KNUST Technical Department">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Audio Portal | AGCM - KNUST Technical Department">
-  <meta name="twitter:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, 32SX channel vault, snake patch builder, and calculators.">
-  <meta name="twitter:image" content="https://foh-mixing-blueprint.vercel.app/assets/logo-lg.png">
+  <meta name="twitter:description" content="Internal FOH audio engineering workspace for the AGCM - KNUST Technical Department — service planner, channel strip vault, AudioLink & console patch builder, and acoustic calculators.">
+  <meta name="twitter:image" content="https://agcm-knust-technical.vercel.app/assets/logo.png">
 
   <link rel="icon" href="../assets/favicon.png">
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
@@ -27,14 +28,19 @@
   <script>
     document.documentElement.classList.add('js');
     try {
-      var t = localStorage.getItem('agcm_theme') || localStorage.getItem('sdu_theme_v35');
+      var t = localStorage.getItem('agcm_theme');
       document.documentElement.dataset.theme = t === 'dark' ? 'dark' : 'light';
     } catch (e) {}
+    addEventListener('DOMContentLoaded', function () {
+      var gf = document.getElementById('gfont-css');
+      if (gf) gf.media = 'all';
+    });
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link id="gfont-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" media="print">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
 
   <link rel="stylesheet" href="../css/styles.css">
@@ -45,7 +51,7 @@
 <header class="topnav">
   <div class="tn-brand">
     <button type="button" class="logo-btn" id="logo" aria-label="View AGCM-KNUST Technical Department logo larger">
-      <img src="../assets/logo.png" width="38" height="38" alt="AGCM-KNUST Technical Department logo">
+      <img src="../assets/logo.png" width="44" height="38" alt="AGCM-KNUST Technical Department logo">
     </button>
     <a href="../index.html" style="text-decoration:none">
       <span class="brand-title">AGCM - KNUST</span>
@@ -58,7 +64,7 @@
       <a class="nav-pill" href="../gallery.html"><span aria-hidden="true">🖼️</span><span>Gallery</span></a>
       <a class="nav-pill active" href="../tools/foh-portal.html" aria-current="page"><span aria-hidden="true">🎚️</span><span>Audio Portal</span></a>
   </nav>
-  <div class="tn-r"><button type="button" class="btn-subtle theme-btn" aria-label="Switch light or dark mode"><span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span></button></div>
+  <div class="tn-r"><button type="button" class="theme-switch theme-btn" role="switch" aria-checked="false" aria-label="Toggle Light or Dark mode"><span class="theme-seg theme-seg-light" data-theme-target="light"><svg class="theme-ico-sun" viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg><span>Light</span></span><span class="theme-seg theme-seg-dark" data-theme-target="dark"><svg class="theme-ico-moon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span>Dark</span></span></button></div>
 </header>
 
 <main id="main">
@@ -73,34 +79,39 @@
         <h1 class="page-title" style="font-size:clamp(1.35rem,2.6vw,1.75rem)">AGCM - KNUST Audio Engineering Portal</h1>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button type="button" onclick="copyEventRunSheetWhatsApp()" class="btn-subtle"><span aria-hidden="true">📲</span><span>Copy Roster for WhatsApp</span></button>
-        <button type="button" onclick="downloadServicePatchHTML()" class="btn"><span aria-hidden="true">⬇</span><span>Download Patch Sheet</span></button>
+        <button type="button" data-action="copy-run-sheet" class="btn-subtle"><span aria-hidden="true">📲</span><span>Copy Roster for WhatsApp</span></button>
+        <button type="button" data-action="download-patch-html" class="btn"><span aria-hidden="true">⬇</span><span>Download Patch Sheet</span></button>
+        <button type="button" id="btn-lock-portal" data-action="lock-portal" class="btn-subtle" title="Lock Audio Portal on this device"><span aria-hidden="true">🔒</span><span>Lock</span></button>
       </div>
     </div>
   </div>
 
   <!-- MOBILE MODULE DRAWER BAR -->
   <div class="portal-mobile-bar">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-      <div>
-        <span class="kicker">Active Module</span>
-        <div id="portal-mobile-active-label" style="font-weight:800;font-size:.95rem">📅 Service Planner</div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+      <div style="min-width:0;flex:1">
+        <span class="kicker" id="portal-mobile-kicker">Active Module (1 / 10)</span>
+        <div id="portal-mobile-active-label" class="truncate" style="font-weight:800;font-size:.92rem">📅 Service Planner</div>
       </div>
-      <button type="button" id="btn-portal-mob-toggle" onclick="toggleMobilePortalGrid()" class="btn-subtle" aria-expanded="false" aria-controls="portal-mobile-grid">
-        ☰ All 10 Modules
-      </button>
+      <div class="portal-mob-nav-btns">
+        <button type="button" id="btn-portal-prev" data-action="step-view" data-arg="-1" class="portal-mob-step-btn" aria-label="Previous portal module" title="Previous module">◀</button>
+        <button type="button" id="btn-portal-next" data-action="step-view" data-arg="1" class="portal-mob-step-btn" aria-label="Next portal module" title="Next module">▶</button>
+        <button type="button" id="btn-portal-mob-toggle" data-action="toggle-mobile-grid" class="btn-subtle" aria-expanded="false" aria-controls="portal-mobile-grid">
+          ☰ Modules
+        </button>
+      </div>
     </div>
     <div id="portal-mobile-grid" class="portal-mobile-grid" hidden>
-        <button type="button" data-mob-tab="planner" onclick="switchView('planner');closeMobilePortalGrid()" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
-        <button type="button" data-mob-tab="channels" onclick="switchView('channels');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎛️</span><span>32SX Channels (32)</span></button>
-        <button type="button" data-mob-tab="checklist" onclick="switchView('checklist');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck List</span></button>
-        <button type="button" data-mob-tab="patch" onclick="switchView('patch');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🔌</span><span>32×8 Snake & Patch</span></button>
-        <button type="button" data-mob-tab="mastering" onclick="switchView('mastering');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing & Mastering</span></button>
-        <button type="button" data-mob-tab="matrix" onclick="switchView('matrix');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🌊</span><span>Conflict Matrix</span></button>
-        <button type="button" data-mob-tab="forensics" onclick="switchView('forensics');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
-        <button type="button" data-mob-tab="calculators" onclick="switchView('calculators');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
-        <button type="button" data-mob-tab="sop" onclick="switchView('sop');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">🎤</span><span>Stage SOPs & Gear</span></button>
-        <button type="button" data-mob-tab="handover" onclick="switchView('handover');closeMobilePortalGrid()" class="nav-pill"><span aria-hidden="true">📝</span><span>Role Handover Notes</span></button>
+        <button type="button" data-mob-tab="planner" data-action="switch-view-mob" data-arg="planner" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
+        <button type="button" data-mob-tab="channels" data-action="switch-view-mob" data-arg="channels" class="nav-pill"><span aria-hidden="true">🎛️</span><span>Channels</span></button>
+        <button type="button" data-mob-tab="checklist" data-action="switch-view-mob" data-arg="checklist" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck</span></button>
+        <button type="button" data-mob-tab="patch" data-action="switch-view-mob" data-arg="patch" class="nav-pill"><span aria-hidden="true">🔌</span><span>Patch</span></button>
+        <button type="button" data-mob-tab="mastering" data-action="switch-view-mob" data-arg="mastering" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing &amp; Mastering</span></button>
+        <button type="button" data-mob-tab="recording" data-action="switch-view-mob" data-arg="recording" class="nav-pill"><span aria-hidden="true">🎙️</span><span>Recording &amp; Editing</span></button>
+        <button type="button" data-mob-tab="matrix" data-action="switch-view-mob" data-arg="matrix" class="nav-pill"><span aria-hidden="true">🌊</span><span>Frequency Masking</span></button>
+        <button type="button" data-mob-tab="forensics" data-action="switch-view-mob" data-arg="forensics" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
+        <button type="button" data-mob-tab="calculators" data-action="switch-view-mob" data-arg="calculators" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
+        <button type="button" data-mob-tab="sop" data-action="switch-view-mob" data-arg="sop" class="nav-pill"><span aria-hidden="true">🎤</span><span>Gear</span></button>
     </div>
   </div>
 
@@ -109,23 +120,22 @@
     <aside class="portal-rail" aria-label="Audio Portal Modules">
       <div class="portal-rail-head">
         <div class="kicker">10 Workspace Tools</div>
-        <div class="text-mut" style="font-size:.73rem;margin-top:2px">Use ← / → keys to switch</div>
       </div>
       <div class="portal-rail-tabs" role="tablist" aria-orientation="vertical">
-        <button type="button" id="tab-btn-planner" role="tab" aria-selected="true" aria-controls="view-planner" onclick="switchView('planner')" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
-        <button type="button" id="tab-btn-channels" role="tab" aria-selected="false" aria-controls="view-channels" onclick="switchView('channels')" class="nav-pill"><span aria-hidden="true">🎛️</span><span>32SX Channels (32)</span></button>
-        <button type="button" id="tab-btn-checklist" role="tab" aria-selected="false" aria-controls="view-checklist" onclick="switchView('checklist')" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck List</span></button>
-        <button type="button" id="tab-btn-patch" role="tab" aria-selected="false" aria-controls="view-patch" onclick="switchView('patch')" class="nav-pill"><span aria-hidden="true">🔌</span><span>32×8 Snake & Patch</span></button>
-        <button type="button" id="tab-btn-mastering" role="tab" aria-selected="false" aria-controls="view-mastering" onclick="switchView('mastering')" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing & Mastering</span></button>
-        <button type="button" id="tab-btn-matrix" role="tab" aria-selected="false" aria-controls="view-matrix" onclick="switchView('matrix')" class="nav-pill"><span aria-hidden="true">🌊</span><span>Conflict Matrix</span></button>
-        <button type="button" id="tab-btn-forensics" role="tab" aria-selected="false" aria-controls="view-forensics" onclick="switchView('forensics')" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
-        <button type="button" id="tab-btn-calculators" role="tab" aria-selected="false" aria-controls="view-calculators" onclick="switchView('calculators')" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
-        <button type="button" id="tab-btn-sop" role="tab" aria-selected="false" aria-controls="view-sop" onclick="switchView('sop')" class="nav-pill"><span aria-hidden="true">🎤</span><span>Stage SOPs & Gear</span></button>
-        <button type="button" id="tab-btn-handover" role="tab" aria-selected="false" aria-controls="view-handover" onclick="switchView('handover')" class="nav-pill"><span aria-hidden="true">📝</span><span>Role Handover Notes</span></button>
+        <button type="button" id="tab-btn-planner" role="tab" aria-selected="true" aria-controls="view-planner" data-action="switch-view" data-arg="planner" class="nav-pill active"><span aria-hidden="true">📅</span><span>Service Planner</span></button>
+        <button type="button" id="tab-btn-channels" role="tab" aria-selected="false" aria-controls="view-channels" data-action="switch-view" data-arg="channels" class="nav-pill"><span aria-hidden="true">🎛️</span><span>Channels</span></button>
+        <button type="button" id="tab-btn-checklist" role="tab" aria-selected="false" aria-controls="view-checklist" data-action="switch-view" data-arg="checklist" class="nav-pill"><span aria-hidden="true">✅</span><span>Soundcheck</span></button>
+        <button type="button" id="tab-btn-patch" role="tab" aria-selected="false" aria-controls="view-patch" data-action="switch-view" data-arg="patch" class="nav-pill"><span aria-hidden="true">🔌</span><span>Patch</span></button>
+        <button type="button" id="tab-btn-mastering" role="tab" aria-selected="false" aria-controls="view-mastering" data-action="switch-view" data-arg="mastering" class="nav-pill"><span aria-hidden="true">🎚️</span><span>Mixing &amp; Mastering</span></button>
+        <button type="button" id="tab-btn-recording" role="tab" aria-selected="false" aria-controls="view-recording" data-action="switch-view" data-arg="recording" class="nav-pill"><span aria-hidden="true">🎙️</span><span>Recording &amp; Editing</span></button>
+        <button type="button" id="tab-btn-matrix" role="tab" aria-selected="false" aria-controls="view-matrix" data-action="switch-view" data-arg="matrix" class="nav-pill"><span aria-hidden="true">🌊</span><span>Frequency Masking</span></button>
+        <button type="button" id="tab-btn-forensics" role="tab" aria-selected="false" aria-controls="view-forensics" data-action="switch-view" data-arg="forensics" class="nav-pill"><span aria-hidden="true">📊</span><span>Audio Reference</span></button>
+        <button type="button" id="tab-btn-calculators" role="tab" aria-selected="false" aria-controls="view-calculators" data-action="switch-view" data-arg="calculators" class="nav-pill"><span aria-hidden="true">📐</span><span>Venue Calculators</span></button>
+        <button type="button" id="tab-btn-sop" role="tab" aria-selected="false" aria-controls="view-sop" data-action="switch-view" data-arg="sop" class="nav-pill"><span aria-hidden="true">🎤</span><span>Gear</span></button>
       </div>
       <div class="portal-rail-foot">
-        <button type="button" onclick="exportStateJSON()" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬇ Backup JSON</button>
-        <button type="button" onclick="openImportModal()" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬆ Restore JSON</button>
+        <button type="button" data-action="export-json" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬇ Backup JSON</button>
+        <button type="button" data-action="open-import-modal" class="btn-subtle" style="justify-content:center;font-size:.75rem">⬆ Restore JSON</button>
       </div>
     </aside>
 
@@ -138,67 +148,75 @@
               <span>•</span>
               <span>Live FOH &amp; Post-Production</span>
             </span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Mixing, Recording, Editing &amp; Mastering Blueprint</h2>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Live FOH Mixing &amp; Broadcast Mastering Blueprint</h2>
             <p class="text-sec text-base mt-1">
-              Universal ground-up audio engineering workflows applicable to any live console or DAW—from stage gain staging and subtractive EQ to multitrack editing and broadcast loudness mastering.
+              Hierarchical live Front-of-House mixing, subtractive EQ, bus subgrouping, and True-Peak broadcast loudness mastering.
             </p>
           </div>
           <div class="flex flex-wrap gap-2">
-            <button type="button" onclick="applyMasteringPreset('streaming')" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm">
+            <button type="button" data-action="mastering-preset" data-arg="streaming" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm">
               Streaming (-14 LUFS)
             </button>
-            <button type="button" onclick="applyMasteringPreset('sermon')" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
+            <button type="button" data-action="mastering-preset" data-arg="sermon" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
               Sermon / Broadcast (-16 LUFS)
             </button>
-            <button type="button" onclick="applyMasteringPreset('live_dynamic')" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
+            <button type="button" data-action="mastering-preset" data-arg="live_dynamic" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
               Dynamic Live Master (-11 LUFS)
             </button>
           </div>
         </div>
 
-        <!-- 4 PILLARS OF AUDIO PRODUCTION -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="dept-card-compact space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Live &amp; Studio</span>
-              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">-18 dBFS Core</span>
+        <!-- HORIZONTAL MIXING & MASTERING BLUEPRINT CARDS -->
+        <div class="blueprint-horiz-list">
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">1. Gain &amp; Phase</span>
+                <span class="blueprint-pill bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">-18 dBFS Core</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Ground-Up FOH Mixing</h3>
             </div>
-            <h3 class="text-lg font-extrabold text-main">Ground-Up Mixing</h3>
-            <p class="text-sm text-sec">
-              Build every mix in hierarchical layers: calibrate room/PA phase first, lock in -18 dBFS preamp gain, anchor sub/bass summation, carve midrange pockets for instruments, and place Lead Vocals at 0 dB unity.
+            <p class="blueprint-horiz-body">
+              Build every mix in hierarchical layers: verify PA &amp; subwoofer crossover phase first, lock in -18 dBFS digital preamp gain (-6 dBFS peak headroom), anchor Kick and Bass low-end summation, carve midrange pockets for instruments, and place Lead Vocals at 0 dB unity.
             </p>
           </div>
 
-          <div class="dept-card-compact space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Capture</span>
-              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300">24-Bit / 48 kHz</span>
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">2. Spectral Carving</span>
+                <span class="blueprint-pill bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300">High-Pass + Notch</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Subtractive EQ &amp; Dynamic Control</h3>
             </div>
-            <h3 class="text-lg font-extrabold text-main">Multitrack Recording</h3>
-            <p class="text-sm text-sec">
-              Tap pre-EQ/pre-fader stems with 12–18 dB of transient headroom so zero drum hits clip at 0.00 dBFS. Verify phase coherence across multi-mic drum kits and dual-mic sources before hitting record.
+            <p class="blueprint-horiz-body">
+              Engage High-Pass Filters on all non-sub sources (80–135 Hz on vocals, 350 Hz on overheads), use key-filtered gates on drums (145 Hz Kick, 95 Hz Floor Tom), and apply 2:1–3:1 soft expanders on vocals before adding gentle 3–4 dB compression.
             </p>
           </div>
 
-          <div class="dept-card-compact space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-600">Surgical Prep</span>
-              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Clip Gain + De-Bleed</span>
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-600">3. Bus Architecture</span>
+                <span class="blueprint-pill bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">DCA + Aux Sub</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Subgroup Glue &amp; Monitor Routing</h3>
             </div>
-            <h3 class="text-lg font-extrabold text-main">Post-Production Editing</h3>
-            <p class="text-sm text-sec">
-              Clean raw stems before touching plugins: time-align lagging room/tom mics, apply strip-silence with smooth crossfades on idle backing vocal tracks, and level erratic phrases with manual clip gain.
+            <p class="blueprint-horiz-body">
+              Group all Backing Vocals onto a dedicated DCA/Subgroup for instant -10 dB transitions during prayer and preaching, keep spoken-word channels 100% dry, and feed subwoofers strictly from the dedicated Aux Sub bus (Kick, Bass, Floor Tom, Keys 1).
             </p>
           </div>
 
-          <div class="dept-card-compact space-y-2.5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Final Polish</span>
-              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300">-1.0 dBTP Ceiling</span>
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-purple-600">4. Final Polish</span>
+                <span class="blueprint-pill bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300">-1.0 dBTP Ceiling</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Broadcast Mastering &amp; Delivery</h3>
             </div>
-            <h3 class="text-lg font-extrabold text-main">Mastering &amp; Delivery</h3>
-            <p class="text-sm text-sec">
-              Apply linear-phase sub cleanup (HPF 28–32 Hz), gentle 1.5–2 dB bus glue compression, mid/side stereo enhancement above 250 Hz, and True-Peak brickwall limiting calibrated for streaming platforms.
+            <p class="blueprint-horiz-body">
+              Apply linear-phase sub cleanup (HPF 28–32 Hz), gentle 1.5–2.5 dB SSL/VCA bus glue compression, mid/side stereo widening above 250 Hz (keeping bass 100% mono below 140 Hz), and True-Peak brickwall limiting calibrated for Spotify (-14 LUFS) and sermon archives (-16 LUFS).
             </p>
           </div>
         </div>
@@ -211,7 +229,7 @@
               <h3 class="text-xl font-extrabold text-main mt-0.5">Master Bus Signal Chain &amp; LUFS Loudness Calculator</h3>
               <p class="text-sm text-sec">Adjust the master bus parameters below to model integrated loudness (LUFS), bus glue gain reduction, and True-Peak headroom.</p>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap items-center gap-3">
               <div class="dept-subtle-box text-center px-4 py-2">
                 <div class="text-[11px] font-bold uppercase text-mut">Integrated Loudness</div>
                 <div id="mast-lufs-readout" class="text-xl font-extrabold text-blue-600 tabular">-14.0 LUFS</div>
@@ -233,7 +251,7 @@
                 <span class="text-main">Input Trim / Drive</span>
                 <span id="lbl-mast-drive" class="text-blue-600 tabular">+3.5 dB</span>
               </div>
-              <input id="slider-mast-drive" type="range" min="-6" max="12" step="0.5" value="3.5" oninput="updateMasteringSim()" />
+              <input id="slider-mast-drive" type="range" min="-6" max="12" step="0.5" value="3.5" data-input-action="update-mastering-sim" />
               <p class="text-xs text-mut">Pushes pre-master mix (-18 dBFS avg) into the limiter threshold.</p>
             </div>
 
@@ -242,7 +260,7 @@
                 <span class="text-main">SSL / VCA Bus Comp Ratio</span>
                 <span id="lbl-mast-comp" class="text-amber-600 tabular">2:1 (Glue)</span>
               </div>
-              <input id="slider-mast-comp" type="range" min="1" max="6" step="0.5" value="2" oninput="updateMasteringSim()" />
+              <input id="slider-mast-comp" type="range" min="1" max="6" step="0.5" value="2" data-input-action="update-mastering-sim" />
               <p class="text-xs text-mut">30 ms Attack (preserves snare snap), 100 ms / Auto Release.</p>
             </div>
 
@@ -251,7 +269,7 @@
                 <span class="text-main">Mid/Side Stereo Width</span>
                 <span id="lbl-mast-width" class="text-purple-600 tabular">112%</span>
               </div>
-              <input id="slider-mast-width" type="range" min="80" max="150" step="2" value="112" oninput="updateMasteringSim()" />
+              <input id="slider-mast-width" type="range" min="80" max="150" step="2" value="112" data-input-action="update-mastering-sim" />
               <p class="text-xs text-mut">Keep frequencies below 140 Hz 100% mono; widen 1.5–12 kHz air.</p>
             </div>
 
@@ -260,7 +278,7 @@
                 <span class="text-main">True-Peak Ceiling</span>
                 <span id="lbl-mast-ceiling" class="text-emerald-600 tabular">-1.0 dBTP</span>
               </div>
-              <input id="slider-mast-ceiling" type="range" min="-3.0" max="-0.1" step="0.1" value="-1.0" oninput="updateMasteringSim()" />
+              <input id="slider-mast-ceiling" type="range" min="-3.0" max="-0.1" step="0.1" value="-1.0" data-input-action="update-mastering-sim" />
               <p class="text-xs text-mut">-1.0 dBTP prevents AAC/MP3 transcoding inter-sample clipping.</p>
             </div>
           </div>
@@ -279,6 +297,181 @@
       </section>
 
       <!-- ===================================================================== -->
+      <!-- RECORDING & POST-PRODUCTION EDITING (PRESONUS CAPTURE + AUDITION)     -->
+      <!-- ===================================================================== -->
+      <section id="view-recording" class="space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600">
+              <span data-cfg-tpl="{captureApp} 32×32 USB">PreSonus Capture 32×32 USB</span>
+              <span>•</span>
+              <span>Adobe Audition Post-Production</span>
+            </span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Recording &amp; Editing Studio</h2>
+            <p class="text-sec text-base mt-1">
+              End-to-end 24-bit multitrack stem capture via <strong data-cfg-tpl="{captureApp}">PreSonus Capture</strong>, surgical stem &amp; sermon editing in <strong>Adobe Audition</strong>, and broadcast mastering for <em>Dunamis Pod</em> (Spotify &amp; Telegram).
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-action="audition-preset" data-arg="sermon" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition shadow-sm">
+              Sermon Rack (-16 LUFS)
+            </button>
+            <button type="button" data-action="audition-preset" data-arg="worship" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
+              Worship Mixbus (-14 LUFS)
+            </button>
+            <button type="button" data-action="download-doc" data-arg="recording_sop" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition shadow-sm">
+              ⬇ Capture &amp; Audition SOP
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 HORIZONTAL RECORDING & EDITING BLUEPRINT CARDS -->
+        <div class="blueprint-horiz-list">
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">1. PreSonus Capture</span>
+                <span class="blueprint-pill bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300">24-Bit / 48 kHz USB</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Live Multitrack Stem Capture</h3>
+            </div>
+            <p class="blueprint-horiz-body">
+              Tap all active console channels <strong>Pre-EQ / Pre-Fader</strong> over USB 2.0 with <strong>-18 dBFS average RMS</strong> and at least <strong>6–12 dB peak headroom</strong> so drum transients never clip at 0.00 dBFS. Verify Ch 13 (LV) and Ch 17 (BV 4) show distinct waveforms during line check, engage <strong>Record Lock</strong>, and press <strong>M</strong> to drop live markers at Prayer, Worship, Choir, and Sermon start.
+            </p>
+          </div>
+
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">2. Virtual Soundcheck &amp; Archival</span>
+                <span class="blueprint-pill bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">.capture + WAV Stems</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Stem Transfer &amp; Virtual Rehearsal</h3>
+            </div>
+            <p class="blueprint-horiz-body">
+              Use PreSonus Capture’s one-click <strong>Virtual Soundcheck</strong> (Digital Return mode on the console) to dial in Fat Channel gates, EQ, and monitor wedges before the band arrives. After service, save the <code>.capture</code> project and export discrete 24-bit <code>.wav</code> stems into <code>YYYY-MM-DD_Service_Venue/Raw_Stems/</code> before opening any DAW.
+            </p>
+          </div>
+
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-600">3. Adobe Audition Prep</span>
+                <span class="blueprint-pill bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300">Spectral + De-Bleed</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Surgical Stem &amp; Sermon Editing</h3>
+            </div>
+            <p class="blueprint-horiz-body">
+              Load stems into <strong>Adobe Audition Multitrack</strong>: run <strong>Diagnostics → DeClipper</strong> on any 0.00 dBFS drum/keys spikes (after -6 dB clip gain), use <strong>Adaptive Noise Reduction + DeHummer (50 Hz)</strong> on speech mics, run <strong>Diagnostics → Delete Silence (-38 dB)</strong> with 15 ms crossfades on idle Backing Vocal tracks, and nudge lagging drum/bass stems (+2.93 ms Tom 1, +4.04 ms Floor Tom, +1.79 ms Bass DI) into phase lock with Kick.
+            </p>
+          </div>
+
+          <div class="blueprint-horiz-card">
+            <div class="blueprint-horiz-head">
+              <div class="blueprint-horiz-meta">
+                <span class="text-xs font-bold uppercase tracking-wider text-purple-600">4. Broadcast Export</span>
+                <span class="blueprint-pill bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300">Spotify + Telegram</span>
+              </div>
+              <h3 class="text-lg font-extrabold text-main">Dunamis Pod Mixdown &amp; Delivery</h3>
+            </div>
+            <p class="blueprint-horiz-body">
+              Trim non-sermon announcements with ripple-delete crossfades, level dynamic preaching swings with manual Clip Gain + 3.2:1 Tube-Modeled Compression, and brickwall-limit via Adobe Audition’s <strong>Hard Limiter</strong> (<strong>-16 LUFS / -1.5 dBTP</strong> for sermons; <strong>-14 LUFS / -1.0 dBTP</strong> for full-band worship). Export <strong>320 kbps CBR MP3</strong> for <em>Dunamis Pod</em> on Spotify and <strong>96 kbps MP3/M4A</strong> for fast mobile streaming on Telegram.
+            </p>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE PRESONUS CAPTURE CALCULATOR + ADOBE AUDITION RACK INSPECTOR -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-5 dept-card space-y-5 tabular">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600" data-cfg-tpl="{captureApp} Storage Planner">PreSonus Capture Storage Planner</span>
+              <h3 class="text-lg font-bold text-main mt-0.5">Multitrack Session Disk &amp; Bitrate Calculator</h3>
+              <p class="text-xs text-sec mt-1">Verify laptop SSD free space and USB sustained write speed before arming multitrack recording.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3.5">
+              <div class="dept-subtle-box">
+                <label for="rec-tracks" class="text-xs font-bold uppercase text-mut block mb-1">Active Stems (1–32)</label>
+                <input id="rec-tracks" type="number" min="1" max="32" value="24" data-input-action="update-rec-calc" class="dept-input w-full font-bold" />
+              </div>
+              <div class="dept-subtle-box">
+                <label for="rec-mins" class="text-xs font-bold uppercase text-mut block mb-1">Duration (Mins)</label>
+                <input id="rec-mins" type="number" min="5" max="360" step="5" value="120" data-input-action="update-rec-calc" class="dept-input w-full font-bold" />
+              </div>
+              <div class="dept-subtle-box">
+                <label for="rec-sr" class="text-xs font-bold uppercase text-mut block mb-1">Sample Rate</label>
+                <select id="rec-sr" data-change-action="update-rec-calc" class="dept-input w-full font-semibold">
+                  <option value="48000" selected>48.0 kHz (Broadcast)</option>
+                  <option value="44100">44.1 kHz (Standard)</option>
+                </select>
+              </div>
+              <div class="dept-subtle-box">
+                <label for="rec-bits" class="text-xs font-bold uppercase text-mut block mb-1">Bit Depth</label>
+                <select id="rec-bits" data-change-action="update-rec-calc" class="dept-input w-full font-semibold">
+                  <option value="24" selected>24-Bit Uncompressed</option>
+                  <option value="16">16-Bit PCM</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div class="dept-subtle-box text-center">
+                <div class="text-[11px] font-bold uppercase text-mut">Multitrack WAV Footprint</div>
+                <div id="rec-out-wav-gb" class="text-lg font-extrabold text-blue-600 mt-0.5">23.18 GB</div>
+              </div>
+              <div class="dept-subtle-box text-center">
+                <div class="text-[11px] font-bold uppercase text-mut">Sustained Write Speed</div>
+                <div id="rec-out-rate" class="text-lg font-extrabold text-emerald-600 mt-0.5">3.30 MB/s</div>
+              </div>
+              <div class="dept-subtle-box text-center">
+                <div class="text-[11px] font-bold uppercase text-mut">Spotify 320k MP3</div>
+                <div id="rec-out-mp3-hi" class="text-base font-extrabold text-main mt-0.5">274.7 MB</div>
+              </div>
+              <div class="dept-subtle-box text-center">
+                <div class="text-[11px] font-bold uppercase text-mut">Telegram 96k Archive</div>
+                <div id="rec-out-mp3-tg" class="text-base font-extrabold text-amber-600 mt-0.5">82.4 MB</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 dept-card space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Adobe Audition Signal Chain</span>
+                <h3 class="text-lg font-bold text-main mt-0.5">Interactive Effects Rack &amp; Restoration Inspector</h3>
+              </div>
+              <div id="audition-preset-pills" class="flex flex-wrap gap-1.5">
+                <button type="button" data-aud-btn="sermon" data-action="audition-preset" data-arg="sermon" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white">Sermon (-16 LUFS)</button>
+                <button type="button" data-aud-btn="worship" data-action="audition-preset" data-arg="worship" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Worship (-14 LUFS)</button>
+                <button type="button" data-aud-btn="debleed" data-action="audition-preset" data-arg="debleed" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">BV/Tom De-Bleed</button>
+                <button type="button" data-aud-btn="declip" data-action="audition-preset" data-arg="declip" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Clip/Capsule Rescue</button>
+              </div>
+            </div>
+
+            <div id="audition-rack-container" class="space-y-3"></div>
+          </div>
+        </div>
+
+        <!-- RECORDING & POST-PRODUCTION CHECKLIST -->
+        <div class="dept-card space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Recording Team SOP</span>
+              <h3 class="text-lg font-bold text-main mt-0.5">PreSonus Capture &amp; Adobe Audition Session Checklist</h3>
+              <div id="rec-checklist-progress-text" class="text-xs font-bold text-sec mt-1 tabular">0 / 8 Recording Steps Completed (0%)</div>
+            </div>
+            <div class="flex items-center gap-3 flex-wrap">
+              <div class="w-40 h-3 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div id="rec-checklist-progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+              </div>
+              <button type="button" data-action="reset-rec-checklist" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-100 text-rose-800">Reset Recording Checks</button>
+            </div>
+          </div>
+          <div id="rec-checklist-container" class="grid grid-cols-1 md:grid-cols-2 gap-3.5"></div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
       <!-- EVENT & SERVICE PLANNER + LIVE CUE RUNNER (NEW CORE WORKSPACE)        -->
       <!-- ===================================================================== -->
       <section id="view-planner" class="space-y-8 active-view">
@@ -291,11 +484,11 @@
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <select id="event-selector" onchange="selectEvent(this.value)" class="dept-input font-semibold"></select>
-            <button onclick="openNewEventModal()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
+            <select id="event-selector" data-change-action="select-event" class="dept-input font-semibold"></select>
+            <button data-action="open-new-event-modal" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
               + New Event / Service
             </button>
-            <button onclick="copyEventRunSheetWhatsApp()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition">
+            <button data-action="copy-run-sheet" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition">
               Copy Crew Run-Sheet
             </button>
           </div>
@@ -311,29 +504,21 @@
             <div class="space-y-3">
               <div>
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Event / Service Name</label>
-                <input id="ev-name" type="text" oninput="updateActiveEventMeta()" class="dept-input w-full font-semibold" />
+                <input id="ev-name" type="text" data-input-action="update-event-meta" class="dept-input w-full font-semibold" />
               </div>
               <div class="grid grid-cols-2 gap-3">
                 <div>
                   <label class="text-xs font-bold uppercase text-mut block mb-1">Venue / Setup</label>
-                  <select id="ev-venue" onchange="updateActiveEventMeta()" class="dept-input w-full font-semibold">
-                    <option value="Great Hall">Great Hall</option>
-                    <option value="Great Hall Foyer">Great Hall Foyer</option>
-                    <option value="Independence Hall Dining Hall">Independence Hall Dining Hall</option>
-                    <option value="Queens Hall Dining Hall">Queens Hall Dining Hall</option>
-                    <option value="Africa Hall Dining Hall">Africa Hall Dining Hall</option>
-                    <option value="Katanga Hall Dining Hall">Katanga Hall Dining Hall</option>
-                    <option value="CCB Auditorium">CCB Auditorium</option>
-                  </select>
+                  <select id="ev-venue" data-change-action="update-event-meta" class="dept-input w-full font-semibold"></select>
                 </div>
                 <div>
                   <label class="text-xs font-bold uppercase text-mut block mb-1">Date &amp; Call Time</label>
-                  <input id="ev-time" type="text" oninput="updateActiveEventMeta()" class="dept-input w-full" />
+                  <input id="ev-time" type="text" data-input-action="update-event-meta" class="dept-input w-full" />
                 </div>
               </div>
               <div>
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Technical Notes / Priorities</label>
-                <textarea id="ev-notes" rows="2" oninput="updateActiveEventMeta()" class="dept-input w-full"></textarea>
+                <textarea id="ev-notes" rows="2" data-input-action="update-event-meta" class="dept-input w-full"></textarea>
               </div>
             </div>
           </div>
@@ -354,7 +539,7 @@
               <h3 class="text-lg font-bold text-main">Live Order of Service &amp; Technical Cue Sheet</h3>
               <p class="text-sm text-sec mt-0.5">Click any status pill during the event to advance cues: <strong>Upcoming → LIVE NOW → Done</strong>.</p>
             </div>
-            <button onclick="openAddCueModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm">
+            <button data-action="open-add-cue-modal" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm">
               + Add Cue / Segment
             </button>
           </div>
@@ -378,20 +563,20 @@
       </section>
 
       <!-- ===================================================================== -->
-      <!-- GREAT HALL AUDIO REFERENCE LAB (GENERALIZED FROM 12-CH BENCHMARK)     -->
+      <!-- AUDIO REFERENCE LAB (MULTITRACK BENCHMARKS) -->
       <!-- ===================================================================== -->
       <section id="view-forensics" class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Great Hall Multitrack Benchmarks</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600" data-cfg-tpl="{primaryVenue} Multitrack Benchmarks">Venue Multitrack Benchmarks</span>
             <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Audio Reference Lab</h2>
             <p class="text-sec text-base mt-1">
-              Measured Great Hall multitrack benchmarks (10m 43s • 44.1 kHz) showing gain staging targets, phase alignment, and spectral restoration.
+              <span data-cfg-tpl="Measured {primaryVenue} multitrack benchmarks (10m 43s • 44.1 kHz) showing gain staging targets, phase alignment, and spectral restoration.">Measured multitrack benchmarks (10m 43s • 44.1 kHz) showing gain staging targets, phase alignment, and spectral restoration.</span>
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-3">
-            <input id="forensic-search" type="text" oninput="renderForensicTable()" placeholder="Search channel or fix..." class="dept-input" />
-            <select id="forensic-band-filter" onchange="renderForensicTable()" class="dept-input">
+            <input id="forensic-search" type="text" data-input-action="render-forensic-table" placeholder="Search channel or fix..." class="dept-input" />
+            <select id="forensic-band-filter" data-change-action="render-forensic-table" class="dept-input">
               <option value="ALL">All Severity Levels</option>
               <option value="CRITICAL">Critical Fixes Only</option>
               <option value="PHASE">Phase / Polarity Issues</option>
@@ -420,10 +605,10 @@
                 </p>
               </div>
               <div class="flex items-center gap-2">
-                <button id="btn-ba-lv" onclick="renderBeforeAfterChart('lv')" class="px-3.5 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white transition">
+                <button id="btn-ba-lv" data-action="before-after" data-arg="lv" class="px-3.5 py-2 rounded-lg text-xs font-bold bg-blue-600 text-white transition">
                   Lead Vocal (LV)
                 </button>
-                <button id="btn-ba-kick" onclick="renderBeforeAfterChart('kick')" class="px-3.5 py-2 rounded-lg text-xs font-bold btn-subtle transition">
+                <button id="btn-ba-kick" data-action="before-after" data-arg="kick" class="px-3.5 py-2 rounded-lg text-xs font-bold btn-subtle transition">
                   Kick Drum
                 </button>
               </div>
@@ -436,7 +621,7 @@
           <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
             <div>
               <h3 class="text-lg font-bold text-main">Audio Reference Diagnostic Ledger</h3>
-              <p class="text-sm text-sec mt-0.5">Click “Load in 32SX Editor” on any row to jump directly to its parametric EQ and dynamics strip.</p>
+              <p class="text-sm text-sec mt-0.5" data-cfg-tpl="Click “Load in {consoleShort} Editor” on any row to jump directly to its parametric EQ and dynamics strip.">Click “Load in Console Editor” on any row to jump directly to its parametric EQ and dynamics strip.</p>
             </div>
             <span class="px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-200 text-xs font-semibold tabular">Reference Stems</span>
           </div>
@@ -449,7 +634,7 @@
                   <th>Gate &lt;-80dB</th>
                   <th>Dom. Freq &amp; Phase</th>
                   <th>7-Band Energy Share</th>
-                  <th>Root Cause &amp; 32SX Fix</th>
+                  <th data-cfg-tpl="Root Cause & {consoleShort} Fix">Root Cause &amp; Console Fix</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -460,25 +645,25 @@
       </section>
 
       <!-- ===================================================================== -->
-      <!-- 32SX CHANNEL STRIP & EQ VAULT                                         -->
+      <!-- CONSOLE CHANNEL STRIP & EQ VAULT -->
       <!-- ===================================================================== -->
       <section id="view-channels" class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">PreSonus StudioLive 32SX Fat Channel</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">32SX Channel Strip &amp; Parametric EQ Vault</h2>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600" >Digital FOH Console Fat Channel</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1" >Console Channel Strip &amp; Parametric EQ Vault</h2>
             <p class="text-sec text-base mt-1">
-              Select any channel below to inspect its Preamp, Gate, Compressor, 4-Band EQ, and Great Hall stage placement tip.
+              <span data-cfg-tpl="Select any channel below to inspect its Preamp, Gate, Compressor, 4-Band EQ, and {primaryVenue} stage placement tip.">Select any channel below to inspect its Preamp, Gate, Compressor, 4-Band EQ, and stage placement tip.</span>
             </p>
           </div>
           <div class="flex items-center gap-2.5 flex-wrap">
             <span id="selected-channel-badge" class="px-3.5 py-2 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 text-xs font-bold border border-blue-200 dark:border-blue-800">
               Lead Vocal (LV)
             </span>
-            <button id="btn-toggle-problem-Ghost" onclick="toggleProblemGhost()" class="px-3.5 py-2 rounded-xl bg-amber-100 text-amber-900 font-semibold text-xs border border-amber-300 transition">
+            <button id="btn-toggle-problem-Ghost" data-action="toggle-problem-ghost" class="px-3.5 py-2 rounded-xl bg-amber-100 text-amber-900 font-semibold text-xs border border-amber-300 transition">
               Show Raw Problem Peak: ON
             </button>
-            <button id="btn-reset-eq" onclick="resetCurrentChannelEQ()" class="px-3.5 py-2 rounded-xl btn-subtle font-semibold text-xs transition">
+            <button id="btn-reset-eq" data-action="reset-channel-eq" class="px-3.5 py-2 rounded-xl btn-subtle font-semibold text-xs transition">
               Reset Preset
             </button>
           </div>
@@ -487,58 +672,58 @@
         <!-- Category Filter for All 32 Console Inputs -->
         <div class="flex flex-wrap items-center justify-between gap-3 dept-subtle-box">
           <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-bold uppercase text-mut mr-1">Filter 32 Inputs:</span>
-            <button type="button" id="ch-grp-ALL" onclick="filterChannelButtons('ALL')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white">All 32 Inputs</button>
-            <button type="button" id="ch-grp-DRUMS" onclick="filterChannelButtons('DRUMS')" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Drums &amp; Perc (10)</button>
-            <button type="button" id="ch-grp-BAND" onclick="filterChannelButtons('BAND')" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Band, Keys &amp; Horns (7)</button>
-            <button type="button" id="ch-grp-VOCALS" onclick="filterChannelButtons('VOCALS')" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Lead &amp; Choir Vocals (8)</button>
-            <button type="button" id="ch-grp-SPEECH" onclick="filterChannelButtons('SPEECH')" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Speech, Aux &amp; Bypass (7)</button>
+            <span class="text-xs font-bold uppercase text-mut mr-1">Filter 32 Channels:</span>
+            <button type="button" id="ch-grp-ALL" data-action="filter-channels" data-arg="ALL" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white">All 32 Channels</button>
+            <button type="button" id="ch-grp-DRUMS" data-action="filter-channels" data-arg="DRUMS" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Drums (Ch 1–8)</button>
+            <button type="button" id="ch-grp-BAND" data-action="filter-channels" data-arg="BAND" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Band, Horns &amp; Loops (Ch 9–15)</button>
+            <button type="button" id="ch-grp-VOCALS" data-action="filter-channels" data-arg="VOCALS" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Lead &amp; BVs (Ch 17, 22–27)</button>
+            <button type="button" id="ch-grp-SPEECH" data-action="filter-channels" data-arg="SPEECH" class="px-3 py-1.5 rounded-lg text-xs font-bold btn-subtle">Pastor, Playback &amp; Open</button>
           </div>
-          <span class="text-xs font-bold text-blue-600 tabular">Full 32-Channel StudioLive 32SX Vault</span>
+          <span class="text-xs font-bold text-blue-600 tabular">Full 32-Channel Console Vault</span>
         </div>
 
         <div id="channel-selector-bar" class="flex items-center gap-2 flex-wrap">
-          <button id="kick" data-grp="DRUMS" onclick="selectChannel('kick')" class="ch-btn">Kick Drum</button>
-          <button id="ch02" data-grp="DRUMS" onclick="selectChannel('ch02')" class="ch-btn">Ch 02 • Kick Out</button>
-          <button id="tom1" data-grp="DRUMS" onclick="selectChannel('tom1')" class="ch-btn">1st Tom (Ø)</button>
-          <button id="tom2" data-grp="DRUMS" onclick="selectChannel('tom2')" class="ch-btn">2nd Tom</button>
-          <button id="ch05" data-grp="DRUMS" onclick="selectChannel('ch05')" class="ch-btn">Ch 05 • 3rd Tom</button>
-          <button id="floortom" data-grp="DRUMS" onclick="selectChannel('floortom')" class="ch-btn">Floor Tom (Ø)</button>
-          <button id="bass" data-grp="BAND" onclick="selectChannel('bass')" class="ch-btn">Bass DI (Ø)</button>
-          <button id="keys1" data-grp="BAND" onclick="selectChannel('keys1')" class="ch-btn">Keys 1 (Main)</button>
-          <button id="keys2" data-grp="BAND" onclick="selectChannel('keys2')" class="ch-btn">Keys 2 (Aux)</button>
-          <button id="guitar" data-grp="BAND" onclick="selectChannel('guitar')" class="ch-btn">Electric Guitar</button>
-          <button id="ch11" data-grp="DRUMS" onclick="selectChannel('ch11')" class="ch-btn">Ch 11 • Snare Top</button>
-          <button id="ch12" data-grp="DRUMS" onclick="selectChannel('ch12')" class="ch-btn">Ch 12 • Hi-Hat / OH L</button>
-          <button id="lv" data-grp="VOCALS" onclick="selectChannel('lv')" class="ch-btn active">Lead Vocal (LV)</button>
-          <button id="bv1" data-grp="VOCALS" onclick="selectChannel('bv1')" class="ch-btn">BV 1 (Sop/Alto)</button>
-          <button id="ch15" data-grp="VOCALS" onclick="selectChannel('ch15')" class="ch-btn">Ch 15 • BV 2 (Alto)</button>
-          <button id="bv3" data-grp="VOCALS" onclick="selectChannel('bv3')" class="ch-btn">BV 3 (Tenor)</button>
-          <button id="bv4" data-grp="VOCALS" onclick="selectChannel('bv4')" class="ch-btn">BV 4 (Aux Vocal)</button>
-          <button id="ch18" data-grp="SPEECH" onclick="selectChannel('ch18')" class="ch-btn">Ch 18 • [BROKEN FADER]</button>
-          <button id="ch19" data-grp="SPEECH" onclick="selectChannel('ch19')" class="ch-btn">Ch 19 • Pastor Wireless</button>
-          <button id="ch20" data-grp="SPEECH" onclick="selectChannel('ch20')" class="ch-btn">Ch 20 • Pulpit Mic</button>
-          <button id="ch21" data-grp="SPEECH" onclick="selectChannel('ch21')" class="ch-btn">Ch 21 • MC Handheld</button>
-          <button id="ch22" data-grp="BAND" onclick="selectChannel('ch22')" class="ch-btn">Ch 22 • Saxophone / Horn</button>
-          <button id="ch23" data-grp="BAND" onclick="selectChannel('ch23')" class="ch-btn">Ch 23 • Acoustic Gtr DI</button>
-          <button id="ch24" data-grp="VOCALS" onclick="selectChannel('ch24')" class="ch-btn">Ch 24 • BV 5 (Sop 2)</button>
-          <button id="ch25" data-grp="VOCALS" onclick="selectChannel('ch25')" class="ch-btn">Ch 25 • BV 6 (Alto 2)</button>
-          <button id="ch26" data-grp="VOCALS" onclick="selectChannel('ch26')" class="ch-btn">Ch 26 • BV 7 (Tenor 2)</button>
-          <button id="ch27" data-grp="DRUMS" onclick="selectChannel('ch27')" class="ch-btn">Ch 27 • Talking Drum / Perc</button>
-          <button id="ch28" data-grp="DRUMS" onclick="selectChannel('ch28')" class="ch-btn">Ch 28 • Snare Bottom (Ø)</button>
-          <button id="ch29" data-grp="DRUMS" onclick="selectChannel('ch29')" class="ch-btn">Ch 29 • Overhead Right</button>
-          <button id="ch30" data-grp="BAND" onclick="selectChannel('ch30')" class="ch-btn">Ch 30 • Synth Bass / Track L</button>
-          <button id="ch31" data-grp="SPEECH" onclick="selectChannel('ch31')" class="ch-btn">Ch 31 • Playback / Media DI</button>
-          <button id="ch32" data-grp="SPEECH" onclick="selectChannel('ch32')" class="ch-btn">Ch 32 • Talkback / Room Mic</button>
+          <button id="kick" data-grp="DRUMS" data-action="select-channel" data-arg="kick" class="ch-btn">Ch 01 • Kick In</button>
+          <button id="ch02" data-grp="DRUMS" data-action="select-channel" data-arg="ch02" class="ch-btn">Ch 02 • Kick Out</button>
+          <button id="ch11" data-grp="DRUMS" data-action="select-channel" data-arg="ch11" class="ch-btn">Ch 03 • Snare Top</button>
+          <button id="ch28" data-grp="DRUMS" data-action="select-channel" data-arg="ch28" class="ch-btn">Ch 04 • Snare Bottom (Ø)</button>
+          <button id="tom1" data-grp="DRUMS" data-action="select-channel" data-arg="tom1" class="ch-btn">Ch 05 • Rack Tom 1 (Ø)</button>
+          <button id="tom2" data-grp="DRUMS" data-action="select-channel" data-arg="tom2" class="ch-btn">Ch 06 • Rack Tom 2</button>
+          <button id="ch05" data-grp="DRUMS" data-action="select-channel" data-arg="ch05" class="ch-btn">Ch 07 • Rack Tom 3</button>
+          <button id="floortom" data-grp="DRUMS" data-action="select-channel" data-arg="floortom" class="ch-btn">Ch 08 • Floor Tom (Ø)</button>
+          <button id="bass" data-grp="BAND" data-action="select-channel" data-arg="bass" class="ch-btn">Ch 09 • Bass Guitar (Ø)</button>
+          <button id="guitar" data-grp="BAND" data-action="select-channel" data-arg="guitar" class="ch-btn">Ch 10 • Electric Guitar</button>
+          <button id="keys1" data-grp="BAND" data-action="select-channel" data-arg="keys1" class="ch-btn">Ch 11 • Main Keys</button>
+          <button id="keys2" data-grp="BAND" data-action="select-channel" data-arg="keys2" class="ch-btn">Ch 12 • Aux Keys</button>
+          <button id="ch22" data-grp="BAND" data-action="select-channel" data-arg="ch22" class="ch-btn">Ch 13 • Saxophone</button>
+          <button id="ch14" data-grp="BAND" data-action="select-channel" data-arg="ch14" class="ch-btn">Ch 14 • Trumpet</button>
+          <button id="ch30" data-grp="BAND" data-action="select-channel" data-arg="ch30" class="ch-btn">Ch 15 • Loops / Stems</button>
+          <button id="ch19" data-grp="SPEECH" data-action="select-channel" data-arg="ch19" class="ch-btn">Ch 16 • Pastor</button>
+          <button id="lv" data-grp="VOCALS" data-action="select-channel" data-arg="lv" class="ch-btn active">Ch 17 • Lead Vocal</button>
+          <button id="ch18" data-grp="SPEECH" data-action="select-channel" data-arg="ch18" class="ch-btn">Ch 18 • [Open]</button>
+          <button id="ch20" data-grp="SPEECH" data-action="select-channel" data-arg="ch20" class="ch-btn">Ch 19 • [Open]</button>
+          <button id="ch21" data-grp="SPEECH" data-action="select-channel" data-arg="ch21" class="ch-btn">Ch 20 • [Open]</button>
+          <button id="ch23" data-grp="SPEECH" data-action="select-channel" data-arg="ch23" class="ch-btn">Ch 21 • [Open]</button>
+          <button id="bv1" data-grp="VOCALS" data-action="select-channel" data-arg="bv1" class="ch-btn">Ch 22 • BV 1 (Soprano)</button>
+          <button id="ch24" data-grp="VOCALS" data-action="select-channel" data-arg="ch24" class="ch-btn">Ch 23 • BV 2 (Soprano)</button>
+          <button id="ch15" data-grp="VOCALS" data-action="select-channel" data-arg="ch15" class="ch-btn">Ch 24 • BV 3 (Alto)</button>
+          <button id="ch25" data-grp="VOCALS" data-action="select-channel" data-arg="ch25" class="ch-btn">Ch 25 • BV 4 (Alto)</button>
+          <button id="bv3" data-grp="VOCALS" data-action="select-channel" data-arg="bv3" class="ch-btn">Ch 26 • BV 5 (Tenor)</button>
+          <button id="bv4" data-grp="VOCALS" data-action="select-channel" data-arg="bv4" class="ch-btn">Ch 27 • BV 6 (Tenor)</button>
+          <button id="ch26" data-grp="SPEECH" data-action="select-channel" data-arg="ch26" class="ch-btn">Ch 28 • [Open Spare]</button>
+          <button id="ch27" data-grp="SPEECH" data-action="select-channel" data-arg="ch27" class="ch-btn">Ch 29 • [Open]</button>
+          <button id="ch29" data-grp="SPEECH" data-action="select-channel" data-arg="ch29" class="ch-btn">Ch 30 • [Open]</button>
+          <button id="ch12" data-grp="SPEECH" data-action="select-channel" data-arg="ch12" class="ch-btn">Ch 31 • [Open]</button>
+          <button id="ch31" data-grp="SPEECH" data-action="select-channel" data-arg="ch31" class="ch-btn">Ch 32 • Playback</button>
         </div>
 
         <div class="dept-card space-y-6">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-5">
             <div>
               <div class="flex items-center gap-3 flex-wrap">
-                <h3 id="ch-title" class="text-2xl font-extrabold text-main">Lead Vocal (LV) — Ch 13</h3>
+                <h3 id="ch-title" class="text-2xl font-extrabold text-main">Lead Vocal (LV) — Ch 17</h3>
                 <span id="ch-routing-badge" class="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-200 text-xs font-semibold border border-indigo-200 dark:border-indigo-800">
-                  Snake In 13 → 32SX Ch 13
+                  Port 17 → Console Ch 17
                 </span>
               </div>
               <p id="ch-forensic-summary" class="text-sec text-base mt-2"></p>
@@ -578,60 +763,119 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-2">
-            <div class="lg:col-span-7 space-y-4">
-              <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 shadow-inner">
-                <div class="flex items-center justify-between text-xs text-slate-400 mb-2 px-1 font-medium">
-                  <span>32SX 4-BAND PARAMETRIC EQ + HPF CURVE</span>
-                  <span>20 Hz — 20 kHz (±15 dB)</span>
-                </div>
-                <canvas id="eq-curve-canvas" width="720" height="300" class="w-full h-[280px] rounded-xl block"></canvas>
+          <div class="space-y-6 pt-2">
+            <!-- FULL-WIDTH ENLARGED INTERACTIVE 4-BAND PARAMETRIC EQ ANALYZER -->
+            <div class="bg-slate-950 rounded-2xl p-5 border border-slate-800 shadow-inner">
+              <div class="flex items-center justify-between flex-wrap gap-2 text-xs text-slate-400 mb-3 px-1 font-semibold">
+                <span >CONSOLE 4-BAND PARAMETRIC EQ + HPF ANALYZER (20 Hz — 20 kHz, ±15 dB)</span>
+                <span class="text-[11px] text-slate-400">Drag nodes 1–4 for Freq &amp; Gain • Scroll wheel (or Shift+Drag) on node for Q Width • Double-click node to reset</span>
               </div>
-              <div class="dept-subtle-box border-l-4 border-l-blue-600">
+              <canvas id="eq-curve-canvas" width="1120" height="400" class="w-full h-[360px] rounded-xl block"></canvas>
+            </div>
+
+            <!-- HPF CONTROL + STAGE PLACEMENT ACTION NOTE -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-stretch tabular">
+              <div class="lg:col-span-5 dept-subtle-box flex flex-col justify-center">
+                <div class="flex justify-between items-center text-xs font-bold mb-2">
+                  <span class="text-mut">HIGH-PASS FILTER (18 dB/oct Slope • Node H)</span>
+                  <span id="lbl-hpf" class="text-blue-600 text-sm font-extrabold">80 Hz</span>
+                </div>
+                <input id="slider-hpf" type="range" min="20" max="400" step="1" value="80" aria-label="High-Pass Filter Frequency" data-input-action="eq-slider-change" />
+              </div>
+              <div class="lg:col-span-7 dept-subtle-box border-l-4 border-l-blue-600 flex flex-col justify-center">
                 <div class="text-xs font-bold uppercase text-blue-600 mb-1">Stage Placement &amp; FOH Action Note</div>
                 <p id="ch-stage-tip" class="text-sm text-sec leading-relaxed"></p>
               </div>
             </div>
 
-            <div class="lg:col-span-5 space-y-4 tabular">
-              <div class="dept-subtle-box">
-                <div class="flex justify-between text-xs font-bold mb-1.5">
-                  <span class="text-mut">HIGH-PASS FILTER (18 dB/oct)</span>
-                  <span id="lbl-hpf" class="text-blue-600">80 Hz</span>
-                </div>
-                <input id="slider-hpf" type="range" min="20" max="250" step="1" value="80" oninput="onEQSliderChange()" />
-              </div>
-              <div class="dept-subtle-box">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span id="lbl-b1-freq" class="text-emerald-600">Band 1</span>
+            <!-- 4-BAND PARAMETRIC EQ RACK (BOTTOM 4-COLUMN STRIP) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 tabular">
+              <div class="dept-subtle-box border-t-4 border-t-emerald-600 space-y-2.5">
+                <div class="flex justify-between items-center text-xs font-bold">
+                  <span id="lbl-b1-freq" class="text-emerald-600">Band 1: 240 Hz (Q 1.0)</span>
                   <span id="lbl-b1-gain" class="text-main">+4.5 dB</span>
                 </div>
-                <p id="lbl-b1-desc" class="text-xs text-mut mb-2"></p>
-                <input id="slider-b1" type="range" min="-15" max="15" step="0.5" value="4.5" oninput="onEQSliderChange()" />
+                <p id="lbl-b1-desc" class="text-xs text-mut min-h-[2rem]"></p>
+                <div class="eq-param-stack">
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Gain</span><b id="val-b1-gain">+4.5 dB</b></span>
+                    <input id="slider-b1" type="range" min="-15" max="15" step="0.5" value="4.5" aria-label="Band 1 Gain" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Frequency</span><b id="val-b1-freq">240 Hz</b></span>
+                    <input id="slider-b1-freq" type="range" min="20" max="1200" step="1" value="240" aria-label="Band 1 Frequency" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Q / Width</span><b id="val-b1-q">1.0</b></span>
+                    <input id="slider-b1-q" type="range" min="0.3" max="10" step="0.1" value="1.0" aria-label="Band 1 Q Width" data-input-action="eq-slider-change" />
+                  </div>
+                </div>
               </div>
-              <div class="dept-subtle-box">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span id="lbl-b2-freq" class="text-amber-600">Band 2</span>
+
+              <div class="dept-subtle-box border-t-4 border-t-amber-500 space-y-2.5">
+                <div class="flex justify-between items-center text-xs font-bold">
+                  <span id="lbl-b2-freq" class="text-amber-600">Band 2: 786 Hz (Q 3.0)</span>
                   <span id="lbl-b2-gain" class="text-main">-4.5 dB</span>
                 </div>
-                <p id="lbl-b2-desc" class="text-xs text-mut mb-2"></p>
-                <input id="slider-b2" type="range" min="-15" max="15" step="0.5" value="-4.5" oninput="onEQSliderChange()" />
+                <p id="lbl-b2-desc" class="text-xs text-mut min-h-[2rem]"></p>
+                <div class="eq-param-stack">
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Gain</span><b id="val-b2-gain">-4.5 dB</b></span>
+                    <input id="slider-b2" type="range" min="-15" max="15" step="0.5" value="-4.5" aria-label="Band 2 Gain" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Frequency</span><b id="val-b2-freq">786 Hz</b></span>
+                    <input id="slider-b2-freq" type="range" min="60" max="5000" step="1" value="786" aria-label="Band 2 Frequency" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Q / Width</span><b id="val-b2-q">3.0</b></span>
+                    <input id="slider-b2-q" type="range" min="0.3" max="10" step="0.1" value="3.0" aria-label="Band 2 Q Width" data-input-action="eq-slider-change" />
+                  </div>
+                </div>
               </div>
-              <div class="dept-subtle-box">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span id="lbl-b3-freq" class="text-purple-600">Band 3</span>
+
+              <div class="dept-subtle-box border-t-4 border-t-purple-600 space-y-2.5">
+                <div class="flex justify-between items-center text-xs font-bold">
+                  <span id="lbl-b3-freq" class="text-purple-600">Band 3: 1150 Hz (Q 2.2)</span>
                   <span id="lbl-b3-gain" class="text-main">-3.5 dB</span>
                 </div>
-                <p id="lbl-b3-desc" class="text-xs text-mut mb-2"></p>
-                <input id="slider-b3" type="range" min="-15" max="15" step="0.5" value="-3.5" oninput="onEQSliderChange()" />
+                <p id="lbl-b3-desc" class="text-xs text-mut min-h-[2rem]"></p>
+                <div class="eq-param-stack">
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Gain</span><b id="val-b3-gain">-3.5 dB</b></span>
+                    <input id="slider-b3" type="range" min="-15" max="15" step="0.5" value="-3.5" aria-label="Band 3 Gain" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Frequency</span><b id="val-b3-freq">1.15 kHz</b></span>
+                    <input id="slider-b3-freq" type="range" min="200" max="12000" step="5" value="1150" aria-label="Band 3 Frequency" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Q / Width</span><b id="val-b3-q">2.2</b></span>
+                    <input id="slider-b3-q" type="range" min="0.3" max="10" step="0.1" value="2.2" aria-label="Band 3 Q Width" data-input-action="eq-slider-change" />
+                  </div>
+                </div>
               </div>
-              <div class="dept-subtle-box">
-                <div class="flex justify-between text-xs font-bold mb-1">
-                  <span id="lbl-b4-freq" class="text-sky-600">Band 4</span>
+
+              <div class="dept-subtle-box border-t-4 border-t-blue-600 space-y-2.5">
+                <div class="flex justify-between items-center text-xs font-bold">
+                  <span id="lbl-b4-freq" class="text-sky-600">Band 4: 8000 Hz (Q 0.7)</span>
                   <span id="lbl-b4-gain" class="text-main">+3.5 dB</span>
                 </div>
-                <p id="lbl-b4-desc" class="text-xs text-mut mb-2"></p>
-                <input id="slider-b4" type="range" min="-15" max="15" step="0.5" value="3.5" oninput="onEQSliderChange()" />
+                <p id="lbl-b4-desc" class="text-xs text-mut min-h-[2rem]"></p>
+                <div class="eq-param-stack">
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Gain</span><b id="val-b4-gain">+3.5 dB</b></span>
+                    <input id="slider-b4" type="range" min="-15" max="15" step="0.5" value="3.5" aria-label="Band 4 Gain" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Frequency</span><b id="val-b4-freq">8.00 kHz</b></span>
+                    <input id="slider-b4-freq" type="range" min="1000" max="20000" step="10" value="8000" aria-label="Band 4 Frequency" data-input-action="eq-slider-change" />
+                  </div>
+                  <div class="eq-param-col">
+                    <span class="eq-param-lbl"><span>Q / Width</span><b id="val-b4-q">0.7</b></span>
+                    <input id="slider-b4-q" type="range" min="0.3" max="10" step="0.1" value="0.7" aria-label="Band 4 Q Width" data-input-action="eq-slider-change" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -651,10 +895,10 @@
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
-            <button id="chk-filter-all" onclick="setChecklistFilter('ALL')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white">All Steps</button>
-            <button id="chk-filter-todo" onclick="setChecklistFilter('TODO')" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Remaining</button>
-            <button id="chk-filter-sdu" onclick="setChecklistFilter('SDU')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900">Critical Rig Checks</button>
-            <button id="btn-reset-checklist" onclick="resetChecklist()" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-100 text-rose-800">Reset Checks</button>
+            <button id="chk-filter-all" data-action="checklist-filter" data-arg="ALL" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white">All Steps</button>
+            <button id="chk-filter-todo" data-action="checklist-filter" data-arg="TODO" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Remaining</button>
+            <button id="chk-filter-sdu" data-action="checklist-filter" data-arg="SDU" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-900">Critical Rig Checks</button>
+            <button id="btn-reset-checklist" data-action="reset-checklist" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-rose-100 text-rose-800">Reset Checks</button>
           </div>
         </div>
 
@@ -677,17 +921,62 @@
       <section id="view-matrix" class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Spectral Unmasking</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Frequency Conflict &amp; Masking Matrix</h2>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Spectral Unmasking &amp; Octave Allocation</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Frequency Masking &amp; Instrument Pocket Guide</h2>
             <p class="text-sec text-base mt-1">
-              Standard Great Hall frequency allocation showing which instrument owns each pocket and which channel gets carved.
+              <span data-cfg-tpl="Live {primaryVenue} &amp; studio frequency allocation guide showing which instrument owns each octave band, what causes spectral masking, and how to carve clean pockets with complementary EQ and sidechain ducking.">Live FOH &amp; studio frequency allocation guide showing which instrument owns each octave band, what causes spectral masking, and how to carve clean pockets with complementary EQ and sidechain ducking.</span>
             </p>
           </div>
           <div id="matrix-band-pills" class="flex flex-wrap gap-2">
-            <button onclick="filterMatrix('ALL')" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white">All Zones</button>
-            <button onclick="filterMatrix('LOW')" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Sub &amp; Low (30-160Hz)</button>
-            <button onclick="filterMatrix('MID')" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Mud &amp; Box (160-800Hz)</button>
-            <button onclick="filterMatrix('HIGH')" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Honk &amp; Bite (800-5kHz)</button>
+            <button type="button" data-matrix-grp="ALL" data-action="matrix-filter" data-arg="ALL" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white">All 7 Spectrum Zones</button>
+            <button type="button" data-matrix-grp="LOW" data-action="matrix-filter" data-arg="LOW" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Sub &amp; Bass (30–160 Hz)</button>
+            <button type="button" data-matrix-grp="MID" data-action="matrix-filter" data-arg="MID" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Low-Mid &amp; Box (160–800 Hz)</button>
+            <button type="button" data-matrix-grp="HIGH" data-action="matrix-filter" data-arg="HIGH" class="px-3.5 py-2 rounded-xl text-xs font-bold btn-subtle">Presence &amp; Air (800 Hz–16 kHz)</button>
+          </div>
+        </div>
+
+        <!-- 7-BAND AUDIO SPECTRUM POCKET MAP -->
+        <div class="dept-card space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="text-base font-extrabold text-main">20 Hz — 20 kHz Instrument Frequency Allocation Map</h3>
+            <span class="text-xs font-semibold text-mut">Rule of Thumb: Cut the competing source before boosting the primary owner</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 tabular">
+            <div class="dept-subtle-box p-3 border-t-4 border-t-blue-600">
+              <div class="text-[11px] font-extrabold text-blue-600">20–60 Hz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Sub-Bass</div>
+              <div class="text-[11px] text-sec mt-1">Kick Thump (56 Hz) &amp; Aux Sub Bus. HPF all else.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-emerald-600">
+              <div class="text-[11px] font-extrabold text-emerald-600">60–160 Hz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Bass &amp; Weight</div>
+              <div class="text-[11px] text-sec mt-1">Bass DI (115 Hz) &amp; Floor Tom (88 Hz). Cut Kick 98 Hz.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-amber-500">
+              <div class="text-[11px] font-extrabold text-amber-600">160–350 Hz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Warmth vs. Mud</div>
+              <div class="text-[11px] text-sec mt-1">LV Chest (240 Hz) &amp; Snare Body (185 Hz). Cut Keys/BVs @ 315 Hz.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-rose-600">
+              <div class="text-[11px] font-extrabold text-rose-600">350–800 Hz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Boxy / Nasal Zone</div>
+              <div class="text-[11px] text-sec mt-1">Primary subtractive zone: carve 465 Hz (Keys 2) &amp; 700–786 Hz.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-purple-600">
+              <div class="text-[11px] font-extrabold text-purple-600">800 Hz–2 kHz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Core Pitch &amp; Attack</div>
+              <div class="text-[11px] text-sec mt-1">Vocal Pitch &amp; Bass Fret (1.1 kHz). Tuck Keys 2 @ 1.25 kHz.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-blue-600">
+              <div class="text-[11px] font-extrabold text-blue-600">2–5 kHz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Presence &amp; Diction</div>
+              <div class="text-[11px] text-sec mt-1">LV Consonants &amp; Kick Click (3.8 kHz). Notch Guitar @ 2.51 kHz.</div>
+            </div>
+            <div class="dept-subtle-box p-3 border-t-4 border-t-emerald-600">
+              <div class="text-[11px] font-extrabold text-emerald-600">5–20 kHz</div>
+              <div class="text-xs font-extrabold text-main mt-0.5">Sibilance &amp; Air</div>
+              <div class="text-[11px] text-sec mt-1">Vocal Air Shelf (8 kHz+) &amp; OH Shimmer (11 kHz). De-ess 6.5 kHz.</div>
+            </div>
           </div>
         </div>
 
@@ -695,49 +984,71 @@
       </section>
 
       <!-- ===================================================================== -->
-      <!-- 32x8 SNAKE & SOFT-PATCH GUARD                                         -->
+      <!-- AUDIOLINK SNAKE & CONSOLE PATCH -->
       <!-- ===================================================================== -->
       <section id="view-patch" class="space-y-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Stagebox &amp; Hardware Routing</span>
-            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">AudioLink 32×8 Snake &amp; 32SX Soft-Patch Guard</h2>
+            <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Analog Snake &amp; Console Routing</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">AudioLink &amp; Console Patch</h2>
             <p class="text-sec text-base mt-1">
-              Dead stagebox inputs (<strong>2, 5, 19, 20, 21, 30, 32</strong>) + broken 32SX <strong>Ch 18 Fader</strong> &amp; <strong>Mix 2 Fader</strong> workarounds.
+              Full Physical AudioLink 32×8 Patch List (Inputs <strong>1–32</strong>, Broken: <strong>18–21, 30–32</strong>; Outputs <strong>A–H</strong>) and Console Patch List (Inputs <strong>1–32</strong>; Outputs <strong>MIX 1–8</strong>).
             </p>
           </div>
-          <button id="btn-copy-whatsapp" onclick="copyCrewPatchWhatsApp()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow transition">
+          <button id="btn-copy-whatsapp" data-action="copy-crew-patch" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow transition">
             Copy WhatsApp Crew Patch List
           </button>
         </div>
 
-        <div class="dept-card space-y-5">
-          <div class="flex items-center justify-between flex-wrap gap-3">
-            <h3 class="text-lg font-bold text-main">32-Channel Stagebox Input Map</h3>
-            <div class="flex items-center gap-4 text-xs font-semibold">
-              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Active Patch</span>
-              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> Dead Snake Port</span>
-              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span> Broken Console Fader</span>
+        <!-- PHYSICAL AUDIOLINK PATCH LIST (INPUTS 1-32 & OUTPUTS A-H) -->
+        <div class="dept-card space-y-6">
+          <div class="flex items-center justify-between flex-wrap gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Physical AudioLink Patch List</span>
+              <h3 class="text-lg font-bold text-main mt-0.5">AudioLink 32×8 Inputs (Ports 01–32) &amp; Outputs (A–H)</h3>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-semibold flex-wrap">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> Active Patch (24)</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span> Open Spare (Port 28)</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span> ❌ Broken Port (18–21, 30–32)</span>
             </div>
           </div>
+
           <div id="snake-grid" class="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-8 gap-3 tabular"></div>
+
+          <div class="pt-2 space-y-3">
+            <h4 class="text-sm font-extrabold uppercase tracking-wider text-blue-600">Physical AudioLink Outputs (Returns A – H)</h4>
+            <div id="snake-outputs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 tabular"></div>
+          </div>
         </div>
 
-        <!-- INTERACTIVE SERVICE INPUT SELECTOR & DOWNLOADABLE PATCH GENERATOR -->
+        <!-- CONSOLE OUTPUTS (MIX 1-8) -->
+        <div class="dept-card space-y-4">
+          <div class="flex items-center justify-between flex-wrap gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Console Output Bus Routing</span>
+              <h3 class="text-lg font-bold text-main mt-0.5">Console Patch List — Outputs (MIX 1 – MIX 8)</h3>
+            </div>
+            <span class="text-xs font-semibold text-mut">MIX 2 is left Open • MIX 5/6 feed Main PA L/R • MIX 7/8 feed Delay L/R</span>
+          </div>
+          <div id="console-outputs-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 tabular"></div>
+        </div>
+
+        <!-- INTERACTIVE EVENT INPUT SELECTOR & DOWNLOADABLE PATCH GENERATOR -->
         <div class="dept-card space-y-6">
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-4">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Smart Service Patch Planner</span>
-              <h3 class="text-xl font-extrabold text-main mt-0.5">Select Service Inputs (Ch 01–32) &amp; Generate Downloadable Patch Sheet</h3>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Console Patch List &amp; Event Selector</span>
+              <h3 class="text-xl font-extrabold text-main mt-0.5">Select Event Channels (Ch 01–32) &amp; Generate Patch Sheet</h3>
               <p class="text-sm text-sec mt-0.5">
-                Tick the console inputs needed for your program below. The allocator automatically assigns healthy AudioLink stagebox ports (skipping dead ports <strong>2, 5, 19, 20, 21, 30, 32</strong> and broken <strong>Console Fader 18</strong>).
+                Choose the channels needed for your event below from the full master patch (Ch 1–17 → Ports 1–17, Ch 22–27 → Ports 22–27, Ch 32 Playback → Port 29; Ch 18–21 &amp; 28–31 Open).
               </p>
             </div>
             <div class="flex flex-wrap items-center gap-2 shrink-0">
-              <button type="button" onclick="downloadServicePatchHTML()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
+              <button type="button" data-action="download-patch-html" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition">
                 Download Printable Patch (.html)
               </button>
-              <button type="button" onclick="downloadServicePatchCSV()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition">
+              <button type="button" data-action="download-patch-csv" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition">
                 Download Patch CSV (.csv)
               </button>
             </div>
@@ -746,15 +1057,15 @@
           <!-- Preset Templates & Stats Bar -->
           <div class="flex flex-wrap items-center justify-between gap-3 dept-subtle-box">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="text-xs font-bold uppercase text-mut mr-1">Quick Service Presets:</span>
-              <button type="button" onclick="applyPatchPreset('full_sunday')" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-bold">Full Sunday Band (24 Inputs)</button>
-              <button type="button" onclick="applyPatchPreset('midweek_compact')" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">Midweek / Dining Hall (12 Inputs)</button>
-              <button type="button" onclick="applyPatchPreset('acoustic_prayer')" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">Prayer / Acoustic Set (7 Inputs)</button>
-              <button type="button" onclick="applyPatchPreset('all_31')" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">All 31 Usable Channels</button>
+              <span class="text-xs font-bold uppercase text-mut mr-1">Event Patch Presets:</span>
+              <button type="button" data-action="patch-preset" data-arg="full_sunday" class="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-bold">Full Master Patch (24 Inputs)</button>
+              <button type="button" data-action="patch-preset" data-arg="midweek_compact" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">Midweek / Dining Hall (17 Inputs)</button>
+              <button type="button" data-action="patch-preset" data-arg="acoustic_prayer" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">Prayer / Acoustic Set (9 Inputs)</button>
+              <button type="button" data-action="patch-preset" data-arg="all_31" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-bold">Full + Port 28 Spare (25 Inputs)</button>
             </div>
             <div class="flex items-center gap-3 text-xs font-bold tabular">
-              <span id="patch-active-count-badge" class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200">16 Inputs Selected</span>
-              <span id="patch-spare-ports-badge" class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200">9 Healthy Snake Ports Free</span>
+              <span id="patch-active-count-badge" class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-200">24 Inputs Active</span>
+              <span id="patch-spare-ports-badge" class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200">1 / 25 Healthy Snake Ports Free</span>
             </div>
           </div>
 
@@ -766,10 +1077,10 @@
             <table class="w-full text-left border-collapse spacious-table">
               <thead>
                 <tr>
-                  <th>32SX Ch</th>
+                  <th>Console Ch</th>
                   <th>Input Source &amp; Mic/DI</th>
-                  <th>Stagebox Port Assignment</th>
-                  <th>32SX Digital Patch Source</th>
+                  <th>Physical Port</th>
+                  <th>Console Patch Mode</th>
                   <th>HPF • Polarity • Gate Key</th>
                   <th>Bus &amp; Monitor Routing</th>
                 </tr>
@@ -781,12 +1092,12 @@
       </section>
 
       <!-- ===================================================================== -->
-      <!-- GREAT HALL DX2496 & PLAYBOOK                                          -->
+      <!-- VENUE ACOUSTIC CALCULATORS & PLAYBOOK -->
       <!-- ===================================================================== -->
       <section id="view-calculators" class="space-y-10">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-blue-600">System Optimization &amp; Knowledge Base</span>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Great Hall Calculators &amp; Strategy Vault</h2>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1" data-cfg-tpl="{primaryVenue} Calculators & Strategy Vault">Venue Calculators &amp; Strategy Vault</h2>
           <p class="text-sec text-base mt-1">
             Acoustic delay, sub/top crossover wavelength, BPM vocal reverb timing, and our team’s FOH strategy playbook.
           </p>
@@ -794,29 +1105,23 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div class="dept-card space-y-5">
-            <h3 class="text-lg font-bold text-main">Great Hall Acoustic Delay &amp; DX2496 Phase Calculator</h3>
+            <h3 class="text-lg font-bold text-main" data-cfg-tpl="{primaryVenue} Acoustic Delay & {dspShort} Phase Calculator">Venue Acoustic Delay &amp; Crossover Phase Calculator</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 tabular">
               <div class="dept-subtle-box">
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Distance (m)</label>
-                <input id="calc-dist" type="number" step="0.1" value="3.2" oninput="updateAcousticCalc()" class="dept-input w-full font-semibold" />
+                <input id="calc-dist" type="number" step="0.1" value="3.2" data-input-action="update-acoustic-calc" class="dept-input w-full font-semibold" />
               </div>
               <div class="dept-subtle-box">
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Hall Temp (°C)</label>
-                <input id="calc-temp" type="number" step="0.5" value="28" oninput="updateAcousticCalc()" class="dept-input w-full font-semibold" />
+                <input id="calc-temp" type="number" step="0.5" value="28" data-input-action="update-acoustic-calc" class="dept-input w-full font-semibold" />
               </div>
               <div class="dept-subtle-box">
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Sub X-Over (Hz)</label>
-                <input id="calc-xover" type="number" step="1" value="90" oninput="updateAcousticCalc()" class="dept-input w-full font-semibold" />
+                <input id="calc-xover" type="number" step="1" value="90" data-input-action="update-acoustic-calc" class="dept-input w-full font-semibold" />
               </div>
             </div>
 
-            <div class="flex flex-wrap gap-2">
-              <button onclick="setQuickDistance(1.0)" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-semibold">Kick→Tom1 (1.0m)</button>
-              <button onclick="setQuickDistance(1.4)" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-semibold">Kick→FloorTom (1.4m)</button>
-              <button onclick="setQuickDistance(3.2)" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-semibold">Stage Depth (3.2m)</button>
-              <button onclick="setQuickDistance(18.5)" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-semibold">Mid-Hall Delay Fill (18.5m)</button>
-              <button onclick="setQuickDistance(48.1)" class="px-3 py-1.5 rounded-lg btn-subtle text-xs font-semibold">Back Wall (48.1m)</button>
-            </div>
+            <div id="calc-quick-distances" class="flex flex-wrap gap-2"></div>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 tabular">
               <div class="dept-subtle-box text-center">
@@ -841,17 +1146,17 @@
           <div class="dept-card space-y-5">
             <div class="flex items-center justify-between">
               <h3 class="text-lg font-bold text-main">Worship BPM Reverb &amp; Delay Sync Calculator</h3>
-              <button id="btn-tap-tempo" onclick="tapTempo()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow">
+              <button id="btn-tap-tempo" data-action="tap-tempo" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow">
                 TAP TEMPO
               </button>
             </div>
             <div class="dept-subtle-box flex items-center gap-4 tabular">
               <div class="w-28">
                 <label class="text-xs font-bold uppercase text-mut block mb-1">Song BPM</label>
-                <input id="calc-bpm" type="number" min="40" max="220" value="76" oninput="updateBPMCalc(this.value)" class="dept-input w-full font-bold" />
+                <input id="calc-bpm" type="number" min="40" max="220" value="76" data-input-action="update-bpm-calc" class="dept-input w-full font-bold" />
               </div>
               <div class="flex-1">
-                <input id="slider-bpm" type="range" min="50" max="180" value="76" oninput="updateBPMCalc(this.value)" />
+                <input id="slider-bpm" type="range" min="50" max="180" value="76" data-input-action="update-bpm-calc" />
               </div>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 tabular">
@@ -883,13 +1188,13 @@
           <div class="flex flex-wrap items-center justify-between gap-4">
             <h3 class="text-xl font-bold text-main">Department FOH Strategy Vault</h3>
             <div class="flex items-center gap-3">
-              <select id="strategy-cat-filter" onchange="renderStrategies()" class="dept-input text-xs font-semibold">
+              <select id="strategy-cat-filter" data-change-action="render-strategies" class="dept-input text-xs font-semibold">
                 <option value="ALL">All Categories</option>
                 <option value="VOCALS">Vocals &amp; Mic Swap</option>
                 <option value="LOWEND">Kick, Bass &amp; Subs</option>
-                <option value="ROUTING">32SX &amp; Snake Routing</option>
+                <option value="ROUTING" data-cfg-tpl="{consoleShort} & Snake Routing">Console &amp; Snake Routing</option>
               </select>
-              <button id="btn-open-modal" onclick="openStrategyModal()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow">
+              <button id="btn-open-modal" data-action="open-strategy-modal" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow">
                 + Add Strategy
               </button>
             </div>
@@ -904,7 +1209,7 @@
       <section id="view-sop" class="space-y-10">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Department Standard &amp; Inventory</span>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Stage Mic Color-Coding SOP &amp; Gear Health Tracker</h2>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-main mt-1">Department Gear Registry &amp; Stage Mic Standard</h2>
           <p class="text-sec text-base mt-1">
             Standardized vocal mic color-coding, 5-second console soft-swap recovery, and live equipment health tracking for every AGCM-KNUST service.
           </p>
@@ -914,7 +1219,7 @@
           <div class="border-b border-slate-200 dark:border-slate-800 pb-4">
             <h3 class="text-xl font-bold text-main">Vocal Microphone Color-Tape &amp; Capsule Standard</h3>
             <p class="text-sm text-sec mt-1">
-              Every vocal mic on stage carries a matching <strong>colored electrical tape band on the handle</strong>, matching <strong>XLR boot ring</strong>, and matching <strong>32SX Scribble Strip color</strong>.
+              <span data-cfg-html="true" data-cfg-tpl="Every vocal mic on stage carries a matching <strong>colored electrical tape band on the handle</strong>, matching <strong>XLR boot ring</strong>, and matching <strong>{consoleShort} Scribble Strip color</strong>.">Every vocal mic on stage carries a matching colored electrical tape band on the handle, matching XLR boot ring, and matching Console Scribble Strip color.</span>
             </p>
           </div>
 
@@ -922,46 +1227,55 @@
             <div class="dept-subtle-box border-t-4 border-t-rose-600 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-rose-600 text-white text-xs font-bold">RED TAPE</span>
-                <span class="text-xs text-mut font-semibold">Ch 13 • In 13</span>
+                <span class="text-xs text-mut font-semibold">Port 17 • Ch 17</span>
               </div>
               <h4 class="text-base font-bold text-main">Lead Vocal (LV)</h4>
-              <p class="text-xs text-sec">Primary authentic capsule (SM58 / Beta 58A). Center stage stand. Reserved strictly for Lead.</p>
+              <p class="text-xs text-sec">Primary capsule (SM58 / Beta 58A). Center stage stand on Port 17 → Console Ch 17.</p>
+            </div>
+
+            <div class="dept-subtle-box border-t-4 border-t-blue-600 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded bg-blue-600 text-white text-xs font-bold">PASTOR MIC</span>
+                <span class="text-xs text-mut font-semibold">Port 16 • Ch 16</span>
+              </div>
+              <h4 class="text-base font-bold text-main">Pastor Wireless / Pulpit</h4>
+              <p class="text-xs text-sec">Dedicated speech channel on Port 16 → Console Ch 16. Keep 100% dry with HPF at 125 Hz.</p>
             </div>
 
             <div class="dept-subtle-box border-t-4 border-t-blue-600 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-blue-600 text-white text-xs font-bold">BLUE TAPE</span>
-                <span class="text-xs text-mut font-semibold">Ch 14 • In 14</span>
+                <span class="text-xs text-mut font-semibold">Ports 22–23 • Ch 22–23</span>
               </div>
-              <h4 class="text-base font-bold text-main">BV 1 (Soprano)</h4>
-              <p class="text-xs text-sec">Matched cardioid dynamic. Stage-left front position. HPF at 135 Hz + Expander at -36 dB.</p>
+              <h4 class="text-base font-bold text-main">BV 1 &amp; BV 2 (Soprano)</h4>
+              <p class="text-xs text-sec">Matched cardioid dynamics on Ports 22–23 → Ch 22–23. HPF at 135 Hz + Expander at -36 dB.</p>
             </div>
 
             <div class="dept-subtle-box border-t-4 border-t-emerald-600 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-emerald-600 text-white text-xs font-bold">GREEN TAPE</span>
-                <span class="text-xs text-mut font-semibold">Ch 15 • In 15</span>
+                <span class="text-xs text-mut font-semibold">Ports 24–25 • Ch 24–25</span>
               </div>
-              <h4 class="text-base font-bold text-main">BV 2 (Alto)</h4>
-              <p class="text-xs text-sec">Matched cardioid dynamic. 2nd position from stage-left. Assigned to BV DCA Group.</p>
+              <h4 class="text-base font-bold text-main">BV 3 &amp; BV 4 (Alto)</h4>
+              <p class="text-xs text-sec">Matched cardioid dynamics on Ports 24–25 → Ch 24–25. Assigned to BV DCA &amp; MIX 4 (Out F).</p>
             </div>
 
             <div class="dept-subtle-box border-t-4 border-t-amber-500 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-amber-500 text-white text-xs font-bold">YELLOW TAPE</span>
-                <span class="text-xs text-mut font-semibold">Ch 16 • In 16</span>
+                <span class="text-xs text-mut font-semibold">Port 26 • Ch 26</span>
               </div>
-              <h4 class="text-base font-bold text-main">BV 3 (Tenor)</h4>
-              <p class="text-xs text-sec">Add +6 dB preamp boost over BV1 to balance Tenor output + -5.5 dB cut at 700 Hz.</p>
+              <h4 class="text-base font-bold text-main">BV 5 (Tenor)</h4>
+              <p class="text-xs text-sec">Port 26 → Console Ch 26. Add +6 dB preamp boost to balance Tenor output + -5.5 dB cut at 700 Hz.</p>
             </div>
 
             <div class="dept-subtle-box border-t-4 border-t-purple-600 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="px-2.5 py-0.5 rounded bg-purple-600 text-white text-xs font-bold">PURPLE TAPE</span>
-                <span class="text-xs text-mut font-semibold">Ch 17 • In 17</span>
+                <span class="text-xs text-mut font-semibold">Port 27 • Ch 27</span>
               </div>
-              <h4 class="text-base font-bold text-main">BV 4 (Aux Vocal)</h4>
-              <p class="text-xs text-sec">Keep strictly on far BV stand; if LV grabs Purple by mistake, execute Soft-Swap below.</p>
+              <h4 class="text-base font-bold text-main">BV 6 (Tenor)</h4>
+              <p class="text-xs text-sec">Port 27 → Console Ch 27. Keep strictly on Tenor stand; if LV swaps mics, run Console Soft-Swap below.</p>
             </div>
           </div>
         </div>
@@ -971,9 +1285,9 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="dept-subtle-box space-y-2">
               <div class="text-xs font-bold text-blue-600 uppercase">Console Soft-Swap (5 Seconds)</div>
-              <h4 class="text-base font-bold text-main">Swap 32SX Digital Input Sources</h4>
+              <h4 class="text-base font-bold text-main" data-cfg-tpl="Swap {consoleShort} Digital Input Sources">Swap Console Digital Input Sources</h4>
               <p class="text-sm text-sec">
-                Tap <strong>HOME → Input → Digital Patching</strong> on the 32SX. Route <strong>Channel 13 (LV)</strong> to read <strong>Analog Input 17</strong>, and route <strong>Channel 17 (BV4)</strong> to <strong>Analog Input 13</strong>.
+                <span data-cfg-html="true" data-cfg-tpl="Open <strong>HOME → Input → Digital Patching</strong> on the Console. Route <strong>Channel 17 (Lead Vocal)</strong> to read the swapped BV Port, and route that BV channel to <strong>Port 17</strong>.">Open HOME → Input → Digital Patching on the Console. Route Channel 17 (Lead Vocal) to read the swapped BV Port, and route that BV channel to Port 17.</span>
               </p>
             </div>
             <div class="dept-subtle-box space-y-2">
@@ -1023,14 +1337,14 @@
             <h3 class="text-lg font-bold text-main">Official Department Handbooks &amp; SOP Downloads</h3>
             <p class="text-xs text-sec">Download standard markdown guides for crew training and campus venue conveyance.</p>
             <div class="flex flex-wrap gap-2 pt-1">
-              <button type="button" onclick="downloadDeptDoc('training_manual')" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition">
+              <button type="button" data-action="download-doc" data-arg="training_manual" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition">
                 Recruit Training Manual
               </button>
-              <button type="button" onclick="downloadDeptDoc('conveyance_sop')" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
+              <button type="button" data-action="download-doc" data-arg="conveyance_sop" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
                 7-Venue Conveyance SOP
               </button>
-              <button type="button" onclick="downloadDeptDoc('rig_spec')" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
-                32SX &amp; DX2496 Spec
+              <button type="button" data-action="download-doc" data-arg="rig_spec" class="px-3.5 py-2 rounded-xl btn-subtle text-xs font-bold transition">
+                <span data-cfg-tpl="{consoleShort} & {dspShort} Spec">Console &amp; DSP Spec</span>
               </button>
             </div>
           </div>
@@ -1043,11 +1357,11 @@
               </div>
               <label class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold cursor-pointer shrink-0 transition">
                 + Preview Crew / Rig Photo
-                <input id="home-photo-upload" type="file" accept="image/*" class="hidden" onchange="previewHomeGalleryPhoto(this)" />
+                <input id="home-photo-upload" type="file" accept="image/*" class="hidden" data-change-action="preview-photo" />
               </label>
             </div>
             <div class="dept-subtle-box flex items-center gap-4">
-              <img id="gallery-preview-img" src="../assets/logo.png" alt="Department Preview" class="w-16 h-16 object-contain rounded-lg shrink-0" />
+              <img id="gallery-preview-img" src="../assets/logo.png" width="64" height="64" loading="lazy" decoding="async" alt="Department Preview" class="w-16 h-16 object-contain rounded-lg shrink-0" />
               <div>
                 <div id="gallery-preview-title" class="text-sm font-extrabold text-main">AGCM Technical Crew</div>
                 <div class="text-xs text-mut">Selected photo previews here before committing to the repository</div>
@@ -1056,31 +1370,6 @@
           </div>
         </div>
       </section>
-
-      <!-- ===================================================================== -->
-      <!-- MULTI-PAGE GITHUB REPOSITORY SOURCE CODE EXPLORER                     -->
-      <!-- ===================================================================== -->
-      
-  <!-- ROLE HANDOVER NOTES & DEVICE BACKUP (Folded in from leads.html) -->
-  <section id="view-handover" class="space-y-6" role="tabpanel" aria-labelledby="tab-btn-handover">
-    <div class="dept-card">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
-        <div>
-          <div class="kicker">Internal Crew Handover &amp; Constitutional Duties</div>
-          <h2 class="title" style="margin-top:4px">Department Role Duties &amp; Handover Notes</h2>
-          <p class="sm text-sec" style="margin-top:4px">
-            Select an executive office below to review its constitutional duties and record device-local handover notes (use <strong>Export Notes .txt</strong> or <strong>JSON Backup</strong> to transfer across devices).
-          </p>
-        </div>
-        <div class="tabs">
-          <button type="button" onclick="exportStateJSON()" class="btn-subtle">⬇ Export Vault JSON</button>
-          <button type="button" onclick="openImportModal()" class="btn-subtle">⬆ Import Vault JSON</button>
-        </div>
-      </div>
-      <div class="tabs" id="tabs" role="tablist" aria-label="Department Roles"></div>
-    </div>
-    <div class="dept-card panel" id="panel" role="tabpanel"></div>
-  </section>
 
     </div>
   </div>
@@ -1091,25 +1380,17 @@
     <div class="dept-card max-w-md w-full space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold text-main">Create New Service / Event Plan</h3>
-        <button onclick="closeNewEventModal()" class="text-mut hover:text-main font-bold">✕</button>
+        <button data-action="close-new-event-modal" class="text-mut hover:text-main font-bold">✕</button>
       </div>
       <div class="space-y-3">
         <input id="new-ev-name" type="text" placeholder="Event Name (e.g., Campus Revival Night)" class="dept-input w-full" />
         <input id="new-ev-type" type="text" placeholder="Type (e.g., Revival, Sunday Service, Midweek)" class="dept-input w-full" />
-        <select id="new-ev-venue" class="dept-input w-full">
-          <option value="Great Hall">Great Hall</option>
-                    <option value="Great Hall Foyer">Great Hall Foyer</option>
-                    <option value="Independence Hall Dining Hall">Independence Hall Dining Hall</option>
-                    <option value="Queens Hall Dining Hall">Queens Hall Dining Hall</option>
-                    <option value="Africa Hall Dining Hall">Africa Hall Dining Hall</option>
-                    <option value="Katanga Hall Dining Hall">Katanga Hall Dining Hall</option>
-                    <option value="CCB Auditorium">CCB Auditorium</option>
-        </select>
+        <select id="new-ev-venue" class="dept-input w-full"></select>
         <input id="new-ev-time" type="text" placeholder="Date & Call Time (e.g., Sun 06:30 AM)" class="dept-input w-full" />
       </div>
       <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeNewEventModal()" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
-        <button onclick="createNewEvent()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Create Plan</button>
+        <button data-action="close-new-event-modal" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
+        <button data-action="create-new-event" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Create Plan</button>
       </div>
     </div>
   </div>
@@ -1118,7 +1399,7 @@
     <div class="dept-card max-w-md w-full space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold text-main">Add Order of Service Cue</h3>
-        <button onclick="closeAddCueModal()" class="text-mut hover:text-main font-bold">✕</button>
+        <button data-action="close-add-cue-modal" class="text-mut hover:text-main font-bold">✕</button>
       </div>
       <div class="space-y-3">
         <input id="cue-time" type="text" placeholder="Time (e.g., 09:15 AM)" class="dept-input w-full" />
@@ -1128,8 +1409,8 @@
         <input id="cue-media" type="text" placeholder="Recording / Logistics (e.g., Capture Arm + Wireless Mic Check)" class="dept-input w-full" />
       </div>
       <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeAddCueModal()" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
-        <button onclick="saveNewCue()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Add Cue</button>
+        <button data-action="close-add-cue-modal" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
+        <button data-action="save-new-cue" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Add Cue</button>
       </div>
     </div>
   </div>
@@ -1138,20 +1419,20 @@
     <div class="dept-card max-w-lg w-full space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold text-main">Add Custom Department Strategy</h3>
-        <button onclick="closeStrategyModal()" class="text-mut hover:text-main font-bold">✕</button>
+        <button data-action="close-strategy-modal" class="text-mut hover:text-main font-bold">✕</button>
       </div>
       <div class="space-y-3">
         <input id="strat-title" type="text" placeholder="Strategy Title" class="dept-input w-full" />
         <select id="strat-cat" class="dept-input w-full">
           <option value="VOCALS">Vocals &amp; Mic Swap</option>
           <option value="LOWEND">Kick, Bass &amp; Subs</option>
-          <option value="ROUTING">32SX &amp; Snake Routing</option>
+          <option value="ROUTING" data-cfg-tpl="{consoleShort} & Snake Routing">Console &amp; Snake Routing</option>
         </select>
         <textarea id="strat-body" rows="4" placeholder="Enter exact settings, frequencies, or stage protocol..." class="dept-input w-full"></textarea>
       </div>
       <div class="flex justify-end gap-2 pt-2">
-        <button onclick="closeStrategyModal()" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
-        <button onclick="saveCustomStrategy()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Save to Vault</button>
+        <button data-action="close-strategy-modal" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
+        <button data-action="save-custom-strategy" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Save to Vault</button>
       </div>
     </div>
   </div>
@@ -1160,13 +1441,41 @@
     <div class="dept-card max-w-lg w-full space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-lg font-bold text-main">Import Department Vault JSON</h3>
-        <button onclick="closeImportModal()" class="text-mut hover:text-main font-bold">✕</button>
+        <button data-action="close-import-modal" class="text-mut hover:text-main font-bold">✕</button>
       </div>
       <textarea id="import-json-textarea" rows="6" placeholder="Paste exported JSON state here..." class="dept-input w-full text-xs"></textarea>
       <div class="flex justify-end gap-2">
-        <button onclick="closeImportModal()" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
-        <button onclick="confirmImportJSON()" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Restore State</button>
+        <button data-action="close-import-modal" class="px-4 py-2 rounded-xl btn-subtle text-xs font-bold">Cancel</button>
+        <button data-action="confirm-import-json" class="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold">Restore State</button>
       </div>
+    </div>
+  </div>
+  <!-- TECH LEAD ACCESS GATE -->
+  <div id="portal-auth-gate" class="portal-gate-backdrop" role="dialog" aria-modal="true" aria-labelledby="portal-gate-title" hidden>
+    <div class="portal-gate-card">
+      <div class="pills" style="margin-bottom:0">
+        <span class="pill">Tech Leads Only</span>
+        <span class="pill amber">Internal Workspace</span>
+      </div>
+      <h2 id="portal-gate-title" class="title">Unlock Audio Engineering Portal</h2>
+      <p class="text-xs text-sec leading-relaxed" id="portal-gate-hint">
+        Enter the department tech lead passcode to access service planning, console presets, AudioLink snake patching, and venue calculators.
+      </p>
+      <form id="portal-gate-form" data-submit-action="submit-portal-gate" class="space-y-3">
+        <input type="text" name="username" autocomplete="username" value="agcm-tech-lead" class="hidden" aria-hidden="true" tabindex="-1" />
+        <div>
+          <label for="portal-gate-input" class="text-xs font-bold uppercase text-mut block mb-1">Tech Lead Passcode</label>
+          <input id="portal-gate-input" type="password" autocomplete="current-password" placeholder="Enter Technical Lead access code" class="dept-input w-full font-semibold" required />
+        </div>
+        <div id="portal-gate-error" class="portal-gate-err" role="alert" aria-live="assertive"></div>
+        <div class="flex items-center justify-between gap-2 pt-1">
+          <a href="../index.html" class="btn-subtle">← Public Site</a>
+          <button type="submit" class="btn">Unlock Workspace →</button>
+        </div>
+      </form>
+      <p class="text-[11px] text-mut leading-snug">
+        Note: Client-side gate prevents casual access on shared devices. Static files remain public unless Vercel Deployment Protection or Edge Middleware is enabled.
+      </p>
     </div>
   </div>
 <footer class="foot">
@@ -1174,10 +1483,11 @@
   <a href="mailto:agcmtechnicaldepartment2021@gmail.com">agcmtechnicaldepartment2021@gmail.com</a>
 </footer>
 <div class="modal" id="lm" role="dialog" aria-modal="true" aria-label="Department Logo Preview" hidden>
-  <img id="lm-img" src="../assets/logo-lg.png" width="440" height="440" alt="AGCM-KNUST Technical Department crest">
+  <img id="lm-img" src="../assets/logo.png" width="476" height="408" alt="AGCM-KNUST Technical Department crest">
   <button type="button" class="modal-close" id="lm-close">Close (Esc)</button>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
+<script src="../data/config.js"></script>
 <script src="../data/roles.js"></script>
 <script src="../js/app.js"></script>
 <script src="../js/portal.js"></script>

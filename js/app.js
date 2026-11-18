@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    AGCM – KNUST Technical Department  |  app.js  v6
    Shared theme, modal, scroll-reveal, meter, roster & gallery
    ========================================================= */
@@ -50,32 +50,105 @@ function toast(m) {
 }
 window.toast = toast;
 
-/* ── Light / dark theme ── */
+/* ── Light / dark segmented pill toggle ── */
 function setTheme(t) {
-  document.documentElement.dataset.theme = t;
-  store.set('agcm_theme', t);
-  store.set('sdu_theme_v35', t);
+  const mode = t === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = mode;
+  store.set('agcm_theme', mode);
   $$('.theme-btn').forEach(b => {
-    b.innerHTML = t === 'light' ? '<span class="theme-star" aria-hidden="true">✦</span><span class="theme-lbl">Dark</span>' : '<span class="theme-star" aria-hidden="true">✧</span><span class="theme-lbl">Light</span>';
-    b.setAttribute('aria-label', t === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    b.setAttribute('aria-checked', mode === 'dark' ? 'true' : 'false');
+    b.setAttribute('aria-label', mode === 'light' ? 'Light mode active (click to switch to Dark mode)' : 'Dark mode active (click to switch to Light mode)');
   });
-  window.dispatchEvent(new CustomEvent('agcm-theme-change', { detail: t }));
+  window.dispatchEvent(new CustomEvent('agcm-theme-change', { detail: mode }));
 }
-$$('.theme-btn').forEach(b => b.onclick = () =>
-  setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
-setTheme((store.get('agcm_theme') || store.get('sdu_theme_v35')) === 'dark' ? 'dark' : 'light');
+$$('.theme-btn').forEach(b => {
+  b.onclick = e => {
+    const cur = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    const seg = e.target.closest('[data-theme-target]');
+    const target = seg ? seg.getAttribute('data-theme-target') : null;
+    if (target && target !== cur) setTheme(target);
+    else setTheme(cur === 'dark' ? 'light' : 'dark');
+  };
+});
+setTheme(store.get('agcm_theme') === 'dark' ? 'dark' : 'light');
 
-/* ── Accessible Modal / Lightbox with Focus Management ── */
+/* ── Accessible Modal / Lightbox with Focus, Keyboard & Touch Swipe Navigation ── */
 const lm = $('#lm');
 const lmImg = $('#lm-img');
 const lmClose = $('#lm-close');
 let lastFocusedEl = null;
+let lbPlaylist = [];
+let lbIndex = -1;
+let lbCaptionEl = null;
+let lbPrevBtn = null;
+let lbNextBtn = null;
 
-function openModalImage(src, altText) {
+if (lm && lmClose) {
+  lbCaptionEl = document.createElement('div');
+  lbCaptionEl.className = 'modal-caption';
+  lbCaptionEl.id = 'lm-caption';
+  const navRow = document.createElement('div');
+  navRow.className = 'modal-nav-row';
+  lbPrevBtn = document.createElement('button');
+  lbPrevBtn.type = 'button';
+  lbPrevBtn.className = 'modal-step-btn';
+  lbPrevBtn.id = 'lm-prev';
+  lbPrevBtn.setAttribute('aria-label', 'Previous gallery image');
+  lbPrevBtn.textContent = '◀ Prev';
+  lbNextBtn = document.createElement('button');
+  lbNextBtn.type = 'button';
+  lbNextBtn.className = 'modal-step-btn';
+  lbNextBtn.id = 'lm-next';
+  lbNextBtn.setAttribute('aria-label', 'Next gallery image');
+  lbNextBtn.textContent = 'Next ▶';
+  lmClose.parentNode.insertBefore(lbCaptionEl, lmClose);
+  lmClose.parentNode.insertBefore(navRow, lmClose);
+  navRow.appendChild(lbPrevBtn);
+  navRow.appendChild(lmClose);
+  navRow.appendChild(lbNextBtn);
+  lbPrevBtn.onclick = e => { e.stopPropagation(); stepLightbox(-1); };
+  lbNextBtn.onclick = e => { e.stopPropagation(); stepLightbox(1); };
+}
+
+function renderLightboxItem() {
+  if (!lm || !lmImg) return;
+  const hasList = lbPlaylist.length > 1 && lbIndex >= 0;
+  if (lbPrevBtn) lbPrevBtn.hidden = !hasList;
+  if (lbNextBtn) lbNextBtn.hidden = !hasList;
+  if (hasList) {
+    const item = lbPlaylist[lbIndex];
+    lmImg.src = item.src;
+    lmImg.alt = item.alt || item.title || 'Gallery preview';
+    if (lbCaptionEl) lbCaptionEl.textContent = `${lbIndex + 1} / ${lbPlaylist.length} • ${item.title || item.alt || ''}`;
+    if (!calm) {
+      lmImg.classList.remove('tab-anim');
+      void lmImg.offsetWidth;
+      lmImg.classList.add('tab-anim');
+    }
+  } else if (lbCaptionEl) {
+    lbCaptionEl.textContent = lmImg.alt || '';
+  }
+}
+
+function stepLightbox(delta) {
+  if (lbPlaylist.length <= 1 || lbIndex < 0) return;
+  lbIndex = (lbIndex + delta + lbPlaylist.length) % lbPlaylist.length;
+  renderLightboxItem();
+}
+
+function openModalImage(src, altText, playlist = null, index = -1) {
   if (!lm || !lmImg) return;
   lastFocusedEl = document.activeElement;
-  lmImg.src = src;
-  lmImg.alt = altText || 'AGCM-KNUST Technical Department preview';
+  if (Array.isArray(playlist) && playlist.length > 0 && index >= 0) {
+    lbPlaylist = playlist;
+    lbIndex = index;
+  } else {
+    lbPlaylist = [];
+    lbIndex = -1;
+    lmImg.src = src;
+    lmImg.alt = altText || 'AGCM-KNUST Technical Department preview';
+  }
+  renderLightboxItem();
   lm.hidden = false;
   if (lmClose) lmClose.focus();
 }
@@ -86,19 +159,40 @@ function closeModalImage() {
 }
 window.openModalImage = openModalImage;
 window.closeModalImage = closeModalImage;
+window.stepLightbox = stepLightbox;
 
 if ($('#logo')) {
-  $('#logo').onclick = () => openModalImage(ROOT + 'assets/logo-lg.png', 'AGCM-KNUST Technical Department crest');
+  $('#logo').onclick = () => openModalImage(ROOT + 'assets/logo.png', 'AGCM-KNUST Technical Department crest');
 }
 if (lm) {
   lm.onclick = e => { if (e.target === lm || e.target === lmClose) closeModalImage(); };
   addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !lm.hidden) closeModalImage();
-    if (e.key === 'Tab' && !lm.hidden && lmClose) {
+    if (lm.hidden) return;
+    if (e.key === 'Escape') closeModalImage();
+    else if (e.key === 'ArrowLeft') stepLightbox(-1);
+    else if (e.key === 'ArrowRight') stepLightbox(1);
+    else if (e.key === 'Tab' && lmClose && lbPlaylist.length <= 1) {
       e.preventDefault();
       lmClose.focus();
     }
   });
+  let touchX0 = 0, touchY0 = 0, touchT0 = 0;
+  lm.addEventListener('touchstart', e => {
+    if (!e.touches || e.touches.length !== 1) return;
+    touchX0 = e.touches[0].clientX;
+    touchY0 = e.touches[0].clientY;
+    touchT0 = Date.now();
+  }, { passive: true });
+  lm.addEventListener('touchend', e => {
+    if (!e.changedTouches || e.changedTouches.length !== 1 || !touchT0) return;
+    const dx = e.changedTouches[0].clientX - touchX0;
+    const dy = e.changedTouches[0].clientY - touchY0;
+    const dt = Date.now() - touchT0;
+    touchT0 = 0;
+    if (dt <= 650 && Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      stepLightbox(dx < 0 ? 1 : -1);
+    }
+  }, { passive: true });
 }
 
 /* ── Auto-hide top bar on scroll down, restore on scroll up ── */
@@ -206,12 +300,13 @@ if (exg && window.EXECS) {
     }
     const nameEsc = escapeHTML(ex.name);
     const portEsc = escapeHTML(ex.portfolio || 'Executive Officer');
+    const initialsEsc = escapeHTML(getInitials(ex.name));
     const avHtml = ex.photo
-      ? `<img src="${escapeHTML(ex.photo)}" width="52" height="52" loading="lazy" alt="${nameEsc}">`
-      : `<span aria-hidden="true">${escapeHTML(getInitials(ex.name))}</span>`;
+      ? `<img src="${escapeHTML(ex.photo)}" width="56" height="56" loading="lazy" decoding="async" alt="${nameEsc}" data-initials="${initialsEsc}">`
+      : `<span class="ex-av-initials" aria-hidden="true">${initialsEsc}</span>`;
     html += `
       <article class="ex-card rv">
-        <div class="ex-av">${avHtml}</div>
+        <div class="ex-av" title="${nameEsc} (${portEsc})">${avHtml}</div>
         <div class="ex-info">
           <h3 class="ex-name">${nameEsc}</h3>
           <span class="ex-port-badge">${portEsc}</span>
@@ -219,6 +314,12 @@ if (exg && window.EXECS) {
       </article>`;
   });
   exg.innerHTML = html;
+  $$('.ex-av img', exg).forEach(img => {
+    img.addEventListener('error', () => {
+      const init = img.getAttribute('data-initials') || 'EX';
+      img.parentNode.innerHTML = `<span class="ex-av-initials" aria-hidden="true">${escapeHTML(init)}</span>`;
+    }, { once: true });
+  });
   attachReveal($$('.ex-card.rv', exg));
 }
 
@@ -238,20 +339,55 @@ if (galGrid && window.GALLERY_ITEMS) {
       ).join('');
       $$('button', filterWrap).forEach(b => b.onclick = () => { activeCat = b.dataset.cat; renderGallery(); });
     }
+    function buildGalleryPlaceholderSVG(it) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+        <defs>
+          <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1e1b4b"/>
+            <stop offset="55%" stop-color="#312e81"/>
+            <stop offset="100%" stop-color="#4338ca"/>
+          </linearGradient>
+        </defs>
+        <rect width="960" height="540" rx="28" fill="url(#bg)"/>
+        <g stroke="#f59e0b" stroke-width="6" stroke-linecap="round" opacity="0.85">
+          <line x1="380" y1="220" x2="380" y2="180"/><line x1="405" y1="220" x2="405" y2="145"/>
+          <line x1="430" y1="220" x2="430" y2="165"/><line x1="455" y1="220" x2="455" y2="120"/>
+          <line x1="480" y1="220" x2="480" y2="100"/><line x1="505" y1="220" x2="505" y2="135"/>
+          <line x1="530" y1="220" x2="530" y2="160"/><line x1="555" y1="220" x2="555" y2="150"/>
+          <line x1="580" y1="220" x2="580" y2="185"/>
+        </g>
+        <text x="480" y="295" text-anchor="middle" fill="#fde68a" font-family="Inter, sans-serif" font-size="20" font-weight="800">${escapeHTML(it.venue.toUpperCase())}</text>
+        <text x="480" y="345" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="30" font-weight="800">${escapeHTML(it.title)}</text>
+        <text x="480" y="395" text-anchor="middle" fill="#cbd5e1" font-family="Inter, sans-serif" font-size="17" font-weight="600">AGCM - KNUST Technical Department • ${escapeHTML(it.cat)}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
     const items = window.GALLERY_ITEMS.filter(x => activeCat === 'ALL' || x.cat === activeCat);
-    galGrid.innerHTML = items.map(it => {
+    const playlist = items.map(it => ({
+      src: it.photo ? it.photo : buildGalleryPlaceholderSVG(it),
+      title: `${it.title} (${it.venue})`,
+      alt: it.title
+    }));
+
+    galGrid.innerHTML = items.map((it, idx) => {
       const titleEsc = escapeHTML(it.title);
       const venueEsc = escapeHTML(it.venue);
       const descEsc  = escapeHTML(it.desc);
       const catEsc   = escapeHTML(it.cat);
       const hasPhoto = Boolean(it.photo);
       return `
-        <article class="gal-card${hasPhoto ? ' has-photo' : ''} rv"${hasPhoto ? ` tabindex="0" role="button" aria-label="View full photo: ${titleEsc}" data-photo="${escapeHTML(it.photo)}" data-title="${titleEsc}"` : ''}>
+        <article class="gal-card has-photo rv" tabindex="0" role="button" aria-label="View in lightbox: ${titleEsc}" data-idx="${idx}">
           <div class="gal-thumb">
             ${hasPhoto
-              ? `<img src="${escapeHTML(it.photo)}" width="640" height="360" loading="lazy" alt="${titleEsc}">`
-              : `<span class="gal-icon" aria-hidden="true">${escapeHTML(it.icon)}</span>
-                 <span class="text-mut" style="font-size:.74rem;font-weight:700">${venueEsc}</span>`}
+              ? `<img src="${escapeHTML(it.photo)}" width="640" height="360" loading="lazy" decoding="async" alt="${titleEsc}">`
+              : `<div class="gal-placeholder-art">
+                   <span class="gal-icon" aria-hidden="true">${escapeHTML(it.icon)}</span>
+                   <div class="gal-eq-bars" aria-hidden="true">
+                     <i style="height:45%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:100%"></i><i style="height:70%"></i><i style="height:90%"></i><i style="height:50%"></i>
+                   </div>
+                   <span class="gal-venue-pill">${venueEsc}</span>
+                 </div>`}
             <span class="gal-tag">${catEsc}</span>
           </div>
           <div class="gal-body">
@@ -262,12 +398,18 @@ if (galGrid && window.GALLERY_ITEMS) {
         </article>`;
     }).join('');
 
-    $$('.gal-card.has-photo', galGrid).forEach(card => {
-      const openCard = () => openModalImage(card.dataset.photo, card.dataset.title);
+    $$('.gal-card', galGrid).forEach(card => {
+      const idx = parseInt(card.dataset.idx || '0', 10);
+      const openCard = () => openModalImage(playlist[idx].src, playlist[idx].alt, playlist, idx);
       card.onclick = openCard;
       card.onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(); } };
     });
 
+    if (!calm) {
+      galGrid.classList.remove('tab-anim');
+      void galGrid.offsetWidth;
+      galGrid.classList.add('tab-anim');
+    }
     attachReveal($$('.gal-card.rv', galGrid));
   }
   renderGallery();
@@ -276,7 +418,7 @@ if (galGrid && window.GALLERY_ITEMS) {
 /* ── Role Handover Notes Workspace (Inside Audio Portal #handover tab) ── */
 const tabs = $('#tabs');
 if (tabs && window.ROLES) {
-  let cur = 0;
+  let cur = parseInt(store.get('agcm_active_role_v1') || '0', 10) || 0;
   const panel = $('#panel');
 
   tabs.innerHTML = window.ROLES.map((r, idx) =>
@@ -286,6 +428,7 @@ if (tabs && window.ROLES) {
 
   function showRole(i) {
     cur = (i + window.ROLES.length) % window.ROLES.length;
+    store.set('agcm_active_role_v1', String(cur));
     const r = window.ROLES[cur];
     btns.forEach((b, j) => {
       b.classList.toggle('active', j === cur);
@@ -305,6 +448,7 @@ if (tabs && window.ROLES) {
         <button type="button" id="btn-dl-note" class="btn-subtle">⬇ Export Notes (.txt)</button>
       </div>`;
 
+    if (!calm) { panel.classList.remove('tab-anim'); void panel.offsetWidth; panel.classList.add('tab-anim'); }
     const ta = $('textarea', panel);
     ta.value = store.get('agcm_note_' + r.id) || store.get('note-' + r.id) || '';
 
@@ -332,6 +476,7 @@ if (tabs && window.ROLES) {
   }
 
   btns.forEach((b, i) => b.onclick = () => showRole(i));
-  showRole(0);
+  window.refreshHandoverRoleView = () => showRole(cur);
+  showRole(cur);
 }
 

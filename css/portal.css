@@ -261,5 +261,311 @@ html[data-theme=dark] .text-sky-600 { color: #67e8f9; }
 /* v7 Layout Polish: Calculator readouts, SOP tape cards & Pro-Q canvas */
 #view-calculators .dept-subtle-box { padding: 12px 10px; }
 #view-sop .dept-subtle-box .flex.items-center.justify-between { flex-wrap: wrap; gap: 6px; }
-.theme-btn { gap: 6px; padding: 0 13px !important; width: auto !important; height: 34px; font-weight: 700; font-size: .78rem; }
+.theme-btn { width: auto !important; }
 .theme-star { font-size: .92rem; line-height: 1; }
+
+/* ── Step 1: Complete Utility & Dark-Mode Coverage (Zero Tailwind CDN) ── */
+.panel { min-height: 180px; }
+.warn {
+  background: rgba(225, 29, 72, 0.08);
+  border: 1px solid rgba(225, 29, 72, 0.28);
+  color: #9f1239;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: .82rem;
+}
+html[data-theme=dark] .warn {
+  background: rgba(225, 29, 72, 0.16);
+  border-color: rgba(244, 63, 94, 0.35);
+  color: #fda4af;
+}
+.theme-lbl { display: inline-block; line-height: 1; }
+
+.accent-blue-600 { accent-color: var(--blue); }
+.line-through { text-decoration: line-through; }
+.opacity-80 { opacity: .8; }
+.shadow-inner { box-shadow: inset 0 2px 6px rgba(0, 0, 0, .35); }
+.duration-300 { transition-duration: 300ms; }
+
+@keyframes portalPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .65; }
+}
+.animate-pulse { animation: portalPulse 1.8s cubic-bezier(.4, 0, .6, 1) infinite; }
+
+.bg-slate-50 { background-color: var(--bg-subtle); }
+.bg-white\/50 { background-color: rgba(255, 255, 255, .6); }
+.bg-blue-50\/90 { background-color: rgba(55, 48, 163, .10); }
+.bg-emerald-50\/70 { background-color: rgba(5, 150, 105, .09); }
+.bg-rose-50 { background-color: rgba(225, 29, 72, .08); }
+.bg-rose-400 { background-color: #fb7185; }
+
+.border-blue-600 { border-color: var(--blue); }
+.border-emerald-200, .border-emerald-300 { border-color: rgba(5, 150, 105, .32); }
+.border-rose-300 { border-color: rgba(225, 29, 72, .32); }
+.border-rose-600 { border-color: #e11d48; }
+
+.text-emerald-950 { color: #064e3b; }
+.text-rose-900 { color: #881337; }
+
+.from-emerald-500 { --tw-grad-from: #10b981; }
+.via-blue-500 { --tw-grad-via: #3730a3; }
+.to-amber-500 { --tw-grad-to: #f59e0b; }
+
+.hover\:border-blue-400:hover { border-color: var(--blue); }
+.hover\:text-main:hover { color: var(--text-main); }
+
+/* Dark theme overrides for Tailwind-style dark:* classes in foh-portal.html & portal.js */
+html[data-theme=dark] .dark\:bg-slate-800 { background-color: #1e293b; }
+html[data-theme=dark] .dark\:bg-slate-800\/50 { background-color: rgba(30, 41, 59, .55); }
+html[data-theme=dark] .dark\:bg-slate-900\/40 { background-color: rgba(15, 23, 42, .45); }
+html[data-theme=dark] .dark\:bg-blue-900\/40 { background-color: rgba(30, 58, 138, .42); }
+html[data-theme=dark] .dark\:bg-blue-900\/50 { background-color: rgba(30, 58, 138, .52); }
+html[data-theme=dark] .dark\:bg-blue-950\/50 { background-color: rgba(23, 37, 84, .55); }
+html[data-theme=dark] .dark\:bg-indigo-900\/40 { background-color: rgba(49, 46, 129, .42); }
+html[data-theme=dark] .dark\:bg-indigo-900\/50 { background-color: rgba(49, 46, 129, .52); }
+html[data-theme=dark] .dark\:bg-purple-900\/40 { background-color: rgba(88, 28, 135, .42); }
+html[data-theme=dark] .dark\:bg-emerald-900 { background-color: #064e3b; }
+html[data-theme=dark] .dark\:bg-emerald-900\/40 { background-color: rgba(6, 78, 59, .42); }
+html[data-theme=dark] .dark\:bg-emerald-900\/50 { background-color: rgba(6, 78, 59, .52); }
+html[data-theme=dark] .dark\:bg-emerald-950\/30 { background-color: rgba(2, 44, 34, .38); }
+html[data-theme=dark] .dark\:bg-amber-900 { background-color: #78350f; }
+html[data-theme=dark] .dark\:bg-amber-900\/40 { background-color: rgba(120, 53, 15, .42); }
+html[data-theme=dark] .dark\:bg-amber-900\/50 { background-color: rgba(120, 53, 15, .52); }
+html[data-theme=dark] .dark\:bg-amber-950\/40 { background-color: rgba(69, 26, 3, .45); }
+html[data-theme=dark] .dark\:bg-rose-900 { background-color: #881337; }
+html[data-theme=dark] .dark\:bg-rose-950\/40 { background-color: rgba(76, 5, 25, .45); }
+
+html[data-theme=dark] .dark\:border-slate-700,
+html[data-theme=dark] .dark\:border-slate-800 { border-color: var(--border-light); }
+html[data-theme=dark] .dark\:border-blue-800,
+html[data-theme=dark] .dark\:border-indigo-800 { border-color: rgba(129, 140, 248, .32); }
+html[data-theme=dark] .dark\:border-emerald-800 { border-color: rgba(52, 211, 153, .32); }
+html[data-theme=dark] .dark\:border-amber-800 { border-color: rgba(251, 191, 36, .35); }
+html[data-theme=dark] .dark\:border-rose-800 { border-color: rgba(251, 113, 133, .35); }
+
+html[data-theme=dark] .dark\:text-blue-200,
+html[data-theme=dark] .dark\:text-blue-300,
+html[data-theme=dark] .dark\:text-indigo-200 { color: #c7d2fe; }
+html[data-theme=dark] .dark\:text-purple-300 { color: #d8b4fe; }
+html[data-theme=dark] .dark\:text-emerald-100,
+html[data-theme=dark] .dark\:text-emerald-200,
+html[data-theme=dark] .dark\:text-emerald-300 { color: #a7f3d0; }
+html[data-theme=dark] .dark\:text-amber-100,
+html[data-theme=dark] .dark\:text-amber-200,
+html[data-theme=dark] .dark\:text-amber-300 { color: #fde68a; }
+html[data-theme=dark] .dark\:text-rose-100,
+html[data-theme=dark] .dark\:text-rose-200 { color: #fecdd3; }
+
+/* ── Step 3: Lightweight Client-Side Tech Lead Access Gate ── */
+.portal-gate-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 180;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(7, 9, 19, 0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.portal-gate-backdrop[hidden] { display: none !important; }
+body.portal-locked main {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+.portal-gate-card {
+  width: 100%;
+  max-width: 430px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 22px;
+  padding: 28px 26px;
+  box-shadow: var(--shadow-hover);
+  display: grid;
+  gap: 14px;
+}
+.portal-gate-err {
+  color: #e11d48;
+  font-size: .78rem;
+  font-weight: 700;
+  min-height: 1.1rem;
+}
+html[data-theme=dark] .portal-gate-err { color: #fda4af; }
+
+/* ── Step 5: Sticky Mobile Module Bar, 2-Column Drawer & Touch Tap Targets ── */
+.portal-mobile-bar {
+  position: sticky;
+  top: 8px;
+  z-index: 90;
+  background: var(--sidebar-bg);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  border: 1px solid var(--border-strong);
+}
+.portal-mob-nav-btns {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.portal-mob-step-btn {
+  min-width: 38px;
+  min-height: 38px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text-main);
+  font-weight: 800;
+  font-size: .82rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.portal-mob-step-btn:hover { border-color: var(--blue); background: var(--bg-elevated); }
+@media (max-width: 480px) {
+  .portal-mobile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .portal-mobile-grid .nav-pill {
+    padding: 8px 9px;
+    font-size: .75rem;
+    min-height: 40px;
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
+#portal-workspace-col button,
+#portal-workspace-col select,
+#portal-workspace-col input[type="text"],
+#portal-workspace-col input[type="number"],
+#portal-workspace-col label.cursor-pointer {
+  min-height: 38px;
+}
+#portal-workspace-col input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  flex-shrink: 0;
+}
+.theme-btn { min-height: 36px; height: 36px; }
+
+/* ── Step 6: Directional Portal Module Transitions ── */
+@keyframes viewSlideNext {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes viewSlidePrev {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: none; }
+}
+.view-slide-next { animation: viewSlideNext .26s var(--ease-spring) forwards; }
+.view-slide-prev { animation: viewSlidePrev .26s var(--ease-spring) forwards; }
+
+/* ── Milestone 2: Horizontal Blueprint Cards & Full 3-Param EQ Controls ── */
+.blueprint-horiz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.blueprint-horiz-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 18px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.blueprint-horiz-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.blueprint-horiz-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.blueprint-pill {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+}
+.blueprint-horiz-body {
+  color: var(--text-secondary);
+  font-size: .9rem;
+  line-height: 1.65;
+}
+@media (min-width: 768px) {
+  .blueprint-horiz-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+  .blueprint-horiz-head {
+    width: 255px;
+    flex-shrink: 0;
+  }
+  .blueprint-horiz-body {
+    flex: 1;
+    border-left: 2px solid var(--border-light);
+    padding-left: 24px;
+  }
+}
+
+.eq-param-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+.eq-param-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.eq-param-lbl {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.eq-param-lbl b {
+  color: var(--text-main);
+  font-weight: 800;
+}
+@media (max-width: 480px) {
+  .eq-param-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* ── Milestone 3: Full-Width Enlarged EQ Canvas & Bottom 4-Band Control Rack ── */
+.h-\[360px\] { height: 360px; }
+@media (max-width: 640px) {
+  .h-\[360px\] { height: 260px; }
+}
+.min-h-\[2rem\] { min-height: 2rem; }
+.eq-param-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+.eq-param-lbl {
+  white-space: nowrap;
+}
